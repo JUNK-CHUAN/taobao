@@ -39,10 +39,18 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/source/img" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\junk_chuan\IdeaProjects\taobao\src\main\webapp\source\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\junk_chuan\IdeaProjects\taobao\src\main\webapp\WEB-INF" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -59,12 +67,11 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.34" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.34" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/taobao_war/" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="taobao:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/taobao_war" />
+            <option name="CONTEXT_PATH" value="/" />
           </settings>
         </artifact>
       </deployment>
@@ -143,7 +150,8 @@
       <option name="presentableId" value="Default" />
       <updated>1592278560761</updated>
       <workItem from="1592278564735" duration="1785000" />
-      <workItem from="1592281508811" duration="6653000" />
+      <workItem from="1592281508811" duration="7676000" />
+      <workItem from="1592294991258" duration="2333000" />
     </task>
     <servers />
   </component>

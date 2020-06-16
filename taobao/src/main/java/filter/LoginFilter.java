@@ -33,6 +33,13 @@ public class LoginFilter implements Filter {
             return;
         }
 
+        // static source
+        if (uri.endsWith(".jpg") || uri.endsWith(".png") || uri.endsWith(".gif") || uri.endsWith(".css") || uri.endsWith(".js"))
+        {
+            filterChain.doFilter(req, res);
+            return;
+        }
+
         // else: judge if login
         Cookie cookies[] = req.getCookies();
         if (cookies != null)
