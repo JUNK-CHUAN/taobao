@@ -7,6 +7,6 @@ import java.io.IOException;
 public class index extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/index.jsp");
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }
