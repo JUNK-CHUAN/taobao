@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
@@ -62,9 +63,28 @@ public class LoginController {
         session.setAttribute("isLogIn", true);
         session.setAttribute("userid", userid);
         session.setAttribute("category", category);
+        System.out.println(session.getAttribute("userid"));
         map.put("result", "true");
         return map;
 
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @ResponseBody
+    public Map logout(HttpSession session) throws Exception {
+        if(session.getAttribute("isLogIn") != null){
+            session.removeAttribute("isLogIn");
+        }
+        if(session.getAttribute("userid") != null){
+            session.removeAttribute("userid");
+        }
+        if(session.getAttribute("category") != null){
+            session.removeAttribute("category");
+        }
+        Map<String, String> map = new HashMap<>();
+        map.put("result", "true");
+        return map;
     }
 
 

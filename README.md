@@ -12,6 +12,8 @@ use idea import /demo/demo
 
 ## POST -> /login
 
+登陆，会在session中设置登陆标志"isLogIn":"true"
+
 #### RequestParam
 
 "userid" : (string) 即userID
@@ -49,6 +51,17 @@ use idea import /demo/demo
 成功：{“result": "true"}
 
 失败: {"result": "false"}   应该是因为userid已经被注册
+
+
+
+## GET -> /logout
+
+退出登陆，会清除掉session里的登陆标记
+
+#### Return
+
+{"result": "true"}
+
 
 
 

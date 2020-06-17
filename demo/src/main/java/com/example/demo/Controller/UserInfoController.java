@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -23,10 +25,28 @@ public class UserInfoController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getCurrentUserInfo", method = RequestMethod.GET)
     @ResponseBody
-    public Map getCurrentUserInfo(HttpSession session) throws Exception {
-        System.out.println(session.getAttribute("isLogIn"));
-        System.out.println(session.getAttribute("userid"));
-        System.out.println(session.getAttribute("category"));
+    public Map getCurrentUserInfo(HttpSession session, HttpServletRequest request) throws Exception {
+//        System.out.println(session.getAttribute("isLogIn"));
+//        System.out.println(session.getAttribute("userid"));
+//        System.out.println(session.getAttribute("category"));
+//        System.out.println("==================");
+//        Cookie cookies[] = request.getCookies();
+//        if (cookies != null){
+//
+//            for (Cookie cookie : cookies)
+//            {
+//                String key = cookie.getName();
+//                String val = cookie.getValue();
+//                System.out.println(key + " --- " + val);
+//
+//            }
+//        }
+//        else  {
+//            System.out.println(" no cookie");
+//        }
+//        System.out.println();
+//        System.out.println("==================");
+
         List<Customer> customerList;
         List<Seller> sellerList;
         Map<String, String> map = new HashMap<>();
