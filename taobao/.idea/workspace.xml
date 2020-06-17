@@ -43,6 +43,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -68,15 +69,26 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../demo/demo" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/source/img" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+>>>>>>> 9c76a5cd789cfb2a7c8e03dc9c1a6565aa41e1c6
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\junk_chuan\IdeaProjects\taobao\src\main\webapp\source\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\junk_chuan\IdeaProjects\taobao\src\main\webapp\WEB-INF" />
     </key>
   </component>
   <component name="RunManager">
@@ -85,7 +97,7 @@
       <deployment>
         <artifact name="taobao:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/taobao_war" />
+            <option name="CONTEXT_PATH" value="/" />
           </settings>
         </artifact>
       </deployment>
@@ -164,9 +176,14 @@
       <option name="presentableId" value="Default" />
       <updated>1592278560761</updated>
       <workItem from="1592278564735" duration="1785000" />
+<<<<<<< HEAD
       <workItem from="1592284926146" duration="173000" />
       <workItem from="1592285145381" duration="220000" />
       <workItem from="1592313248223" duration="734000" />
+=======
+      <workItem from="1592281508811" duration="7676000" />
+      <workItem from="1592294991258" duration="2333000" />
+>>>>>>> 9c76a5cd789cfb2a7c8e03dc9c1a6565aa41e1c6
     </task>
     <servers />
   </component>
