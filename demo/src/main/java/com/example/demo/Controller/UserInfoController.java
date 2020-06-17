@@ -60,7 +60,7 @@ public class UserInfoController {
             else{
                 map.put("result", "true");
                 map.put("userid", sellerList.get(0).getsID());
-                map.put("category", "customer");
+                map.put("category", "seller");
                 map.put("name", sellerList.get(0).getName());
                 map.put("phone", sellerList.get(0).getPhone());
                 map.put("address", sellerList.get(0).getAddress());
