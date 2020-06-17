@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.DAO.CustomerMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.Entity.Customer">
+        <result column="cID" property="cID" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="selectCustomer" resultMap="BaseResultMap">
+        select * from customer where cID = #{customer_id}
+    </select>
+
+    <select id="getAllCustomer" resultMap="BaseResultMap">
+        select * from customer
+    </select>
+</mapper>
