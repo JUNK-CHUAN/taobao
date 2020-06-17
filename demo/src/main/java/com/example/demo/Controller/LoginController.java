@@ -60,6 +60,8 @@ public class LoginController {
             return map;
         }
         session.setAttribute("isLogIn", true);
+        session.setAttribute("userid", userid);
+        session.setAttribute("category", category);
         map.put("result", "true");
         return map;
 

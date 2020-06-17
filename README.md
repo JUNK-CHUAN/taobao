@@ -49,3 +49,30 @@ use idea import /demo/demo
 成功：{“result": "true"}
 
 失败: {"result": "false"}   应该是因为userid已经被注册
+
+
+
+## GET -> /getCurrentUserInfo
+
+登陆后，可以获取用户的基本信息
+
+#### Return
+
+未登陆或查询失败：{"result": "false"}
+
+成功获取：
+
+{"result": "true", 
+
+"userid": "xxx",
+
+"categroy": "xxx",
+
+"name": "xxx",
+
+"phone": "xxx",
+
+"address": "xxx"}
+
+
+
