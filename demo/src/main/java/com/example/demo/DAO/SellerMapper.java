@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface SellerMapper {
     List<Seller> selectSeller(String seller_id);
+    void insertSeller(String sID, String password, String name,
+                      String phone, String address);
 }

@@ -15,4 +15,8 @@
     <select id="getAllCustomer" resultMap="BaseResultMap">
         select * from customer
     </select>
+
+    <select id="insertCustomer">
+        insert into customer values(#{cID}, #{password},#{name},#{phone},#{address})
+    </select>
 </mapper>

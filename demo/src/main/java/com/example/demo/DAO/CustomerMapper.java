@@ -9,4 +9,5 @@ public interface CustomerMapper {
     List<Customer> selectCustomer(String customer_id);
 
     List<Customer> getAllCustomer();
+    void insertCustomer(String cID, String password, String name, String phone, String address);
 }
