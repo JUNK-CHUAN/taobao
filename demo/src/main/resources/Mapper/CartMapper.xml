@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.DAO.CartMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.Entity.Cart">
+        <result column="spID" property="spID" jdbcType="INTEGER"/>
+        <result column="cID" property="cID" jdbcType="VARCHAR"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="spName" property="spName" jdbcType="VARCHAR"/>
+        <result column="picUrl" property="picUrl" jdbcType="VARCHAR"/>
+        <result column="stock" property="stock" jdbcType="INTEGER"/>
+        <result column="category" property="category" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="FLOAT"/>
+        <result column="sID" property="sID" jdbcType="VARCHAR"/>
+        <result column="sName" property="sName" jdbcType="VARCHAR"/>
+        <result column="sPhone" property="sPhone" jdbcType="VARCHAR"/>
+        <result column="sAddress" property="sAddress" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="insertCart">
+        insert into cart values(#{spID}, #{cID},#{count})
+    </select>
+
+    <select id="selectCartBycID" resultMap="BaseResultMap">
+        select cart.spID as spID, cID, count, specialty.name as spName,
+            picUrl, stock, category, price, seller.sID as sID, seller.name as sName,
+            seller.phone as sPhone, seller.address as sAddress
+        from cart, specialty, seller
+        where cart.spID=specialty.spID and specialty.sID=seller.sID
+            and cart.cID = #{cID}
+    </select>
+
+    <select id="selectCart" resultMap="BaseResultMap">
+        select cart.spID as spID, cID, count, specialty.name as spName,
+            picUrl, stock, category, price, seller.sID as sID, seller.name as sName,
+            seller.phone as sPhone, seller.address as sAddress
+        from cart, specialty, seller
+        where cart.spID=specialty.spID and specialty.sID=seller.sID
+            and cart.cID = #{cID} and cart.spID = #{spID}
+    </select>
+
+    <select id="deleteCart">
+        delete from cart where spID=#{spID} and cID=#{cID}
+    </select>
+
+    <select id="cartAddCount">
+        update cart set count = count+#{count} where spID=#{spID} and cID=#{cID}
+    </select>
+
+
+</mapper>
