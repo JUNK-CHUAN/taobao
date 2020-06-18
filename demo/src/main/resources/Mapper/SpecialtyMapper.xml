@@ -26,6 +26,15 @@
         where specialty.sID = seller.sID and category = #{category}
     </select>
 
+    <select id="searchByKeyword" resultMap="BaseResultMap">
+        select spID, specialty.sID as sID, specialty.name as name,
+        picUrl, stock, detail, category, price, seller.name as sName,
+        seller.phone as sPhone, seller.address as sAddress
+        from specialty, seller
+        where specialty.sID = seller.sID and ((category like #{keyword})
+         or (specialty.name like #{keyword}) or (detail like #{keyword}) or (seller.name like #{keyword}))
+    </select>
+
 
 
 

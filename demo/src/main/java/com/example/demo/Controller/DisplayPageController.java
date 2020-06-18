@@ -62,5 +62,21 @@ public class DisplayPageController {
         return map;
     }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/search/{keyword}", method = RequestMethod.GET)
+    @ResponseBody
+    public Map searchSpecialty(HttpSession session, @PathVariable String keyword)  throws Exception{
+        List<Specialty> specialtyList;
+        Map<String, Object> map = new HashMap<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            return map;
+        }
+        map.put("result", "true");
+        specialtyList = SPM.searchByKeyword("%" + keyword + "%");
+        map.put("data", specialtyList);
+        return map;
+    }
 
 }

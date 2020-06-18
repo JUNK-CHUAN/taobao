@@ -128,3 +128,41 @@ spObj -> {"spID":1311,
 
 
 
+## GET -> /getSpecilatyByCategory/{category}
+
+通过地域分类获得该类别的所有特产商品
+
+#### param
+
+category: 嵌入在url上的参数，可以是  西南  华南  华东  东北  中原
+
+#### Return
+
+未登陆：{"result": "false"}
+
+查询不到：{“result”：“true”， “data": []}   应该不会有查询不到的情况，只要参数输对
+
+成功：{"result": "true", "data": [spObj1,  spObj2,  spObj3, ...]}
+
+spObj 的格式见上面。
+
+
+
+## GET -> /search/{keyword}
+
+通过关键词搜索商品，会同时搜索商品名、商品简介、商品地域类别、卖家名。
+
+#### param
+
+keyword: 嵌入url的字符串，如 /search/酸辣粉
+
+#### Return（返回格式和上一个getSpecilatyByCategory一样）
+
+未登陆：{"result": "false"}
+
+查询不到：{“result”：“true”， “data": []}   应该不会有查询不到的情况，只要参数输对
+
+成功：{"result": "true", "data": [spObj1,  spObj2,  spObj3, ...]}
+
+spObj 的格式见上面。
+
