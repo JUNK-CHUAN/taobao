@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.demo.DAO.SpecialtyMapper">
     <resultMap id="BaseResultMap" type="com.example.demo.Entity.Specialty">
-        <result column="spID" property="spID" jdbcType="INT"/>
+        <result column="spID" property="spID" jdbcType="INTEGER"/>
         <result column="sID" property="sID" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="picUrl" property="picUrl" jdbcType="VARCHAR"/>
-        <result column="stock" property="stock" jdbcType="INT"/>
+        <result column="stock" property="stock" jdbcType="INTEGER"/>
         <result column="detail" property="detail" jdbcType="VARCHAR"/>
         <result column="category" property="category" jdbcType="VARCHAR"/>
         <result column="price" property="price" jdbcType="FLOAT"/>
@@ -17,6 +17,16 @@
     <select id="selectSpecialty" resultMap="BaseResultMap">
         select * from specialty where spID = #{specialty_id}
     </select>
+
+    <select id="selectSpecialtyByCategory" resultMap="BaseResultMap">
+        select spID, specialty.sID as sID, specialty.name as name,
+        picUrl, stock, detail, category, price, seller.name as sName,
+        seller.phone as sPhone, seller.address as sAddress
+        from specialty, seller
+        where specialty.name = seller.name and category = #{category}
+    </select>
+
+
 
 
 </mapper>
