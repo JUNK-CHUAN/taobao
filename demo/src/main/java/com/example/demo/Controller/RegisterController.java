@@ -31,6 +31,8 @@ public class RegisterController {
                         @RequestParam(value = "phone") String phone,
                         @RequestParam(value = "address") String address,
                         HttpSession session) throws Exception {
+        System.out.println(userid);
+        System.out.println(password);
         List<Customer> customerList;
         List<Seller> sellerList;
         Map<String, String> map = new HashMap<>();

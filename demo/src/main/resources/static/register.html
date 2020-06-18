@@ -226,7 +226,7 @@
 //提交信息
 $('.enterBtn').click(function  () {
             console.log('send');
-            var url = 'http://127.0.0.1:8080/login';
+            var url = 'http://127.0.0.1:8080/register';
             var info = {
                 "userid": document.getElementById('userid').value,
                 "password": document.getElementById('password2').value,
@@ -237,26 +237,28 @@ $('.enterBtn').click(function  () {
             };
             console.log(JSON.stringify(info));
             checked();  //用户名不为空
-            sublim();   //验证码
-
-            $.ajax({
-                url: url,
-                type: 'POST',
-                dataType:'json',
-                crossOrigin: true,
-                data: info,
-                cache: false,
-                success: function (data) {
-                    console.log('success,'+JSON.stringify(data));
-                    if (data.result === 'true') {
-                        window.location.href = "./template.html";
+            var ans = sublim();   //验证码
+            if (ans == true) {
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    dataType:'json',
+                    crossOrigin: true,
+                    data: info,
+                    cache: false,
+                    success: function (data) {
+                        console.log('success,'+JSON.stringify(data));
+                        if (data.result === 'true') {
+                            window.location.href = "./login.html";
+                        }
+                    },
+                    error: function (data) {
+                        console.log("false");
+                        console.log(data);
                     }
-                },
-                error: function (data) {
-                    console.log("false");
-                    console.log(data);
-                }
-            });
+                });
+            }
+
             
         });
 
@@ -299,18 +301,17 @@ var val=document.getElementById("text").value;
             if(val==''){
                 alert('请输入验证码！');
             }else if(val == num){
-                alert('验证码提交成功！');
-                document.getElementById(".input-val").val('');
+              //  alert('验证码提交成功！');
+                document.getElementById("text").value = '';
                 draw(show_num);
+                return true;
 
             }else{
                 alert('验证码错误！\n你输入的是:  '+val+"\n正确的是:  "+num+'\n请重新输入！');
                 document.getElementById("text").value='';
                 draw(show_num);
+                return false;
             }
-        
-       
-		
           }
 function draw(show_num) {
         var canvas_width=document.getElementById('canvas').clientWidth;
