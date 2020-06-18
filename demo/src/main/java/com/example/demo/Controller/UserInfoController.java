@@ -56,7 +56,7 @@ public class UserInfoController {
         }
         if(session.getAttribute("category").equals("customer")){
             customerList = CM.selectCustomer((String) session.getAttribute("userid"));
-            System.out.println(customerList.size());
+//            System.out.println(customerList.size());
             if(customerList.size() <= 0){
                 map.put("result", "false");
                 return map;

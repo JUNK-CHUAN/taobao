@@ -63,7 +63,7 @@ public class LoginController {
         session.setAttribute("isLogIn", true);
         session.setAttribute("userid", userid);
         session.setAttribute("category", category);
-        System.out.println(session.getAttribute("userid"));
+//        System.out.println(session.getAttribute("userid"));
         map.put("result", "true");
         return map;
 
