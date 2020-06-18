@@ -89,3 +89,31 @@ use idea import /demo/demo
 
 
 
+## GET -> /customerHome
+
+顾客的主页，分类返回商品，每类有4个商品
+
+#### Return
+
+未登录的话：{“return": "false"}
+
+成功获取：
+
+```json
+{
+    "return": "true",
+	"data": {
+    	"西南":[_spObj1_, _spObj2_, _spObj3_, _spObj4_],
+        "华南":[_spObj1_, _spObj2_, _spObj3_, _spObj4_],
+        "华东":[_spObj1_, _spObj2_, _spObj3_, _spObj4_],
+        "东北":[_spObj1_, _spObj2_, _spObj3_, _spObj4_],
+        "中原":[_spObj1_, _spObj2_, _spObj3_, _spObj4_],
+    }
+}
+
+_spObj_也是一个json，例子如下：
+_spObj_ -> {"spID":1311,"sID":"jerry","name":"山东酸辣粉","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼好吃，狠辣","category":"东北","price":20.8,"sName":"杰杰","sPhone":"13012345678","sAddress":"北京市某某地方"}
+```
+
+
+

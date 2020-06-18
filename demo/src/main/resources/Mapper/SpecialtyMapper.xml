@@ -23,7 +23,7 @@
         picUrl, stock, detail, category, price, seller.name as sName,
         seller.phone as sPhone, seller.address as sAddress
         from specialty, seller
-        where specialty.name = seller.name and category = #{category}
+        where specialty.sID = seller.sID and category = #{category}
     </select>
 
 
