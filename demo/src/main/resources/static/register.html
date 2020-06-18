@@ -1,0 +1,369 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+	<link rel="shortcut icon"type="image/x-icon" href="C:/Users/TWZ/Desktop/index/images/logo.ico"media="screen" />
+    <title>Title</title>
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <style>
+        /* 清除边框 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 更改默认值 */
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        /* 添加背景图片 */
+        .main {
+            width: 100%;
+            height: 100%;
+			background: #efefef;
+			background: url("C:/Users/TWZ/Desktop/index/images/background.jfif");
+			background-size:100%;
+			background-repeat:no-repeat;
+			background-size: auto 100%;
+			position:absolute;
+        }
+        /* 调整输入框位置 */
+        .loginFrame {
+            width: 800px;
+            height: 1000px;
+            background: rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: -200;
+            right: 0;
+            margin: auto;
+            border-radius: 10px;
+            /*添加边距*/
+            padding: 50px 0;
+            box-sizing: border-box;
+            /*添加阴影*/
+            box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
+        }
+        /* 改变输入框位置 */
+        .loginFrame > div {
+            width: 350px;
+            height: 50px;
+            margin: 40px auto;
+            /*更改字体颜色*/
+            color: white;
+        }
+        /* 改变标题居中 */
+        .loginFrame > p{
+            text-align: center;
+            color: white;
+            font-size: 25px;
+        }
+        /* 改变输入框文字 */
+        .loginFrame > div > span {
+            display: inline-block;
+            cursor: pointer;
+        }
+        /* 改变输入框样式 */
+        .loginFrame > div input {
+            width: 100%;
+            height: 30px;
+            /*透明色*/
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid white;
+            /* 清除蓝色点击框 */
+            outline: none;
+            color: white;
+        }
+        /* 改变登录按钮 */
+        .loginFrame .enterBtn {
+			margin-left:300px;
+            width: 200px;
+            height: 50px;
+            border-radius: 50px;
+            /* 设置背景颜色 渐变 */
+            background-image: linear-gradient(to right, #c979d4, #fa719d);
+            text-align: center;
+            padding-top: 10px;
+            box-sizing: border-box;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .loginFrame .enterBtn:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
+        }
+        /* 改变输入框提示字体颜色 */
+        input::placeholder {
+            color: #bdcada;
+        }
+        svg {
+            vertical-align: bottom;
+        }
+		/* LOGO */
+		.logo img {
+		height:120px;
+		width:120px;
+		margin-left:70px;
+		margin-top :80px; 
+		position : fixed;
+		}
+		/* 验证码 */
+		.check{
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		width : 160px ;
+		height : 50px ;
+		margin-left:200px;
+		}
+		.yanzhengma{
+		height:43px;
+		position: relative; 
+		top:-15px; 
+		left:10px;
+		font-size:20px;
+		border: 1px solid #ccc;
+        padding: 7px 0px;
+        border-radius: 3px;
+        padding-left:5px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+		}
+    </style>
+</head>
+<body>
+<!-- 结构缩写 -->
+<div class="main">
+	<div class="logo">
+		<img src="C:/Users/TWZ/Desktop/index/images/logo.png">
+	</div>
+    <!-- 登录框 -->
+    <div class="loginFrame">
+        <!-- 标题 -->
+        <p class="loginTitle">Register</p>
+        <!-- 用户名 -->
+        <div class="user">
+            <label>
+                    <span>
+                        <svg t="1592234299139" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5146" width="20" height="20"><path d="M513 956.3c-247.7 0-448-200.3-448-448S265.3 66.2 513 66.2s448 200.3 448 448-200.3 442.1-448 442.1z m0-830.9c-212.2 0-388.8 170.7-388.8 388.8C124.2 726.3 294.9 903 513 903c212.2 0 388.8-170.7 388.8-388.8S725.2 125.4 513 125.4z m0 430.2c-94.2 0-170.7-76.5-170.7-170.7S418.8 207.8 513 207.8s170.7 76.5 170.7 170.7S607.2 555.6 513 555.6z m0-289.1c-64.6 0-112 52.8-112 112s47.4 117.9 112 117.9 112-52.8 112-112-47.4-117.9-112-117.9z m0 689.8c-135.7 0-259-58.7-341.9-158.9l-11.8-17.8 11.8-17.8c76.5-117.9 206.2-188.5 347.8-188.5 135.7 0 265 64.6 341.9 182.6l11.8 17.8-11.8 17.8C778 897.1 648.7 956.3 513 956.3zM230.3 773.2C300.9 849.7 406.9 897 513 897c112 0 218.1-47.4 288.6-129.8-70.5-88.2-170.7-135.6-282.7-135.6s-218.1 53.3-288.6 141.6z" p-id="5147" fill="#ffffff"></path></svg>
+                    </span>
+                <span>用户名</span>
+                <!-- 输入框 -->
+                <input type="text" placeholder="     username" id = "userid"><span id="id_tishi"></span></p>
+            </label>
+        </div>
+        <!-- 密码 -->
+        <div class="password">
+            <label>
+                    <span>
+                        <svg t="1592234235032" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4315" width="20" height="20"><path d="M989.25 455.38l-5.4-33.67h-63.69v-0.88A412.95 412.95 0 0 0 103.75 333a40 40 0 1 0 78.19 16.95C214.85 198.15 351.67 88 507.28 88c183.85 0 333.36 149.8 332.88 333.74h-801l-5.4 33.67a488.74 488.74 0 0 0-6.14 77.17 484 484 0 0 0 929.73 188.33 480.83 480.83 0 0 0 38-188.35 488.74 488.74 0 0 0-6.1-77.18zM512 936.41c-222.68 0-403.85-181.17-403.85-403.85 0-10.28 0.39-20.58 1.17-30.84h805.36c0.78 10.26 1.17 20.56 1.17 30.84 0 222.68-181.17 403.85-403.85 403.85z" fill="#ffffff" p-id="4316"></path><path d="M389.95 659.71a122.46 122.46 0 0 0 82.21 119.36v72.45c0 20.7 16.86 39.41 37.52 40.65a40 40 0 0 0 42.48-39.93v-73.17a122.27 122.27 0 0 0-42.08-237.8c-64.98 1.09-118.14 53.49-120.13 118.44zM512 705.8a42.27 42.27 0 1 1 42.27-42.27A42.32 42.32 0 0 1 512 705.8zM507.77 118.14a15 15 0 1 0 0 30A272.41 272.41 0 0 1 758.21 313a15 15 0 0 0 27.56-11.86 302.38 302.38 0 0 0-278-183z" fill="#ffffff" p-id="4317"></path><path d="M787.15 352.18m-15 0a15 15 0 1 0 30 0 15 15 0 1 0-30 0Z" fill="#ffffff" p-id="4318"></path></svg>
+                    </span>
+                <span>密码</span>
+                <!-- 输入框 -->
+                <input type="password" placeholder="     password" name="pw1" id="password1"/><span id="mima_tishi"></span></p>
+            </label>
+        </div>
+		<div class="check_password">
+            <label>
+                    <span>
+                        <svg t="1592234235032" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4315" width="20" height="20"><path d="M989.25 455.38l-5.4-33.67h-63.69v-0.88A412.95 412.95 0 0 0 103.75 333a40 40 0 1 0 78.19 16.95C214.85 198.15 351.67 88 507.28 88c183.85 0 333.36 149.8 332.88 333.74h-801l-5.4 33.67a488.74 488.74 0 0 0-6.14 77.17 484 484 0 0 0 929.73 188.33 480.83 480.83 0 0 0 38-188.35 488.74 488.74 0 0 0-6.1-77.18zM512 936.41c-222.68 0-403.85-181.17-403.85-403.85 0-10.28 0.39-20.58 1.17-30.84h805.36c0.78 10.26 1.17 20.56 1.17 30.84 0 222.68-181.17 403.85-403.85 403.85z" fill="#ffffff" p-id="4316"></path><path d="M389.95 659.71a122.46 122.46 0 0 0 82.21 119.36v72.45c0 20.7 16.86 39.41 37.52 40.65a40 40 0 0 0 42.48-39.93v-73.17a122.27 122.27 0 0 0-42.08-237.8c-64.98 1.09-118.14 53.49-120.13 118.44zM512 705.8a42.27 42.27 0 1 1 42.27-42.27A42.32 42.32 0 0 1 512 705.8zM507.77 118.14a15 15 0 1 0 0 30A272.41 272.41 0 0 1 758.21 313a15 15 0 0 0 27.56-11.86 302.38 302.38 0 0 0-278-183z" fill="#ffffff" p-id="4317"></path><path d="M787.15 352.18m-15 0a15 15 0 1 0 30 0 15 15 0 1 0-30 0Z" fill="#ffffff" p-id="4318"></path></svg>
+                    </span>
+                <span>确认密码</span>
+                <!-- 输入框 -->
+				<input type="password" placeholder="     password" name="pw2" id="password2" onkeyup="validate()"/><span id="tishi"></span></p>
+            </label>
+        </div>
+        <div class="tel">
+             <label>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024" width="20" height="20" t="1592448230699" p-id="4213" version="1.1"><path fill="#ffffff" d="M 368.681 828.083 l 0 1.18499 c -6.48776 0 -11.2574 0.517793 -14.0398 0.517793 l -3.29095 0 c -69.2134 0 -124.926 -55.5706 -126.876 -124.995 c -1.05298 -34.0843 11.1929 -67.0695 34.4455 -91.8366 c 23.2485 -24.7671 54.6916 -39.2888 88.5938 -40.2538 c 0.314155 0 3.74223 -0.188288 4.02978 -0.188288 c 26.5804 0 52.0341 8.35325 73.9451 24.3854 c 30.736 10.89 61.7862 -4.34598 92.1344 -45.2066 c 30.1967 -40.568 36.5586 -72.7192 18.8728 -95.5942 c -6.29845 -4.56906 -12.3411 -9.96189 -18.3581 -16.3862 c -1.05298 -1.02228 -2.04354 -2.15508 -2.97168 -3.30733 c -19.8613 -22.5189 -31.2446 -51.0128 -32.1451 -80.3756 c -1.9187 -70.4393 53.349 -129.293 123.165 -131.279 c 0.324388 0 3.58464 -0.068562 3.90903 -0.068562 c 58.7531 0 110.688 41.8205 123.48 99.4572 c 10.3344 31.9896 36.6845 158.781 -90.1277 329.097 C 526.136 811.024 412.241 828.083 368.681 828.083 L 368.681 828.083 L 368.681 828.083 Z M 364.593 763.737 c 18.9608 0.418532 118.522 -2.2482 227.49 -148.992 c 111.301 -149.499 85.969 -254.349 79.7319 -273.875 c -7.10072 -31.2876 -32.7796 -51.9819 -61.8497 -51.9819 c -36.6845 1.03149 -64.062 30.2643 -63.1349 65.245 c 0.577145 18.5679 9.30288 32.0888 16.5336 40.1238 c 0.220011 0.255827 0.477884 0.550539 0.671289 0.801249 c 4.02978 4.36542 7.80373 7.67787 11.5511 10.1144 c 2.36281 1.57794 4.56906 3.44342 6.42534 5.59749 c 19.6045 22.1945 57.563 84.1598 -13.2754 179.31 c -45.7663 61.514 -92.6542 74.3964 -123.931 74.4322 c -16.0935 0 -32.0776 -3.31244 -47.5009 -9.76848 c -2.65241 -1.12154 -5.17691 -2.60534 -7.44762 -4.40226 c -7.96542 -6.29436 -21.0781 -13.8146 -38.4139 -13.8146 c -18.9649 0.550539 -34.5407 7.54688 -46.0222 19.7887 c -11.5132 12.3001 -17.5886 28.3988 -17.0749 45.2936 c 0.953721 34.5366 28.6188 61.4884 62.9344 61.4884 c 0.162706 0 0.199545 0.026606 0.068562 0.063445 c 1.18499 -0.198521 2.48868 -0.355087 3.26537 -0.418532 C 358.031 762.71 361.391 762.968 364.593 763.737 L 364.593 763.737 L 364.593 763.737 Z M 511.609 961.619 c -60.1827 0 -118.553 -11.7864 -173.502 -35.0175 c -16.2828 -6.90834 -23.9177 -25.7269 -17.0421 -42.0835 c 6.84387 -16.377 25.6113 -23.9904 41.8931 -17.1475 c 47.0465 19.8828 97.0678 30.0023 148.693 30.0023 c 211.629 0 383.789 -172.919 383.789 -385.48 c 0 -212.56 -172.16 -385.48 -383.789 -385.48 c -211.633 0 -383.798 172.92 -383.798 385.48 c 0 72.667 20.2451 143.426 58.527 204.69 c 9.36939 15.0354 4.86377 34.8599 -10.0724 44.2672 c -14.972 9.44307 -34.7034 4.91596 -44.1055 -10.1195 c -44.7441 -71.5414 -68.3476 -154.132 -68.3476 -238.843 c 0 -247.955 200.859 -449.721 447.755 -449.721 c 246.913 0 447.766 201.735 447.766 449.721 C 959.374 759.854 758.522 961.619 511.609 961.619 L 511.609 961.619 L 511.609 961.619 Z M 511.609 961.619" p-id="4214" /></svg>
+                    </span>
+                <span>TEL</span>
+                <!-- 输入框 -->
+                <input type="text" placeholder="     tel-number" name="Tel" id="telephone"/>
+            </label>
+        </div>
+        <div class="true_name">
+            <label>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024" width="20" height="20" t="1592447957309" p-id="3296" version="1.1"><path fill="#ffffff" d="M 121.281 99.237 c -69.072 0 -118.855 49.615 -118.855 118.857 v 577.292 c 0 69.242 49.783 118.857 118.855 118.857 h 781.05 c 69.072 0 118.853 -49.615 118.853 -118.857 V 218.094 c 0 -69.242 -49.782 -118.857 -118.853 -118.857 h -781.05 Z m 781.051 764.066 H 121.281 c -42.932 0 -67.919 -24.887 -67.919 -67.92 V 218.091 c 0 -43.039 24.993 -67.92 67.919 -67.92 h 781.05 c 42.922 0 67.914 24.883 67.914 67.92 v 577.292 c 0.001 0 -15.937 67.92 -67.914 67.92 Z M 620.294 404.862 h 173.545 c 13.012 0 23.596 -11.422 23.596 -25.47 c 0 -14.042 -10.583 -25.466 -23.596 -25.466 H 620.294 c -13.009 0 -23.593 11.424 -23.593 25.466 c 0.001 14.048 10.583 25.47 23.593 25.47 Z m 0 135.839 h 173.545 c 13.012 0 23.596 -11.427 23.596 -25.468 c 0 -14.051 -10.583 -25.47 -23.596 -25.47 H 620.294 c -13.009 0 -23.593 11.419 -23.593 25.47 c 0.001 14.042 10.583 25.468 23.593 25.468 Z m 258.335 84.892 H 620.401 c -13.068 0 -23.698 11.429 -23.698 25.474 c 0 14.044 10.633 25.462 23.698 25.462 h 258.228 c 13.073 0 23.702 -11.419 23.702 -25.462 c 0 -14.047 -10.633 -25.474 -23.702 -25.474 Z m -390.418 -33.668 c -27.791 -29.526 -63.311 -51.042 -102.71 -62.211 l -3.325 -0.937 l 3.045 -1.618 c 42.591 -22.561 69.049 -65.758 69.049 -112.75 c 0 -70.798 -58.246 -128.399 -129.838 -128.399 c -71.617 0 -129.878 57.6 -129.878 128.399 c 0 46.978 26.447 90.174 69.03 112.735 l 3.045 1.618 l -3.318 0.945 c -39.293 11.135 -74.748 32.56 -102.531 61.964 c -28.359 30.013 -47.474 67.131 -55.273 107.345 c -1.202 6.137 0.09 12.358 3.634 17.53 c 3.549 5.175 8.955 8.679 15.165 9.865 c 1.566 0.318 3.146 0.484 4.708 0.484 c 11.161 0 20.819 -8.021 22.976 -19.077 c 15.791 -81.471 88.957 -133.161 173.043 -133.161 c 84.358 0 156.221 51.952 171.803 133.765 c 2.097 11.037 11.869 19.047 23.225 19.047 a 23.81 23.81 0 0 0 4.419 -0.39 c 12.822 -2.407 21.285 -14.667 18.86 -27.339 c -7.691 -40.398 -26.755 -77.675 -55.127 -107.811 Z M 325.052 336.946 c 46.803 0 84.879 38.086 84.879 84.9 c 0 46.806 -38.076 84.893 -84.879 84.893 c -46.821 0 -84.916 -38.086 -84.916 -84.893 c 0.001 -46.815 38.094 -84.9 84.916 -84.9 Z m 0 0 Z" p-id="3297" /></svg>
+                    </span>
+                <span>姓名</span>
+                <!-- 输入框 -->
+                <input type="text" placeholder="     true-name" name="name" id="truename"/>
+            </label>
+        </div>
+        <div class="Address">
+            <label>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024" width="20" height="20" t="1592448313372" p-id="5555" version="1.1"><path fill="#ffffff" d="M 560 304 A 48 48 0 1 0 512 352 a 48 48 0 0 0 48 -48 Z m 64 0 A 112 112 0 1 1 512 192 a 112 112 0 0 1 112 112 Z" p-id="5556" /><path fill="#ffffff" d="M 256 314.24 A 253.44 253.44 0 0 1 512 64 a 253.44 253.44 0 0 1 256 250.24 a 248.96 248.96 0 0 1 -128 216 l -101.12 97.92 a 42.24 42.24 0 0 1 -58.88 0 l -105.6 -102.4 A 248 248 0 0 1 256 314.24 Z m 239.68 267.84 Z m 32 0 Z m -15.68 -14.72 L 602.88 480 l 3.84 -1.92 a 185.6 185.6 0 0 0 96 -162.24 A 189.12 189.12 0 0 0 512 128 a 189.12 189.12 0 0 0 -192 186.24 a 184.96 184.96 0 0 0 91.52 160 l 3.2 1.92 l 2.88 2.56 Z" p-id="5557" /><path fill="#ffffff" d="M 787.52 608 H 704 a 32 32 0 0 1 0 -64 h 106.56 a 32 32 0 0 1 32 21.76 l 85.44 256 A 32 32 0 0 1 896 864 H 128 a 32 32 0 0 1 -32 -42.24 l 85.44 -256 a 32 32 0 0 1 32 -21.76 H 320 a 32 32 0 0 1 0 64 H 236.48 l -64 192 h 679.04 Z" p-id="5558" /><path fill="#ffffff" d="M 416 736 a 32 32 0 0 1 0 -64 h 192 a 32 32 0 0 1 0 64 Z" p-id="5559" /></svg>
+                    </span>
+                <span>地址</span>
+                <!-- 输入框 -->
+                <input type="text" placeholder="     address" name="ad" id="address"/>
+            </label>
+        </div>
+		 <!-- 登录类别 -->
+         <div class="category">
+                <select  id="category">
+                    <option value="customer">顾客</option>
+                    <option value="seller">商家</option>
+                </select>
+            </div>
+        <!-- 验证码 -->
+        <canvas id="canvas" onclick="dj()" class = "check"></canvas>
+        <input type="text" value="" placeholder="请输入验证码（区分大小写）" id ="text" class = "yanzhengma">
+        <!-- 注册按钮 -->
+        <div class="enterBtn">
+            <span>注册</span>
+        </div>
+    </div>
+</div>
+
+<script>
+//提交信息
+$('.enterBtn').click(function  () {
+            console.log('send');
+            var url = 'http://127.0.0.1:8080/login';
+            var info = {
+                "userid": document.getElementById('userid').value,
+                "password": document.getElementById('password2').value,
+                "phone": document.getElementById('telephone').value,
+                "name": document.getElementById('truename').value,
+                "address": document.getElementById('address').value,
+                "category": document.getElementById('category').value
+            };
+            console.log(JSON.stringify(info));
+            checked();  //用户名不为空
+            sublim();   //验证码
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType:'json',
+                crossOrigin: true,
+                data: info,
+                cache: false,
+                success: function (data) {
+                    console.log('success,'+JSON.stringify(data));
+                    if (data.result === 'true') {
+                        window.location.href = "./template.html";
+                    }
+                },
+                error: function (data) {
+                    console.log("false");
+                    console.log(data);
+                }
+            });
+            
+        });
+
+//用户名、密码不能为空
+function checked() {
+    var user = document.getElementById("userid").value;
+    var pd = document.getElementById("password1").value;
+    if(user == "" || pd == ""){
+       alert("用户名或密码不能为空");
+       return false;
+    }
+    else {
+        return true;
+    }
+}
+
+//确认密码
+function validate() {
+    var pw1 = document.getElementById("password1").value;
+    var pw2 = document.getElementById("password2").value;
+    if(pw1 == pw2) {
+        document.getElementById("tishi").innerHTML="<font color='green'>两次密码相同</font>";
+        document.getElementById("submit").disabled = false;
+    }
+    else {
+        document.getElementById("tishi").innerHTML="<font color='red'>两次密码不相同</font>";
+        document.getElementById("submit").disabled = true;
+    }   
+}
+
+//验证码
+var show_num = [];
+ draw(show_num);
+function dj(){
+ draw(show_num);   
+ }
+function sublim(){
+var val=document.getElementById("text").value;  
+            var num = show_num.join("");
+            if(val==''){
+                alert('请输入验证码！');
+            }else if(val == num){
+                alert('验证码提交成功！');
+                document.getElementById(".input-val").val('');
+                draw(show_num);
+
+            }else{
+                alert('验证码错误！\n你输入的是:  '+val+"\n正确的是:  "+num+'\n请重新输入！');
+                document.getElementById("text").value='';
+                draw(show_num);
+            }
+        
+       
+		
+          }
+function draw(show_num) {
+        var canvas_width=document.getElementById('canvas').clientWidth;
+        var canvas_height=document.getElementById('canvas').clientHeight;
+        var canvas = document.getElementById("canvas");//获取到canvas的对象，演员
+        var context = canvas.getContext("2d");//获取到canvas画图的环境，演员表演的舞台
+        canvas.width = canvas_width;
+        canvas.height = canvas_height;
+        var sCode = "A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0,q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m";
+        var aCode = sCode.split(",");
+        var aLength = aCode.length;//获取到数组的长度
+			
+        for (var i = 0; i <= 3; i++) {
+            var j = Math.floor(Math.random() * aLength);//获取到随机的索引值
+            var deg = Math.random() * 30 * Math.PI / 180;//产生0~30之间的随机弧度
+            var txt = aCode[j];//得到随机的一个内容
+            show_num[i] = txt;
+            var x = 10 + i * 20;//文字在canvas上的x坐标
+            var y = 20 + Math.random() * 8;//文字在canvas上的y坐标
+            context.font = "bold 23px 微软雅黑";
+
+            context.translate(x, y);
+            context.rotate(deg);
+
+            context.fillStyle = randomColor();
+            context.fillText(txt, 0, 0);
+
+            context.rotate(-deg);
+            context.translate(-x, -y);
+        }
+        for (var i = 0; i <= 5; i++) { //验证码上显示线条
+            context.strokeStyle = randomColor();
+            context.beginPath();
+            context.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
+            context.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
+            context.stroke();
+        }
+        for (var i = 0; i <= 30; i++) { //验证码上显示小点
+            context.strokeStyle = randomColor();
+            context.beginPath();
+            var x = Math.random() * canvas_width;
+            var y = Math.random() * canvas_height;
+            context.moveTo(x, y);
+            context.lineTo(x + 1, y + 1);
+            context.stroke();
+        }
+    }
+function randomColor() {//得到随机的颜色值
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+</script>
+</body>
+</html>
