@@ -99,7 +99,7 @@ use idea import /demo/demo
 
 成功获取：
 
-```json
+```
 {
     "return": "true",
 	"data": {
