@@ -20,15 +20,22 @@ public class CartController {
     @RequestMapping(value = "/insertCart", method = RequestMethod.POST)
     @ResponseBody
     public Map insertCart(@RequestParam(value = "spID") int spID,
-                        @RequestParam(value = "cID") String cID,
                         @RequestParam(value = "count") int count,
                         HttpSession session) throws Exception{
+        String cID;
         Map<String, Object> map = new HashMap<>();
         if(session.getAttribute("isLogIn") == null) {
             map.put("result", "false");   // 还没登陆
             System.out.println("还没登录");
             return map;
         }
+        if(!session.getAttribute("category").equals("customer")) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("不是顾客");
+            return map;
+        }
+        cID = (String) session.getAttribute("userid");
+
         List<Cart> cartList = CAM.selectCart(spID, cID);
         if(cartList.size()!=0){
             CAM.cartAddCount(spID, cID, count);
