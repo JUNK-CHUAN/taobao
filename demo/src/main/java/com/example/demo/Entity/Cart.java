@@ -1,12 +1,12 @@
 package com.example.demo.Entity;
 
 public class Cart {
-    private long spID;
+    private int spID;
     private String cID;
-    private long count;
+    private int count;
     private String spName;
     private String picUrl;
-    private long stock;
+    private int stock;
     private String category;
     private float price;   // 单价！
     private String sID;
@@ -14,11 +14,11 @@ public class Cart {
     private String sPhone;
     private String sAddress;
 
-    public long getSpID() {
+    public int getSpID() {
         return spID;
     }
 
-    public void setSpID(long spID) {
+    public void setSpID(int spID) {
         this.spID = spID;
     }
 
@@ -30,11 +30,11 @@ public class Cart {
         this.cID = cID;
     }
 
-    public long getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(long count) {
+    public void setCount(int count) {
         this.count = count;
     }
 
@@ -54,11 +54,11 @@ public class Cart {
         this.picUrl = picUrl;
     }
 
-    public long getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(long stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 

@@ -68,6 +68,10 @@ public class UserInfoController {
                 map.put("name", customerList.get(0).getName());
                 map.put("phone", customerList.get(0).getPhone());
                 map.put("address", customerList.get(0).getAddress());
+
+                Map<String, Object> mymap = new HashMap<>();
+
+
                 return map;
             }
         }

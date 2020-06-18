@@ -1,11 +1,11 @@
 package com.example.demo.Entity;
 
 public class Specialty {
-    private long spID;
+    private int spID;
     private String sID;
     private String name;
     private String picUrl;
-    private long Stock;
+    private int stock;
     private String detail;
     private String category;
     private float price;
@@ -13,11 +13,11 @@ public class Specialty {
     private String sPhone;
     private String sAddress;
 
-    public long getSpID() {
+    public int getSpID() {
         return spID;
     }
 
-    public void setSpID(long spID) {
+    public void setSpID(int spID) {
         this.spID = spID;
     }
 
@@ -45,12 +45,12 @@ public class Specialty {
         this.picUrl = picUrl;
     }
 
-    public long getStock() {
-        return Stock;
+    public int getStock() {
+        return stock;
     }
 
-    public void setStock(long stock) {
-        Stock = stock;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public String getDetail() {
