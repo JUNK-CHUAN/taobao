@@ -15,7 +15,11 @@
         <result column="sAddress" property="sAddress" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="selectSpecialty" resultMap="BaseResultMap">
-        select * from specialty where spID = #{specialty_id}
+        select spID, specialty.sID as sID, specialty.name as name,
+        picUrl, stock, detail, category, price, seller.name as sName,
+        seller.phone as sPhone, seller.address as sAddress
+        from specialty, seller
+        where specialty.sID = seller.sID and spID = #{specialty_id}
     </select>
 
     <select id="selectSpecialtyByCategory" resultMap="BaseResultMap">
@@ -34,6 +38,7 @@
         where specialty.sID = seller.sID and ((category like #{keyword})
          or (specialty.name like #{keyword}) or (detail like #{keyword}) or (seller.name like #{keyword}))
     </select>
+
 
 
 

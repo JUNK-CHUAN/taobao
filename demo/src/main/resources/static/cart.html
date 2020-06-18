@@ -16,6 +16,21 @@
 <body>
 
 <script>
+    $(document).ready(function () {
+        $.ajax({
+            url : "http://127.0.0.1:8080/getCurrentUserInfo",
+            type : 'GET',
+            dataType : 'json',
+            crossOrigin: true,
+            success: function (data) {
+                console.log(JSON.stringify(data));
+                if (data.result === "false") {
+                    window.location.href = "./login.html";
+                }
+            }
+        })
+    });
+
     function logout() {
         console.log("click");
         $.ajax({
@@ -77,5 +92,7 @@
     </nav>
 </header>
 
+
+cart
 </body>
 </html>

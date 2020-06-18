@@ -4,7 +4,7 @@
 
 # Usage
 
-use idea import /demo/demo 
+use idea import /demo
 
 
 
@@ -166,3 +166,34 @@ keyword: 嵌入url的字符串，如 /search/酸辣粉
 
 spObj 的格式见上面。
 
+
+
+## GET -> /getSpecialtyInfo/{specialty_id}
+
+通过商品id获取一件商品的详细信息，可用于商品详情页面和商家编辑商品信息页面。
+
+#### param
+
+specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
+
+#### Return
+
+未登录/待查询特产ID不存在: {"result":"false"}
+
+已登录且查询特产ID存在:
+{"result":"true",
+"data":{
+
+​		"spID":1, 即特产ID
+​		"sID":"Jerry", 即商家ID
+​		"name":"麻花", 即特产名
+​		"picUrl":"6666", 即特产图片地址
+​		"stock":120, 即特产库存
+​		"detail":"好吃好吃真好吃", 即特产详情
+​		"category":"西南",  即特产地域类别
+​		"price":40.0,  即特产单价
+​		"sName":"陈昌银", 即商家店名
+​		"sPhone":"12345", 即商家联系方式
+​		"sAddress":"pppp"  即商家地址}
+
+}

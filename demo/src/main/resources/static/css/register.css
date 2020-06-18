@@ -1,0 +1,124 @@
+/* 清除边框 */
+* {
+    margin: 0;
+    padding: 0;
+}
+/* 更改默认值 */
+html, body {
+    width: 100%;
+    height: 100%;
+}
+/* 添加背景图片 */
+.main {
+    width: 100%;
+    height: 100%;
+    background: #efefef;
+    background: url("../img/background.jfif");
+    background-repeat:no-repeat;
+    background-size: auto 100%;
+}
+/* 调整输入框位置 */
+.loginFrame {
+    width: 800px;
+    height: 1000px;
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -200px;
+    right: 0;
+    margin: auto;
+    border-radius: 10px;
+    /*添加边距*/
+    padding: 50px 0;
+    box-sizing: border-box;
+    /*添加阴影*/
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
+}
+/* 改变输入框位置 */
+.loginFrame > div {
+    width: 350px;
+    height: 50px;
+    margin: 40px auto;
+    /*更改字体颜色*/
+    color: white;
+}
+/* 改变标题居中 */
+.loginFrame > p{
+    text-align: center;
+    color: white;
+    font-size: 25px;
+}
+/* 改变输入框文字 */
+.loginFrame > div > span {
+    display: inline-block;
+    cursor: pointer;
+}
+/* 改变输入框样式 */
+.loginFrame > div input {
+    width: 100%;
+    height: 30px;
+    /*透明色*/
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    /* 清除蓝色点击框 */
+    outline: none;
+    color: white;
+}
+/* 改变登录按钮 */
+.loginFrame .enterBtn {
+    margin-left:300px;
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    /* 设置背景颜色 渐变 */
+    background-image: linear-gradient(to right, #c979d4, #fa719d);
+    text-align: center;
+    padding-top: 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+    cursor: pointer;
+}
+.loginFrame .enterBtn:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
+}
+/* 改变输入框提示字体颜色 */
+input::placeholder {
+    color: #bdcada;
+}
+svg {
+    vertical-align: bottom;
+}
+/* LOGO */
+.logo img {
+    height:120px;
+    width:120px;
+    margin-left:70px;
+    margin-top :80px;
+    position : fixed;
+}
+/* 验证码 */
+.check{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width : 160px ;
+    height : 50px ;
+    margin-left:200px;
+}
+.yanzhengma{
+    height:43px;
+    position: relative;
+    top:-15px;
+    left:10px;
+    font-size:20px;
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px;
+    padding-left:5px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+}
