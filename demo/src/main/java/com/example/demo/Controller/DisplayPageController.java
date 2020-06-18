@@ -5,10 +5,7 @@ import com.example.demo.DAO.SpecialtyMapper;
 import com.example.demo.Entity.Specialty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
@@ -46,8 +43,23 @@ public class DisplayPageController {
             ((Map)(map.get("data"))).put(categoryList.get(i), specialtyList);
         }
         return map;
+    }
 
-
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/getSpecilatyByCategory/{category}", method = RequestMethod.GET)
+    @ResponseBody
+    public Map getSpecilatyByCategory(HttpSession session, @PathVariable String category)  throws Exception{
+        List<Specialty> specialtyList;
+        Map<String, Object> map = new HashMap<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            return map;
+        }
+        map.put("result", "true");
+        specialtyList = SPM.selectSpecialtyByCategory(category);
+        map.put("data", specialtyList);
+        return map;
     }
 
 
