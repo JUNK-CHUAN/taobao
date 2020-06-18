@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.DAO.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.Entity.Order">
+        <result column="oID" property="oID" jdbcType="INTEGER"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="submitTime" property="submitTime" jdbcType="TIMESTAMP"/>
+        <result column="recvAddress" property="recvAddress" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+        <result column="spID" property="spID" jdbcType="INTEGER"/>
+        <result column="spName" property="spName" jdbcType="VARCHAR"/>
+        <result column="picUrl" property="picUrl" jdbcType="VARCHAR"/>
+        <result column="detail" property="detail" jdbcType="VARCHAR"/>
+        <result column="category" property="category" jdbcType="VARCHAR"/>
+        <result column="sID" property="sID" jdbcType="VARCHAR"/>
+        <result column="sName" property="sName" jdbcType="VARCHAR"/>
+        <result column="sPhone" property="sPhone" jdbcType="VARCHAR"/>
+        <result column="sAddress" property="sAddress" jdbcType="VARCHAR"/>
+        <result column="cID" property="cID" jdbcType="VARCHAR"/>
+        <result column="cName" property="cName" jdbcType="VARCHAR"/>
+        <result column="cPhone" property="cPhone" jdbcType="VARCHAR"/>
+        <result column="sumPrice" property="sum" jdbcType="FLOAT"/>
+    </resultMap>
+
+    <select id="insertOrder">
+        insert into ordertable(count, address, state, spID, cID, sum)
+        values(#{count}, #{address}, #{state}, #{spID}, #{cID}, #{sum})
+    </select>
+<!--    insert into ordertable(count, address, state, spID, cID, sum) values(12, "asdfasdfdaf12rda", "dfdfdf", 1, "chuan", 12.4);-->
+
+    <select id="selectOrderBycID" resultMap="BaseResultMap">
+        select oID, ordertable.count as count, submitTime, ordertable.address as recvAddress,
+        state, ordertable.spID as spID, specialty.name as spName, picUrl, detail, category,
+        seller.sID as sID, seller.name as sName, seller.phone as sPhone, seller.address as sAddress,
+        ordertable.cID as cID, customer.name as cName, customer.phone as cPhone,
+        ordertable.sum as sumPrice
+        from ordertable, specialty, seller, customer
+        where ordertable.spID=specialty.spID and ordertable.cID=customer.cID
+        and seller.sID=specialty.sID and ordertable.cID=#{cID}
+    </select>
+
+    <select id="selectOrderBysID" resultMap="BaseResultMap">
+        select oID, ordertable.count as count, submitTime, ordertable.address as recvAddress,
+        state, ordertable.spID as spID, specialty.name as spName, picUrl, detail, category,
+        seller.sID as sID, seller.name as sName, seller.phone as sPhone, seller.address as sAddress,
+        ordertable.cID as cID, customer.name as cName, customer.phone as cPhone,
+        ordertable.sum as sumPrice
+        from ordertable, specialty, seller, customer
+        where ordertable.spID=specialty.spID and ordertable.cID=customer.cID
+        and seller.sID=specialty.sID and seller.sID=#{sID}
+    </select>
+
+    <select id="changeOrderState">
+        update ordertable set state=#{state} where oID=#{oID}
+    </select>
+
+</mapper>
