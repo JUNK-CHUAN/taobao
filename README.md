@@ -391,6 +391,8 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 ## 18、GET -> /selectCustomerCart
 
+获取当前顾客的购物车项列表
+
 #### Return
 
 未登录/用户的category不是'customer'，返回：{"result":"false"}
