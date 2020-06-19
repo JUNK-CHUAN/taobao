@@ -249,10 +249,9 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 ```json
 {"result":"true",
  "data":[
-     {"oID":5,"count":320,"submitTime":"2020-06-18T18:04:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"重庆酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"西南","sID":"jerry","sName":"杰杰","sPhone":"18029366999","sAddress":"重庆市沙坪坝区重庆大学A区","cID":"Jerry","cName":"杰杰","cPhone":"18029366999","sum":6656.0},	
-     {"oID":6,"count":3,"submitTime":"2020-06-18T18:05:34.000+00:00","recvAddress":"重庆大学a区","state":"已下单","spID":1,"spName":"重庆酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"西南","sID":"jerry","sName":"杰杰","sPhone":"18029366999","sAddress":"重庆市沙坪坝区重庆大学A区","cID":"Jerry","cName":"杰杰","cPhone":"18029366999","sum":62.4},
-     {"oID":7,"count":3,"submitTime":"2020-06-18T18:07:57.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":3,"spName":"重庆酸辣粉3","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼ggggg好吃，狠辣","category":"西南","sID":"jerry","sName":"杰杰","sPhone":"18029366999","sAddress":"重庆市沙坪坝区重庆大学A区","cID":"Jerry","cName":"杰杰","cPhone":"18029366999","sum":60.6}
-    ]
+     {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
+     {"oID":2,"count":3,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已下单","spID":2,"spName":"广东酸辣粉2","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":6366.0,"expressNo":""}
+ 	]
 }
 ```
 
@@ -271,10 +270,9 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 ```json
 {"result":"true",
  "data":[
-     {"oID":5,"count":320,"submitTime":"2020-06-18T18:04:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"重庆酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"西南","sID":"jerry","sName":"杰杰","sPhone":"18029366999","sAddress":"重庆市沙坪坝区重庆大学A区","cID":"Jerry","cName":"杰杰","cPhone":"18029366999","sum":6656.0},	
-     {"oID":6,"count":3,"submitTime":"2020-06-18T18:05:34.000+00:00","recvAddress":"重庆大学a区","state":"已下单","spID":1,"spName":"重庆酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"西南","sID":"jerry","sName":"杰杰","sPhone":"18029366999","sAddress":"重庆市沙坪坝区重庆大学A区","cID":"Jerry","cName":"杰杰","cPhone":"18029366999","sum":62.4},
-     {"oID":7,"count":3,"submitTime":"2020-06-18T18:07:57.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":3,"spName":"重庆酸辣粉3","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼ggggg好吃，狠辣","category":"西南","sID":"jerry","sName":"杰杰","sPhone":"18029366999","sAddress":"重庆市沙坪坝区重庆大学A区","cID":"Jerry","cName":"杰杰","cPhone":"18029366999","sum":60.6}
-    ]
+     {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
+     {"oID":2,"count":3,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已下单","spID":2,"spName":"广东酸辣粉2","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":6366.0,"expressNo":""}
+ 	]
 }
 ```
 
@@ -282,11 +280,13 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 ## 13、POST -> /setOrderStateSent
 
-把一个订单的状态改为“已发货” \*(数据库中没有运单号的属性，因此这个API不用传输运单号字段，后续可能会改变该API)
+把一个订单的状态改为“已发货” 并设置快递单号
 
 #### RequestParam
 
-oID: (string or int) 订单ID
+“oID”: (string or int) 订单ID
+
+“expressNo”: (string) 快递单号
 
 #### Return
 

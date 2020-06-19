@@ -20,11 +20,12 @@
         <result column="cName" property="cName" jdbcType="VARCHAR"/>
         <result column="cPhone" property="cPhone" jdbcType="VARCHAR"/>
         <result column="sumPrice" property="sum" jdbcType="FLOAT"/>
+        <result column="expressNo" property="expressNo" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="insertOrder">
-        insert into ordertable(count, address, state, spID, cID, sum)
-        values(#{count}, #{address}, #{state}, #{spID}, #{cID}, #{sum})
+        insert into ordertable(count, address, state, spID, cID, sum, expressNo)
+        values(#{count}, #{address}, #{state}, #{spID}, #{cID}, #{sum}, "")
     </select>
 <!--    insert into ordertable(count, address, state, spID, cID, sum) values(12, "asdfasdfdaf12rda", "dfdfdf", 1, "chuan", 12.4);-->
 
@@ -33,7 +34,7 @@
         state, ordertable.spID as spID, specialty.name as spName, picUrl, detail, category,
         seller.sID as sID, seller.name as sName, seller.phone as sPhone, seller.address as sAddress,
         ordertable.cID as cID, customer.name as cName, customer.phone as cPhone,
-        ordertable.sum as sumPrice
+        ordertable.sum as sumPrice, expressNo
         from ordertable, specialty, seller, customer
         where ordertable.spID=specialty.spID and ordertable.cID=customer.cID
         and seller.sID=specialty.sID and ordertable.cID=#{cID}
@@ -44,14 +45,14 @@
         state, ordertable.spID as spID, specialty.name as spName, picUrl, detail, category,
         seller.sID as sID, seller.name as sName, seller.phone as sPhone, seller.address as sAddress,
         ordertable.cID as cID, customer.name as cName, customer.phone as cPhone,
-        ordertable.sum as sumPrice
+        ordertable.sum as sumPrice, expressNo
         from ordertable, specialty, seller, customer
         where ordertable.spID=specialty.spID and ordertable.cID=customer.cID
         and seller.sID=specialty.sID and seller.sID=#{sID}
     </select>
 
     <select id="changeOrderState">
-        update ordertable set state=#{state} where oID=#{oID}
+        update ordertable set state=#{state}, expressNo=#{expressNo} where oID=#{oID}
     </select>
 
 </mapper>

@@ -21,6 +21,15 @@ public class Order {
     private String cName;
     private String cPhone;
     private float sum;
+    private String expressNo;
+
+    public String getExpressNo() {
+        return expressNo;
+    }
+
+    public void setExpressNo(String expressNo) {
+        this.expressNo = expressNo;
+    }
 
     public int getoID() {
         return oID;

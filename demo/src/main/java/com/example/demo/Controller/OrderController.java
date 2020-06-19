@@ -112,6 +112,7 @@ public class OrderController {
     @RequestMapping(value = "/setOrderStateSent", method = RequestMethod.POST)
     @ResponseBody
     public Map setOrderStateSent(@RequestParam(value = "oID") int oID,
+                                 @RequestParam(value = "expressNo") String expressNo,
                                  HttpSession session) throws Exception{
         Map<String, Object> map = new HashMap<>();
         if(session.getAttribute("isLogIn") == null) {
@@ -124,7 +125,7 @@ public class OrderController {
             System.out.println("不是商家");
             return map;
         }
-        OM.changeOrderState(oID, "已发货");
+        OM.changeOrderState(oID, "已发货", expressNo);
         map.put("result", "true");
 
         return map;
