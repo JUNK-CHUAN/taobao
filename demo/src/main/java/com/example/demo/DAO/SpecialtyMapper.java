@@ -19,4 +19,6 @@ public interface SpecialtyMapper {
 
     void updateSpecialty(int spID, String name, String picUrl, int stock, String detail,
                          String category, float price);
+
+    void reduceStock(int spID, int count);
 }

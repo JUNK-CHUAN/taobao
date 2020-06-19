@@ -232,6 +232,8 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 没登陆或者登陆的用户类型不是customer：{"result": "false"}
 
+如果某些购买数量超过库存（可能有一部分成功下单，一部分失败）：{"result":"false","reason":"someStockNotEnough"}
+
 操作成功: {"result": "true"}
 
 
@@ -331,7 +333,7 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 5、修改specialty，用于商家修改商品信息
 
-6、删除一个specialty
+
 
 
 

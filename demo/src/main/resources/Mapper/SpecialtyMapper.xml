@@ -57,6 +57,10 @@
         where spID=#{spID}
     </select>
 
+    <select id="reduceStock">
+        update specialty set stock = stock - #{count}
+        where spID=#{spID}
+    </select>
 
 
 </mapper>

@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.DAO.CartMapper;
 import com.example.demo.DAO.OrderMapper;
+import com.example.demo.DAO.SpecialtyMapper;
 import com.example.demo.Entity.Cart;
 
 
@@ -22,6 +23,8 @@ public class OrderController {
     CartMapper CAM;
     @Autowired
     OrderMapper OM;
+    @Autowired
+    SpecialtyMapper SPM;
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/buyFromCart", method = RequestMethod.POST)
@@ -51,9 +54,17 @@ public class OrderController {
             List<Cart> cartObjList = CAM.selectCart(spID, cID);
             if(cartObjList.size() > 0){
                 int count = cartObjList.get(0).getCount();
+                int stock = cartObjList.get(0).getStock();
+                if(stock < count){
+                    // 如果库存不够就中止
+                    map.put("result", "false");
+                    map.put("reason", "someStockNotEnough");
+                    return map;
+                }
                 String state = "已下单";
                 float sum = count * (cartObjList.get(0).getPrice());
                 OM.insertOrder(count, recvAddress, state, spID, cID, sum);
+                SPM.reduceStock(spID, count);
                 CAM.deleteCart(spID, cID);
             }
         }

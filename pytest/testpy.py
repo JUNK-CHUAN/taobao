@@ -1,7 +1,7 @@
 import requests
 import json
 url = 'http://127.0.0.1:8080/login'
-d = {'userid': 'chuan', 'password': '123', 'category': 'seller'}
+d = {'userid': 'jerry', 'password': '123', 'category': 'customer'}
 r = requests.post(url, data=d)
 print(r.text)
 cookies = r.cookies
@@ -17,15 +17,15 @@ cookies = r.cookies
 # print(r.text)
 
 
-# url = 'http://127.0.0.1:8080/insertCart'
-# d = {"spID": "2", "count": "3"}
-# r = requests.post(url, data=d, cookies=cookies)
-# print(r.text)
+url = 'http://127.0.0.1:8080/insertCart'
+d = {"spID": "12", "count": "15"}
+r = requests.post(url, data=d, cookies=cookies)
+print(r.text)
 
-# url = 'http://127.0.0.1:8080/buyFromCart'
-# d = {"data": [{"spID": "1", "cID": "jerry"}, {"spID": "2", "cID": "jerry"}], "recvAddress": "重庆大学a区"}
-# r = requests.post(url, data=json.dumps(d), cookies=cookies)
-# print(r.text)
+url = 'http://127.0.0.1:8080/buyFromCart'
+d = {"data": [{"spID": "12", "cID": "jerry"}], "recvAddress": "重庆大学a区"}
+r = requests.post(url, data=json.dumps(d), cookies=cookies)
+print(r.text)
 
 # url = 'http://127.0.0.1:8080/setOrderStateSent'
 # d = {"oID": "1", "expressNo": "123456888"};
@@ -39,9 +39,9 @@ cookies = r.cookies
 # r = requests.post(url, data=d, cookies=cookies)
 # print(r.text)
 
-url = 'http://127.0.0.1:8080/updateSpecialty'
-d = {"spID": 9,"name": "蛋糕", "picUrl": "123456888.jpg", 
-"stock": 0, "detail": "adfafaf", 
-"category": "华南", "price": 12.01};
-r = requests.post(url, data=d, cookies=cookies)
-print(r.text)
+# url = 'http://127.0.0.1:8080/updateSpecialty'
+# d = {"spID": 9,"name": "蛋糕", "picUrl": "123456888.jpg", 
+# "stock": 0, "detail": "adfafaf", 
+# "category": "华南", "price": 12.01};
+# r = requests.post(url, data=d, cookies=cookies)
+# print(r.text)
