@@ -319,6 +319,60 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 
 
+## 15、POST -> /createSpecialty
+
+创建新的商品
+
+#### RequestParam
+
+“name”: (string) 商品名
+
+“picUrl”: (string) 图片url
+
+“stock”: (int or string) 库存
+
+“detail”: (string) 简介
+
+“category”: (string) 区域类别
+
+“price”: (float or string) 单价
+
+#### Return
+
+没有登陆或登陆用户类型不是seller：{"result": "false"}
+
+操作成功：{"result": "true"}
+
+
+
+## 16、POST -> /updateSpecialty
+
+更新一个商品的信息
+
+#### RequestParam
+
+"spID": (int or string) 商品id
+
+“name”: (string) 商品名
+
+“picUrl”: (string) 图片url
+
+“stock”: (int or string) 库存
+
+“detail”: (string) 简介
+
+“category”: (string) 区域类别
+
+“price”: (float or string) 单价
+
+#### Return
+
+没有登陆或登陆用户类型不是seller：{"result": "false"}
+
+操作成功：{"result": "true"}
+
+
+
 
 
 ## 剩余需要完成的API
@@ -329,9 +383,9 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 3、获取当前商家的所有specialty项 (done)
 
-4、新建specialty，用于商家新建商品 
+4、新建specialty，用于商家新建商品 （done)
 
-5、修改specialty，用于商家修改商品信息
+5、修改specialty，用于商家修改商品信息 (done)
 
 
 
