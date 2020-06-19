@@ -15,7 +15,6 @@ import java.util.Map;
 public class CartController {
     @Autowired
     CartMapper CAM;
-
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/insertCart", method = RequestMethod.POST)
     @ResponseBody
@@ -44,6 +43,59 @@ public class CartController {
             CAM.insertCart(spID, cID, count);
         }
         map.put("result", "true");
+        return map;
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/deleteCart", method = RequestMethod.POST)
+    @ResponseBody
+    public Map deleteCart(@RequestParam(value = "spID") int spID, HttpSession session) throws Exception{
+        String cID;
+        Map<String, Object> map = new HashMap<>();
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("还没登录");
+            return map;
+        }
+        if(!session.getAttribute("category").equals("customer")) {
+            map.put("result", "false");   // 不是顾客，不能删除购物车中的条目
+            System.out.println("不是顾客");
+            return map;
+        }
+        cID = (String) session.getAttribute("userid");
+        CAM.deleteCart(spID, cID);
+        map.put("result", "true");
+        return map;
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/selectCustomerCart", method = RequestMethod.GET)
+    @ResponseBody
+    public Map selectCustomerCart(HttpSession session) throws Exception{
+        String cID;
+        Map<String, Object> map = new HashMap<>();
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("还没登录");
+            return map;
+        }
+        if(!session.getAttribute("category").equals("customer")) {
+            map.put("result", "false");   // 不是顾客，不能查看购物车
+            System.out.println("不是顾客");
+            return map;
+        }
+        cID = (String) session.getAttribute("userid");
+        List<Cart> cartList = CAM.selectCartBycID(cID);
+        if(cartList.size()<=0)
+        {
+            System.out.println("购物车是空的");
+        }
+        else {
+            System.out.println("购物车不是空的");
+            map.put("data", cartList);
+        }
+        map.put("result", "true");
+
         return map;
     }
 }

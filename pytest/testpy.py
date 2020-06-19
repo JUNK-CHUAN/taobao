@@ -17,15 +17,15 @@ cookies = r.cookies
 # print(r.text)
 
 
-url = 'http://127.0.0.1:8080/insertCart'
-d = {"spID": "12", "count": "15"}
-r = requests.post(url, data=d, cookies=cookies)
-print(r.text)
+# url = 'http://127.0.0.1:8080/insertCart'
+# d = {"spID": "12", "count": "15"}
+# r = requests.post(url, data=d, cookies=cookies)
+# print(r.text)
 
-url = 'http://127.0.0.1:8080/buyFromCart'
-d = {"data": [{"spID": "12", "cID": "jerry"}], "recvAddress": "重庆大学a区"}
-r = requests.post(url, data=json.dumps(d), cookies=cookies)
-print(r.text)
+# url = 'http://127.0.0.1:8080/buyFromCart'
+# d = {"data": [{"spID": "12", "cID": "jerry"}], "recvAddress": "重庆大学a区"}
+# r = requests.post(url, data=json.dumps(d), cookies=cookies)
+# print(r.text)
 
 # url = 'http://127.0.0.1:8080/setOrderStateSent'
 # d = {"oID": "1", "expressNo": "123456888"};
@@ -44,4 +44,14 @@ print(r.text)
 # "stock": 0, "detail": "adfafaf", 
 # "category": "华南", "price": 12.01};
 # r = requests.post(url, data=d, cookies=cookies)
+# print(r.text)
+
+#顾客删除购物车的条目测试：
+url = 'http://127.0.0.1:8080/deleteCart'
+d = {"spID": 12}
+r = requests.post(url, data=d, cookies=cookies)
+print(r.text)
+# #顾客查询自己的购物车内容测试：
+# url = 'http://127.0.0.1:8080/selectCustomerCart'
+# r = requests.get(url, cookies=cookies)
 # print(r.text)

@@ -373,6 +373,57 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 
 
+## 17、POST -> /deleteCart
+
+顾客删除自己的购物车的某个特产
+
+#### RequestParam
+
+"spID"：(int or string)   特产ID
+
+#### Return
+
+未登录/不是顾客，返回：{"result":"false"}
+登录且是顾客，返回：{"result":"true"}
+
+
+
+## 18、GET -> /selectCustomerCart
+
+#### Return
+
+未登录/用户的category不是'customer'，返回：{"result":"false"}
+操作成功，返回
+
+```json
+{"result":"true",
+"data":[
+		{"spID":1,"cID":"bobo","count":30,"spName":"麻花","picUrl":"6666","stock":120,"category":"西南","price":40.0,"sID":"Jerry","sName":"陈昌银","sPhone":"12345","sAddress":"pppp"},
+		{"spID":2,"cID":"bobo","count":40,"spName":"火锅底料","picUrl":"7777","stock":130,"category":"西南","price":50.0,"sID":"Jerry","sName":"陈昌银","sPhone":"12345","sAddress":"pppp"}
+    ]
+}   
+```
+
+"spID"即特产ID，
+
+"cID"即顾客ID,
+
+"spName"即特产名，
+
+"picUrl"即特产图片路径，
+
+"sID"即卖家ID,
+
+"sName"即卖家店名，
+
+"sPhone"，
+
+"sName"即卖家电话，
+
+"sAddress"即卖家地址
+
+
+
 
 
 ## 剩余需要完成的API
