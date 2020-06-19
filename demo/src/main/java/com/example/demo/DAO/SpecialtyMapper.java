@@ -12,4 +12,5 @@ public interface SpecialtyMapper {
 
     List<Specialty> selectSpecialtyByCategory(String category);
     List<Specialty> searchByKeyword(String keyword);
+    List<Specialty> selectSpecialtyBySid(String sID);
 }

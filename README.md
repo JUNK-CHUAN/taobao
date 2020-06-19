@@ -296,6 +296,29 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 
 
+## 14、GET -> /getSellerSpecialtyList
+
+获取当前商家的所有商品列表
+
+#### Return
+
+没有登陆或登陆用户类型不是seller：{"result": "false"}
+
+操作成功：
+
+```json
+{"result":"true",
+ "data":[
+     {"spID":1,"sID":"jerry","name":"广东酸辣粉","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼好吃，狠辣","category":"华南","price":20.8,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区"},
+     {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区"}
+ 	]
+}
+```
+
+
+
+
+
 ## 剩余需要完成的API
 
 1、删除一个Cart项

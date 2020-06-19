@@ -79,4 +79,29 @@ public class DisplayPageController {
         return map;
     }
 
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/getSellerSpecialtyList", method = RequestMethod.GET)
+    @ResponseBody
+    public Map getSellerSpecialtyList(HttpSession session)  throws Exception{
+        List<Specialty> specialtyList;
+        Map<String, Object> map = new HashMap<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            return map;
+        }
+        if(!session.getAttribute("category").equals("seller")) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("不是商家");
+            return map;
+        }
+        String sID = (String) session.getAttribute("userid");
+        map.put("result", "true");
+        specialtyList = SPM.selectSpecialtyBySid(sID);
+        map.put("data", specialtyList);
+        return map;
+    }
+
+
 }
