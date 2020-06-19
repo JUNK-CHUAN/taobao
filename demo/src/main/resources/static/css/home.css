@@ -1,5 +1,18 @@
-div .recommend {
-    width: 800px !important;
-    height: 600px !important;
-    position: center !important;
+.findmore {
+    padding: 20px;
+    text-align: right;
+}
+.findmore-text {
+    font-size:24px;
+}
+.findmore-text:link {
+    color: black;
+    text-decoration: none;
+}
+.findmore-text:active {
+    color: #4e555b;
+}
+.findmore-text:visited {
+    color: darkblue;
+    text-decoration: none;
 }
