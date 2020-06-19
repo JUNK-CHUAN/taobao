@@ -47,6 +47,16 @@
         where specialty.sID = seller.sID and specialty.sID=#{sID}
     </select>
 
+    <select id="createNewSpecialty">
+        insert into specialty(sID, name, picUrl, stock, detail, category, price)
+        values(#{sID}, #{name}, #{picUrl}, #{stock}, #{detail}, #{category}, #{price})
+    </select>
+
+    <select id="updateSpecialty">
+        update specialty set name=#{name}, picUrl=#{picUrl}, stock=#{stock}, detail=#{detail}, category=#{category}, price=#{price}
+        where spID=#{spID}
+    </select>
+
 
 
 </mapper>

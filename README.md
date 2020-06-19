@@ -325,9 +325,9 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 2、获取当前顾客的所有cart项
 
-3、获取当前商家的所有specialty项
+3、获取当前商家的所有specialty项 (done)
 
-4、新建specialty，用于商家新建商品
+4、新建specialty，用于商家新建商品 
 
 5、修改specialty，用于商家修改商品信息
 

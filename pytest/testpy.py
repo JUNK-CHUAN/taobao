@@ -1,7 +1,7 @@
 import requests
 import json
 url = 'http://127.0.0.1:8080/login'
-d = {'userid': 'Jerry', 'password': '123', 'category': 'seller'}
+d = {'userid': 'chuan', 'password': '123', 'category': 'seller'}
 r = requests.post(url, data=d)
 print(r.text)
 cookies = r.cookies
@@ -27,7 +27,21 @@ cookies = r.cookies
 # r = requests.post(url, data=json.dumps(d), cookies=cookies)
 # print(r.text)
 
-url = 'http://127.0.0.1:8080/setOrderStateSent'
-d = {"oID": "1", "expressNo": "123456888"};
+# url = 'http://127.0.0.1:8080/setOrderStateSent'
+# d = {"oID": "1", "expressNo": "123456888"};
+# r = requests.post(url, data=d, cookies=cookies)
+# print(r.text)
+
+# url = 'http://127.0.0.1:8080/createSpecialty'
+# d = {"name": "火锅底料", "picUrl": "123456888.jpg", 
+# "stock": 14, "detail": "adfafaf", 
+# "category": "华南", "price": 12.01};
+# r = requests.post(url, data=d, cookies=cookies)
+# print(r.text)
+
+url = 'http://127.0.0.1:8080/updateSpecialty'
+d = {"spID": 9,"name": "蛋糕", "picUrl": "123456888.jpg", 
+"stock": 0, "detail": "adfafaf", 
+"category": "华南", "price": 12.01};
 r = requests.post(url, data=d, cookies=cookies)
 print(r.text)

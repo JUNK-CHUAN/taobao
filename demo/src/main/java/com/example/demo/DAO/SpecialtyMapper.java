@@ -13,4 +13,10 @@ public interface SpecialtyMapper {
     List<Specialty> selectSpecialtyByCategory(String category);
     List<Specialty> searchByKeyword(String keyword);
     List<Specialty> selectSpecialtyBySid(String sID);
+
+    void createNewSpecialty(String sID, String name, String picUrl, int stock, String detail,
+                            String category, float price);
+
+    void updateSpecialty(int spID, String name, String picUrl, int stock, String detail,
+                         String category, float price);
 }
