@@ -428,15 +428,19 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 ## 剩余需要完成的API
 
-1、删除一个Cart项
+~~1、删除一个Cart项~~
 
-2、获取当前顾客的所有cart项
+~~2、获取当前顾客的所有cart项~~
 
-3、获取当前商家的所有specialty项 (done)
+~~3、获取当前商家的所有specialty项~~
 
-4、新建specialty，用于商家新建商品 （done)
+~~4、新建specialty，用于商家新建商品~~
 
-5、修改specialty，用于商家修改商品信息 (done)
+~~5、修改specialty，用于商家修改商品信息~~
+
+6、图片上传，返回url（具体还不知道怎么和前端整合）
+
+
 
 
 
