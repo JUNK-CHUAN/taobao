@@ -85,6 +85,10 @@ create table specialty
    primary key (spID)
 );
 
+alter table ordertable modify oID int auto_increment;
+alter table ordertable modify column submitTime datetime null default current_timestamp;
+alter table specialty modify spID int auto_increment;
+
 alter table cart add constraint FK_Reference_1 foreign key (cID)
       references customer (cID) on delete restrict on update restrict;
 
@@ -102,6 +106,3 @@ alter table specialty add constraint FK_Reference_3 foreign key (sID)
 
 
 
-alter table ordertable modify oID int auto_increment;
-alter table ordertable modify column submitTime datetime null default current_timestamp;
-alter table specialty modify spID int auto_increment;
