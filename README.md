@@ -384,6 +384,7 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 #### Return
 
 未登录/不是顾客，返回：{"result":"false"}
+
 登录且是顾客，返回：{"result":"true"}
 
 
@@ -393,14 +394,15 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 #### Return
 
 未登录/用户的category不是'customer'，返回：{"result":"false"}
+
 操作成功，返回
 
 ```json
 {"result":"true",
 "data":[
-		{"spID":1,"cID":"bobo","count":30,"spName":"麻花","picUrl":"6666","stock":120,"category":"西南","price":40.0,"sID":"Jerry","sName":"陈昌银","sPhone":"12345","sAddress":"pppp"},
-		{"spID":2,"cID":"bobo","count":40,"spName":"火锅底料","picUrl":"7777","stock":130,"category":"西南","price":50.0,"sID":"Jerry","sName":"陈昌银","sPhone":"12345","sAddress":"pppp"}
-    ]
+	{"spID":1,"cID":"bobo","count":30,"spName":"麻花","picUrl":"6666","stock":120,"category":"西南","price":40.0,"sID":"Jerry","sName":"陈昌银","sPhone":"12345","sAddress":"pppp"},
+	{"spID":2,"cID":"bobo","count":40,"spName":"火锅底料","picUrl":"7777","stock":130,"category":"西南","price":50.0,"sID":"Jerry","sName":"陈昌银","sPhone":"12345","sAddress":"pppp"}
+	]
 }   
 ```
 
