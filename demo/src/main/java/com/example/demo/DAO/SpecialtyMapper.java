@@ -7,8 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface SpecialtyMapper {
-    List<Specialty> selectSpecialty(String specialty_id);
-
+    List<Specialty> selectSpecialty(int specialty_id);
 
     List<Specialty> selectSpecialtyByCategory(String category);
     List<Specialty> searchByKeyword(String keyword);
