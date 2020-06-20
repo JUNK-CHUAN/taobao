@@ -321,13 +321,13 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 ## 15、POST -> /createSpecialty
 
-创建新的商品
+创建新的商品, 前端ajax写法参考demo/src/main/resources/static/pic.html
 
 #### RequestParam
 
 “name”: (string) 商品名
 
-“picUrl”: (string) 图片url
+  "file"：（MultipartFile）图片文件,
 
 “stock”: (int or string) 库存
 
@@ -339,15 +339,15 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 #### Return
 
-没有登陆或登陆用户类型不是seller：{"result": "false"}
+没有登陆或登陆用户类型不是seller或目录不存在或上传失败：{"result": "false"}
 
-操作成功：{"result": "true"}
+操作成功：{"result": "true"，"url":"specialty/uuid.jpg"}
 
 
 
 ## 16、POST -> /updateSpecialty
 
-更新一个商品的信息
+更新一个商品的信息,前端ajax写法参考demo/src/main/resources/static/pic.html
 
 #### RequestParam
 
@@ -355,7 +355,7 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 “name”: (string) 商品名
 
-“picUrl”: (string) 图片url
+  "file"：（MultipartFile）图片文件,
 
 “stock”: (int or string) 库存
 
@@ -367,9 +367,9 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 #### Return
 
-没有登陆或登陆用户类型不是seller：{"result": "false"}
+没有登陆或登陆用户类型不是seller或目录不存在或上传失败：{"result": "false"}
 
-操作成功：{"result": "true"}
+操作成功：{"result": "true"，"url":"specialty/uuid.jpg"}
 
 
 
