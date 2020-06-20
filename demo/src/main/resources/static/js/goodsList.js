@@ -19,14 +19,21 @@ function logout() {
 }
 
 function get_goods_list() {
+    var storage = window.localStorage;
+    var urlpattern = storage.getItem("urlpattern");
+    var keyword = storage.getItem("keyword");
+    storage.removeItem("urlpattern");
+    storage.removeItem("keyword");
+    var url = "http://127.0.0.1:8080" + urlpattern + keyword;
+    console.log(url);
 
     $.ajax({
-        url : "http://127.0.0.1:8080//search/西南",
+        url : url,
         type : 'GET',
         dataType : 'json',
         crossOrigin: true,
         success: function (data) {
-             console.log(JSON.stringify(data));
+            console.log(JSON.stringify(data));
             selectGoods = data["data"];
             assert_pageNum_and_load_pagination();
             load_goods_div(0);

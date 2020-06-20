@@ -33,7 +33,8 @@
                     window.location.href = "./login.html";
                 }
                 else {
-                    // data: {
+                    // data:
+                    // {
                     //     "return": "true",
                     //     "data": {
                     //         "西南":[spObj1, spObj2, spObj3, spObj4],
@@ -49,7 +50,61 @@
                         dataType: 'json',
                         crossOrigin: true,
                         success: function (data) {
-                            console.log(JSON.stringify(data))
+                            console.log(JSON.stringify(data));
+                            if (data["result"] === "true")
+                            {
+                                console.log("get data success");
+                                var jsonData = data["data"];
+                                for (var key in jsonData) {
+                                    var dataList = jsonData[key];
+                                    console.log(dataList);
+                                    if (key === "西南"){
+                                        for (var i = 0; i < dataList.length; i++) {
+                                            var item = dataList[i];
+                                            var detail_class = "#xinan-detail-" + (i+1);
+                                            $(detail_class+" img").attr('src', item["picUrl"]);
+                                            $(detail_class+" h5").text(item["name"]);
+                                            $(detail_class+" p").text(item["detail"]);
+                                        }
+                                    }
+                                    if (key === "华南") {
+                                        for (var i = 0; i < dataList.length; i++) {
+                                            var item = dataList[i];
+                                            var detail_class = "#huanan-detail-" + (i+1);
+                                            $(detail_class+" img").attr('src', item["picUrl"]);
+                                            $(detail_class+" h5").text(item["name"]);
+                                            $(detail_class+" p").text(item["detail"]);
+                                        }
+                                    }
+                                    if (key === "华东") {
+                                        for (var i = 0; i < dataList.length; i++) {
+                                            var item = dataList[i];
+                                            var detail_class = "#huadong-detail-" + (i+1);
+                                            $(detail_class+" img").attr('src', item["picUrl"]);
+                                            $(detail_class+" h5").text(item["name"]);
+                                            $(detail_class+" p").text(item["detail"]);
+                                        }
+                                    }
+                                    if (key === "东北") {
+                                        for (var i = 0; i < dataList.length; i++) {
+                                            var item = dataList[i];
+                                            var detail_class = "#dongbei-detail-" + (i+1);
+                                            $(detail_class+" img").attr('src', item["picUrl"]);
+                                            $(detail_class+" h5").text(item["name"]);
+                                            $(detail_class+" p").text(item["detail"]);
+                                        }
+                                    }
+                                    if (key === "中原") {
+                                        for (var i = 0; i < dataList.length; i++) {
+                                            var item = dataList[i];
+                                            var detail_class = "#zhongyuan-detail-" + (i+1);
+                                            $(detail_class+" img").attr('src', item["picUrl"]);
+                                            $(detail_class+" h5").text(item["name"]);
+                                            $(detail_class+" p").text(item["detail"]);
+                                        }
+                                    }
+                                }
+                            }
                         }
                     })
                 }
@@ -74,6 +129,14 @@
                 console.log(data)
             }
         })
+    }
+
+    function search() {
+        var storage = window.localStorage;
+        storage.setItem("urlpattern", "/search");
+        var keyword = $("input[type='search']").val();
+        storage.setItem("keyword", "/"+keyword);
+        window.location.href = "./goodList.html";
     }
 </script>
 
@@ -110,10 +173,10 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" style="width: 400px;">
+            <div class="form-inline my-2 my-lg-0" style="width: 400px;">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 310px;">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+                <button class="btn btn-outline-success my-2 my-sm-0" onclick="search()">Search</button>
+            </div>
         </div>
     </nav>
 </header>
