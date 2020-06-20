@@ -1,8 +1,13 @@
 package com.example.demo.config;
 
 import org.springframework.context.annotation.Configuration;
+
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * @Author xxs
@@ -20,6 +25,16 @@ public class InterceptorConfig implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:F:/Study/JavaCode/shixi/taobao/demo/src/main/resources/static/specialtyPic/");
+        File path = null;
+        try {
+            path = new File(ResourceUtils.getURL("classpath:").getPath());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        if(!path.exists()) path = new File("");
+        String pathString = path.getAbsolutePath();
+//        System.out.println(pathString);
+//        System.out.println("path:"+pathString.substring(0, pathString.length()-15));
+        registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString.substring(0, pathString.length()-15) + "/src/main/resources/static/specialtyPic/");
     }
 }

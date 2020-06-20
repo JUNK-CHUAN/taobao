@@ -93,8 +93,12 @@
             <artifactId>spring-beans</artifactId>
             <version>5.2.7.RELEASE</version>
         </dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-commons</artifactId>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>
