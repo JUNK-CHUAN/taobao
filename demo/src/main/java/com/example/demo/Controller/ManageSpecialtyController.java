@@ -44,7 +44,7 @@ public class ManageSpecialtyController {
         }
 
         //图片文件存储
-        File fileDir = new File("demo/src/main/resources/static/specialtyPic");
+        File fileDir = new File("src/main/resources/static/specialtyPic");
         String path = fileDir.getAbsolutePath();
         UUID uuid = UUID.randomUUID();
         String uid=uuid.toString();
@@ -100,7 +100,7 @@ public class ManageSpecialtyController {
         }
 
         //图片文件存储
-        File fileDir = new File("demo/src/main/resources/static/specialtyPic");
+        File fileDir = new File("src/main/resources/static/specialtyPic");
         String path = fileDir.getAbsolutePath();
         UUID uuid = UUID.randomUUID();
         String uid=uuid.toString();
