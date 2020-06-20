@@ -22,8 +22,8 @@ function get_goods_list() {
     var storage = window.localStorage;
     var urlpattern = storage.getItem("urlpattern");
     var keyword = storage.getItem("keyword");
-    storage.removeItem("urlpattern");
-    storage.removeItem("keyword");
+    // storage.removeItem("urlpattern");
+    // storage.removeItem("keyword");
     var url = "http://127.0.0.1:8080" + urlpattern + keyword;
     console.log(url);
 
