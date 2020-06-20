@@ -6,16 +6,16 @@
     border: 2px solid #007bff;
     border-radius: 5px;
 }
-.order-head {
+.cart-head {
     margin-left: 200px;
     margin-right: 200px;
     height: 200px;
     padding-top: 100px;
 }
-.order-head h2 {
+.cart-head h2 {
     font-size: 52px;
 }
-.order-list {
+.cart-list {
     margin: 10px 200px 200px 200px;
 }
 .spimg {
