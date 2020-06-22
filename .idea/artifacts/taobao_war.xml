@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="taobao:war">
+    <output-path>$PROJECT_DIR$/taobao/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>taobao</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="taobao.war">
+      <element id="artifact" artifact-name="taobao:war exploded" />
+    </root>
+  </artifact>
+</component>

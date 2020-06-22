@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="taobao:war exploded">
+    <output-path>$PROJECT_DIR$/taobao/target/taobao</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>taobao</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="taobao" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/taobao/target/taobao/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="taobao/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -1,6 +1,9 @@
 .media {
     padding: 10px;
-    border: 1px solid;
+    background: none;
+}
+.media:hover {
+    border: 2px solid #007bff;
     border-radius: 5px;
 }
 .order-head {

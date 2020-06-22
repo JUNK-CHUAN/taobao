@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+    <script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<!--<form action="http://localhost:8080/fileup" enctype="multipart/form-data" method="post">-->
+<!--<input type="file" id="file" name="file">-->
+<!--<input type="submit" id="button" value="上传">-->
+<!-- </form>-->
+<p>JSON</p>
+<input type="text" placeholder="name" id="name">
+<input type="text" placeholder="stock" id="stock">
+<input type="text" placeholder="detail" id="detail">
+<input type="text" placeholder="category" id="category">
+<input type="text" placeholder="price" id="price">
+
+
+<input type="file" id="file" name="file">
+<input type="button" id="button" value="上传" >
+
+返回的url为：<p id="url"></p>
+</body>
+<script type="text/javascript">
+    $(function () {
+        $("#button").click(function () {
+            const form = new FormData();
+            form.append("file", document.getElementById("file").files[0]);
+            form.append("name", document.getElementById("name").value);
+            form.append("stock", document.getElementById("stock").value);
+            form.append("detail", document.getElementById("detail").value);
+            form.append("category", document.getElementById("category").value);
+            form.append("price", document.getElementById("price").value);
+            $.ajax({
+                url: "http://127.0.0.1:8080/createSpecialty",        //后台url
+                data: form,
+                cache: false,
+                async: false,
+                type: "POST",                   //类型，POST或者GET
+                dataType: 'json',              //数据返回类型，可以是xml、json等
+                processData: false,
+                contentType: false,
+                success: function (data) {      //成功，回调函数
+                    if (data.result == "true") {
+                        $("#url").html(data.url);
+                        alert("成功！")
+
+                    } else {
+                        alert("失败");
+                    }
+
+                },
+                error: function (er) {          //失败，回调函数
+                    alert("hhh"+er);
+                }
+            });
+
+        })
+
+    })
+
+</script>
+</html>

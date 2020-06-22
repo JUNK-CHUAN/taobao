@@ -21,7 +21,7 @@ public class SpecialtyInfoController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getSpecialtyInfo/{specialty_id}", method = RequestMethod.GET)
     @ResponseBody
-    public Map getSpecialtyInfo(@PathVariable String specialty_id,
+    public Map getSpecialtyInfo(@PathVariable int specialty_id,
                                 HttpSession session, HttpServletRequest request) throws Exception {
         List<Specialty> specialtyList;
         specialtyList=SM.selectSpecialty(specialty_id);

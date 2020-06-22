@@ -38,13 +38,13 @@
             and cart.cID = #{cID} and cart.spID = #{spID}
     </select>
 
-    <select id="deleteCart">
+
+    <delete id="deleteCart" >
         delete from cart where spID=#{spID} and cID=#{cID}
-    </select>
+    </delete>
 
     <select id="cartAddCount">
         update cart set count = count+#{count} where spID=#{spID} and cID=#{cID}
     </select>
-
 
 </mapper>

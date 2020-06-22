@@ -321,13 +321,13 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 ## 15、POST -> /createSpecialty
 
-创建新的商品
+创建新的商品, 前端ajax写法参考demo/src/main/resources/static/pic.html
 
 #### RequestParam
 
 “name”: (string) 商品名
 
-“picUrl”: (string) 图片url
+  "file"：（MultipartFile）图片文件,
 
 “stock”: (int or string) 库存
 
@@ -339,15 +339,15 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 #### Return
 
-没有登陆或登陆用户类型不是seller：{"result": "false"}
+没有登陆或登陆用户类型不是seller或目录不存在或上传失败：{"result": "false"}
 
-操作成功：{"result": "true"}
+操作成功：{"result": "true"，"url":"specialty/uuid.jpg"}
 
 
 
 ## 16、POST -> /updateSpecialty
 
-更新一个商品的信息
+更新一个商品的信息,前端ajax写法参考demo/src/main/resources/static/pic.html
 
 #### RequestParam
 
@@ -355,7 +355,7 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 “name”: (string) 商品名
 
-“picUrl”: (string) 图片url
+  "file"：（MultipartFile）图片文件,
 
 “stock”: (int or string) 库存
 
@@ -367,9 +367,9 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 #### Return
 
-没有登陆或登陆用户类型不是seller：{"result": "false"}
+没有登陆或登陆用户类型不是seller或目录不存在或上传失败：{"result": "false"}
 
-操作成功：{"result": "true"}
+操作成功：{"result": "true"，"url":"specialty/uuid.jpg"}
 
 
 
@@ -412,6 +412,8 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 "cID"即顾客ID,
 
+“count”数量
+
 "spName"即特产名，
 
 "picUrl"即特产图片路径，
@@ -420,11 +422,31 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 "sName"即卖家店名，
 
-"sPhone"，
+"sPhone"，即卖家电话，
 
-"sName"即卖家电话，
+"sName", 商家名字
 
 "sAddress"即卖家地址
+
+
+
+## 19、POST -> /buyFromCartWithNewCount
+
+在购物车中批量购买商品，批量生成订单
+
+#### RequestParam
+
+\*RequestBody是json格式
+
+{"data": [{"spID": "3", "count": "12"}, {"spID": "2", "count": "7"}, {"spID": "11", "count": "1"}], "recvAddress": "重庆大学a区"}
+
+#### Return
+
+没登陆或者登陆的用户类型不是customer：{"result": "false"}
+
+如果某些购买数量超过库存（可能有一部分成功下单，一部分失败）：{"result":"false","reason":"someStockNotEnough"}
+
+操作成功: {"result": "true"}
 
 
 
