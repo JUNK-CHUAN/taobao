@@ -39,9 +39,9 @@ function get_goods_list() {
     });
 
 }
-const good_count_in_row = 4
-const good_row_in_page = 2
-const good_count_in_page = good_count_in_row*good_row_in_page
+const good_count_in_row = 4;
+const good_row_in_page = 2;
+const good_count_in_page = good_count_in_row*good_row_in_page;
 
 let selectGoods;
 
