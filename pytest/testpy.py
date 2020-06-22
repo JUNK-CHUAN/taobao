@@ -22,10 +22,10 @@ cookies = r.cookies
 # r = requests.post(url, data=d, cookies=cookies)
 # print(r.text)
 
-url = 'http://127.0.0.1:8080/buyFromCartWithNewCount'
-d = {"data":[{"spID":"100","count":"1"}],"recvAddress":"重庆邮电大学A区"}
-r = requests.post(url, data=json.dumps(d).encode("utf-8"), cookies=cookies)
-print(r.text)
+# url = 'http://127.0.0.1:8080/buyFromCartWithNewCount'
+# d = {"data":[{"spID":"100","count":"1"}],"recvAddress":"重庆邮电大学A区"}
+# r = requests.post(url, data=json.dumps(d).encode("utf-8"), cookies=cookies)
+# print(r.text)
 
 # url = 'http://127.0.0.1:8080/buyFromCart'
 # d = {"data": [{"spID": "99", "cID": "jerry"}], "recvAddress": "重庆大学a区"}
@@ -62,3 +62,8 @@ print(r.text)
 # url = 'http://127.0.0.1:8080/selectCustomerCart'
 # r = requests.get(url, cookies=cookies)
 # print(r.text)
+
+url = 'http://127.0.0.1:8080/deleteCart'
+a = {"spList":[1,2,3,4]}
+r = requests.post(url, data= json.dumps(a), cookies=cookies)
+print(r.text)
