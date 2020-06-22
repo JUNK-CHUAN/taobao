@@ -16,133 +16,6 @@
     <script src="jquery/jquery-3.5.1.min.js"></script>
 </head>
 <body>
-
-<script>
-        $(document).ready(function () {
-                $.ajax({
-                    url : "http://127.0.0.1:8080/getCurrentUserInfo",
-                    type : 'GET',
-                    dataType : 'json',
-                    crossOrigin: true,
-                    success: function (data) {
-                        console.log(JSON.stringify(data));
-                        if (data.result === "false") {
-                            window.location.href = "./login.html";
-                        }
-                        else{
-                            spid = "1";
-                            $.ajax({
-                                url: "http://127.0.0.1:8080/getSpecialtyInfo/"+spid,
-                                type: 'get',
-                                dataType:'json',
-                                crossOrigin: true,
-                                cache: false,
-                                success: function (data) {
-                                    console.log('success,'+JSON.stringify(data));
-                
-                                    if (data.result === 'true') {
-                                        var jsonData = data["data"];
-                                        $(".tr-nobdr").text(jsonData["name"]);
-                                        $(".nowprice").text(jsonData["price"]);
-                                        $(".spPic").attr('src',jsonData["picUrl"]);
-                                        // $(".bigSpPic").attr('src',jsonData["picUrl"]);
-                                        $(".stock_num").text(jsonData["stock"]);
-                                        $(".spdetail_name").text(jsonData["name"]);
-                                        $(".spdetail_ID").text(jsonData["spID"]);
-                                        $(".spdetail_sName").text(jsonData["sName"]);
-                                        $(".spdetail_stock").text(jsonData["stock"]);
-                                    }
-                                },
-                                error: function (data) {
-                                    console.log("false");
-                                    console.log(data);
-                                }
-                            });
-                        }
-                
-                    }
-                })
-            });
-                
-            //加入购物车
-            function add_cart () {
-                let spid = 1;
-                console.log('send');
-                var url = 'http://127.0.0.1:8080/insertCart';
-                var info = {
-                    "spID": spid,
-                    "count":document.getElementById("text_box").value
-                };
-                console.log(JSON.stringify(info));
-                
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    dataType:'json',
-                    crossOrigin: true,
-                    data: info,
-                    cache: false,
-                    success: function (data) {
-                        console.log('success,'+JSON.stringify(data));
-                
-                        if (data.result === 'true') {
-                            window.location.href = "./cart.html";
-                        }
-                    },
-                    error: function (data) {
-                        console.log("false");
-                        console.log(data);
-                    }
-                });
-            };
-                
-            function logout() {
-                console.log("click");
-                $.ajax({
-                    url: "http://127.0.0.1:8080/logout",
-                    type: "GET",
-                    dataType: 'json',
-                    crossOrigin: true,
-                    success: function (data) {
-                        console.log(JSON.stringify(data));
-                        if (data.result === 'true') {
-                            window.location.href = "./login.html";
-                        }
-                    },
-                    error: function (data) {
-                        console.log(data)
-                    }
-                })
-            };
-                
-            function search() {
-                var storage = window.localStorage;
-                storage.setItem("urlpattern", "/search");
-                var keyword = $("input[type='search']").val();
-                storage.setItem("keyword", "/"+keyword);
-                window.location.href = "./goodList.html";
-            }
-                
-            //购买数量
-            $(document).ready(function(){
-                var t = $("#text_box");
-                $('#min').attr('disabled',true);
-                $("#add").click(function(){
-                    t.val(parseInt(t.val())+1)
-                    if (parseInt(t.val())!=1){
-                        $('#min').attr('disabled',false);
-                    }
-                })
-                $("#min").click(function(){
-                    t.val(parseInt(t.val())-1);
-                    if (parseInt(t.val())==1){
-                        $('#min').attr('disabled',true);
-                    }
-                })
-            });               
-</script>
-                    
-             
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px; font-size: 22px; padding-left: 200px; padding-right: 200px;">
         <a href="home.html">
@@ -187,11 +60,21 @@
 <div class="showall">
     <!--left -->
     <div class="showbot">
-            <div id="showbox">
+         <!-- 一个大盒子，用以控制位置 -->
+        <div id="enlarge_box" class="enlarge_box">
+            <!-- 小图片盒子 -->
+            <div class="small" id="showbox">
                 <img class="spPic" src="img/photos/img01.png" width="350px">
+                <!-- 遮盖层 -->
+                <div class="cover"></div>
             </div>
+                <!-- 大图片 -->
+            <div class="big" class="enlarge_box">
+                <img class="bigSpPic" src="img/photos/img01.png" width="600px">
+            </div>
+        </div>
     </div>
-
+    
         <!--conet -->
     <div class="tb-property">
         <div class="tr-nobdr">
@@ -254,62 +137,187 @@
             </ul>
         </div>
     </div>
-</div>
+</div>>
 
-<!--<script type="text/javascript">-->
-<!--    //放大镜-->
-<!--    // 1.获取需要操作的元素-->
-<!--    var box=document.getElementById('enlarge_box');-->
-<!--    console.log(box);-->
-<!--    var smallBox=box.children[0];-->
-<!--    var bigBox=box.children[1];-->
-<!--    var cover=smallBox.children[1];-->
-<!--    var bigImage=bigBox.children[0];-->
-<!--    //2.鼠标移动进入小盒子,遮盖层和大图片出现-->
-<!--    box.onmouseenter=function(){-->
-<!--        cover.style.display="block";-->
-<!--        bigBox.style.display="block";-->
-<!--    }-->
-<!--    //3.鼠标离开小盒子,遮盖层和大图片隐藏-->
-<!--    box.onmouseleave=function(){-->
-<!--        cover.style.display="none";-->
-<!--        bigBox.style.display="none";-->
-<!--    }-->
+<script>
+$(document).ready(function () {
+        $.ajax({
+            url : "http://127.0.0.1:8080/getCurrentUserInfo",
+            type : 'GET',
+            dataType : 'json',
+            crossOrigin: true,
+            success: function (data) {
+                console.log(JSON.stringify(data));
+                if (data.result === "false") {
+                    window.location.href = "./login.html";
+                }
+                else{
+                    spid = "1";
+                    $.ajax({
+                        url: "http://127.0.0.1:8080/getSpecialtyInfo/"+spid,
+                        type: 'GET',
+                        dataType:'json',
+                        crossOrigin: true,
+                        cache: false,
+                        success: function (data) {
+                            console.log('success,'+JSON.stringify(data));
 
-<!--    //4.鼠标移动,遮盖层跟着移动,并且鼠标点位于遮盖层的中心位置-->
-<!--    box.onmousemove=function(e){-->
-<!--        e = e || window.event;-->
-<!--        //实现思路:鼠标在盒子中的位置=鼠标在文档中位置-盒子位置-->
-<!--        var mouse_in_documentX=e.pageX || e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft);-->
-<!--        var mouse_in_documentY=e.pageY || e.clientY+(document.documentElement.scrollTop || document.body.scrollTop);-->
-<!--        //鼠标在盒子中的位置,就是遮盖层的位置-->
-<!--        var mouse_in_boxX=mouse_in_documentX-box.offsetLeft;-->
-<!--        var mouse_in_boxY=mouse_in_documentY-box.offsetTop;-->
-<!--        //让鼠标位于遮盖层的中央-->
-<!--        var coverX=mouse_in_boxX - cover.offsetWidth/2 ;-->
-<!--        var coverY=mouse_in_boxY - cover.offsetHeight/2;-->
-<!--        //遮盖层不能超过小盒子范围-->
-<!--        coverX= ( coverX < 0 ) ? 0 : coverX;-->
-<!--        coverY= ( coverY < 0 ) ? 0 : coverY;-->
-<!--        coverX=( coverX > ( box.offsetWidth - cover.offsetWidth)) ? ( box.offsetWidth - cover.offsetWidth) : coverX;-->
-<!--        coverY=( coverY > ( box.offsetHeight - cover.offsetHeight)) ? ( box.offsetHeight - cover.offsetHeight) : coverY;-->
-<!--        cover.style.top=coverY + 'px';-->
-<!--        cover.style.left=coverX + 'px';-->
-<!--        //当遮盖层移动的时候,大图片跟着遮盖层移动(比例关系换算问题)-->
-<!--        //公式：遮盖层移动距离/遮盖层最大移动距离=大图片移动距离/大图片最大移动距离-->
-<!--        //故:大图片移动距离=遮盖层移动距离/遮盖层最大移动距离*大图片最大移动距离-->
+                            if (data.result === 'true') {
+                                var jsonData = data["data"];
+                                // $(".tr-nobdr").text(jsonData["name"]);
+                                // $(".nowprice").text(jsonData["price"]);
+                                // $(".spPic").attr('src',jsonData["picUrl"]);
+                                // $(".bigSpPic").attr('src',jsonData["picUrl"]);
+                                // $(".stock_num").text(jsonData["stock"]);
+                                // $(".spdetail_name").text(jsonData["name"]);
+                                // $(".spdetail_ID").text(jsonData["spID"]);
+                                // $(".spdetail_sName").text(jsonData["sName"]);
+                                // $(".spdetail_stock").text(jsonData["stock"]);
+                            }
+                        },
+                        error: function (data) {
+                            console.log("false");
+                            console.log(data);
+                        }
+                    });
+                }
 
-<!--        //遮盖层最大距离-->
-<!--        var coverMax=box.offsetWidth-cover.offsetWidth;-->
-<!--        //大图片最大移动距离-->
-<!--        var bigImageMax=bigImage.offsetWidth-bigBox.offsetWidth;-->
+            }
+        })
+    });
 
-<!--        var bigImageX=coverX*bigImageMax/coverMax;-->
-<!--        var bigImageY=coverY*bigImageMax/coverMax;-->
+    //加入购物车
+    function add_cart () {
+        let spid = 1;
+        console.log('send');
+        var url = 'http://127.0.0.1:8080/insertCart';
+        var info = {
+            "spID": spid,
+            "count":document.getElementById("text_box").value
+        };
+        console.log(JSON.stringify(info));
 
-<!--        bigImage.style.top=-bigImageY+'px';-->
-<!--        bigImage.style.left=-bigImageX+'px';-->
-<!--    }-->
-<!--</script>      -->
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType:'json',
+            crossOrigin: true,
+            data: info,
+            cache: false,
+            success: function (data) {
+                console.log('success,'+JSON.stringify(data));
+
+                if (data.result === 'true') {
+                    window.location.href = "./cart.html";
+                }
+            },
+            error: function (data) {
+                console.log("false");
+                console.log(data);
+            }
+        });
+    };
+
+    function logout() {
+        console.log("click");
+        $.ajax({
+            url: "http://127.0.0.1:8080/logout",
+            type: "GET",
+            dataType: 'json',
+            crossOrigin: true,
+            success: function (data) {
+                console.log(JSON.stringify(data));
+                if (data.result === 'true') {
+                    window.location.href = "./login.html";
+                }
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        })
+    };
+
+
+    function search() {
+        var storage = window.localStorage;
+        storage.setItem("urlpattern", "/search");
+        var keyword = $("input[type='search']").val();
+        storage.setItem("keyword", "/"+keyword);
+        window.location.href = "./goodList.html";
+    }
+
+    //购买数量
+    $(document).ready(function(){
+        var t = $("#text_box");
+        $('#min').attr('disabled',true);
+        $("#add").click(function(){
+            t.val(parseInt(t.val())+1)
+            if (parseInt(t.val())!=1){
+                $('#min').attr('disabled',false);
+            }
+        })
+        $("#min").click(function(){
+            t.val(parseInt(t.val())-1);
+            if (parseInt(t.val())==1){
+                $('#min').attr('disabled',true);
+            }
+        })
+    });               
+    </script>
+    
+    <script type="text/javascript">
+        //放大镜
+        // 1.获取需要操作的元素
+        var box=document.getElementById('enlarge_box');
+        var smallBox=box.children[0];
+        var bigBox=box.children[1];
+        var cover=smallBox.children[1];
+        var bigImage=bigBox.children[0];
+        //2.鼠标移动进入小盒子,遮盖层和大图片出现
+        box.onmouseenter=function(){
+            cover.style.display="block";
+            bigBox.style.display="block";
+        }
+        //3.鼠标离开小盒子,遮盖层和大图片隐藏
+        box.onmouseleave=function(){
+            cover.style.display="none";
+            bigBox.style.display="none";
+        }
+    
+        //4.鼠标移动,遮盖层跟着移动,并且鼠标点位于遮盖层的中心位置
+        box.onmousemove=function(e){
+            e = e || window.event;
+            //实现思路:鼠标在盒子中的位置=鼠标在文档中位置-盒子位置
+            var mouse_in_documentX=e.pageX || e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft);
+            var mouse_in_documentY=e.pageY || e.clientY+(document.documentElement.scrollTop || document.body.scrollTop);
+            //鼠标在盒子中的位置,就是遮盖层的位置
+            var mouse_in_boxX=mouse_in_documentX-box.offsetLeft;
+            var mouse_in_boxY=mouse_in_documentY-box.offsetTop;
+            //让鼠标位于遮盖层的中央
+            var coverX=mouse_in_boxX - cover.offsetWidth/2 ;
+            var coverY=mouse_in_boxY - cover.offsetHeight/2;
+            //遮盖层不能超过小盒子范围
+            coverX= ( coverX < 0 ) ? 0 : coverX;
+            coverY= ( coverY < 0 ) ? 0 : coverY;
+            coverX=( coverX > ( box.offsetWidth - cover.offsetWidth)) ? ( box.offsetWidth - cover.offsetWidth) : coverX;
+            coverY=( coverY > ( box.offsetHeight - cover.offsetHeight)) ? ( box.offsetHeight - cover.offsetHeight) : coverY;
+            cover.style.top=coverY + 'px';
+            cover.style.left=coverX + 'px';
+            //当遮盖层移动的时候,大图片跟着遮盖层移动(比例关系换算问题)
+            //公式：遮盖层移动距离/遮盖层最大移动距离=大图片移动距离/大图片最大移动距离
+            //故:大图片移动距离=遮盖层移动距离/遮盖层最大移动距离*大图片最大移动距离
+    
+            //遮盖层最大距离
+            var coverMax=box.offsetWidth-cover.offsetWidth;
+            //大图片最大移动距离
+            var bigImageMax=bigImage.offsetWidth-bigBox.offsetWidth;
+    
+            var bigImageX=coverX*bigImageMax/coverMax;
+            var bigImageY=coverY*bigImageMax/coverMax;
+    
+            bigImage.style.top=-bigImageY+'px';
+            bigImage.style.left=-bigImageX+'px';
+        }
+    </script>
 </body>
 </html>

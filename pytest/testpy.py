@@ -17,14 +17,14 @@ cookies = r.cookies
 # print(r.text)
 
 
-url = 'http://127.0.0.1:8080/insertCart'
-d = {"spID": "100", "count": "6"}
-r = requests.post(url, data=d, cookies=cookies)
-print(r.text)
+# url = 'http://127.0.0.1:8080/insertCart'
+# d = {"spID": "100", "count": "6"}
+# r = requests.post(url, data=d, cookies=cookies)
+# print(r.text)
 
 url = 'http://127.0.0.1:8080/buyFromCartWithNewCount'
-d = {"data": [{"spID": "100", "count": "100000"}], "recvAddress": "重庆大学a区"}
-r = requests.post(url, data=json.dumps(d), cookies=cookies)
+d = {"data":[{"spID":"100","count":"1"}],"recvAddress":"重庆邮电大学A区"}
+r = requests.post(url, data=json.dumps(d).encode("utf-8"), cookies=cookies)
 print(r.text)
 
 # url = 'http://127.0.0.1:8080/buyFromCart'

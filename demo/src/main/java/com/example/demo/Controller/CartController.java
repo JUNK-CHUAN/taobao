@@ -22,6 +22,7 @@ public class CartController {
                         @RequestParam(value = "count") int count,
                         HttpSession session) throws Exception{
         String cID;
+        System.out.println(spID);
         Map<String, Object> map = new HashMap<>();
         if(session.getAttribute("isLogIn") == null) {
             map.put("result", "false");   // 还没登陆
