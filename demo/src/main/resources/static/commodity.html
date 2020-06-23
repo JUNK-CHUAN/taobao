@@ -88,7 +88,9 @@
                 console.log('success,'+JSON.stringify(data));
 
                 if (data.result === 'true') {
-                    window.location.href = "./cart.html";
+                    // alert("已加入购物车");
+                    layer.msg("Write your message.");
+                    // window.location.href = "./cart.html";
                 }
             },
             error: function (data) {
@@ -215,7 +217,7 @@
             <span class="Hgt">库存（<span class="stock_num">99</span>）</span>
         </div>
         <div class="nobdr-btns">
-            <button class="addcart" onclick="add_cart()"> <img src="img/shop.png" width="25" height="25"/>加入购物车</button>
+            <button class="addcart" id="btnAddCart" onclick="add_cart()" > <img src="img/shop.png" width="25" height="25"/>加入购物车</button>
             <!-- <button class="addcart yh"><img src="img/ht.png" width="25" height="25"/>立即购买</button> -->
         </div>
         <div class="guarantee">

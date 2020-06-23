@@ -106,6 +106,7 @@ public class CartController {
     @ResponseBody
     public Map deleteCart(@RequestBody String param, HttpSession session) throws Exception{
         String cID;
+        System.out.println(param);
         JSONObject jsonObj = JSONObject.parseObject(param);
         List<Integer> spList= (List<Integer>) jsonObj.get("spList");
         System.out.println("我来删购物车了");

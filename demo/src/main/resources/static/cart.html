@@ -129,16 +129,18 @@
         let item = 0;
         for (let i=0; i<itemList.length; i++) {
             if (itemList[i].checked) {
-                itemIdList[item] = itemList[i].id;
+                itemIdList[item] = parseInt(itemList[i].id);
                 item++;
             }
         }
         let delList = {
             "spList": itemIdList
         }
+        console.log(JSON.stringify(delList))
         $.ajax({
             url: "http://127.0.0.1:8080/deleteCart",
             type: "POST",
+            contentType: "application/text; charset=UTF-8",
             dataType: "json",
             data: JSON.stringify(delList),
             crossOrigin: true,
@@ -186,7 +188,7 @@
             crossOrigin: true,
             success: function (data) {
                 if (data.result === "true") {
-                    location.reload();
+                    window.location.href = "./order.html";
                 }
                 else {
                     alert(data.reason);
