@@ -18,128 +18,130 @@
 <body>
 
 <script>
-        $(document).ready(function () {
-                $.ajax({
-                    url : "http://127.0.0.1:8080/getCurrentUserInfo",
-                    type : 'GET',
-                    dataType : 'json',
-                    crossOrigin: true,
-                    success: function (data) {
-                        console.log(JSON.stringify(data));
-                        if (data.result === "false") {
-                            window.location.href = "./login.html";
+    let spid;
+
+    $(document).ready(function () {
+        $.ajax({
+            url : "http://127.0.0.1:8080/getCurrentUserInfo",
+            type : 'GET',
+            dataType : 'json',
+            crossOrigin: true,
+            success: function (data) {
+                console.log(JSON.stringify(data));
+                if (data.result === "false") {
+                    window.location.href = "./login.html";
+                }
+                else{
+                    let storage = window.localStorage;
+                    spid = storage.getItem("spID");
+                    $.ajax({
+                        url: "http://127.0.0.1:8080/getSpecialtyInfo/"+spid,
+                        type: 'get',
+                        dataType:'json',
+                        crossOrigin: true,
+                        cache: false,
+                        success: function (data) {
+                            console.log('success,'+JSON.stringify(data));
+
+                            if (data.result === 'true') {
+                                var jsonData = data["data"];
+                                $(".tr-nobdr").text(jsonData["name"]);
+                                $(".spPrice").text(jsonData["price"]);
+                                $(".spPic").attr('src',jsonData["picUrl"]);
+                                // $(".bigSpPic").attr('src',jsonData["picUrl"]);
+                                $(".stock_num").text(jsonData["stock"]);
+                                $(".spdetail_name").text(jsonData["name"]);
+                                $(".spdetail_ID").text(jsonData["spID"]);
+                                $(".spdetail_sName").text(jsonData["sName"]);
+                                $(".spdetail_stock").text(jsonData["stock"]);
+                            }
+                        },
+                        error: function (data) {
+                            console.log("false");
+                            console.log(data);
                         }
-                        else{
-                            spid = "1";
-                            $.ajax({
-                                url: "http://127.0.0.1:8080/getSpecialtyInfo/"+spid,
-                                type: 'get',
-                                dataType:'json',
-                                crossOrigin: true,
-                                cache: false,
-                                success: function (data) {
-                                    console.log('success,'+JSON.stringify(data));
-                
-                                    if (data.result === 'true') {
-                                        var jsonData = data["data"];
-                                        $(".tr-nobdr").text(jsonData["name"]);
-                                        $(".nowprice").text(jsonData["price"]);
-                                        $(".spPic").attr('src',jsonData["picUrl"]);
-                                        // $(".bigSpPic").attr('src',jsonData["picUrl"]);
-                                        $(".stock_num").text(jsonData["stock"]);
-                                        $(".spdetail_name").text(jsonData["name"]);
-                                        $(".spdetail_ID").text(jsonData["spID"]);
-                                        $(".spdetail_sName").text(jsonData["sName"]);
-                                        $(".spdetail_stock").text(jsonData["stock"]);
-                                    }
-                                },
-                                error: function (data) {
-                                    console.log("false");
-                                    console.log(data);
-                                }
-                            });
-                        }
-                
-                    }
-                })
-            });
-                
-            //加入购物车
-            function add_cart () {
-                let spid = 1;
-                console.log('send');
-                var url = 'http://127.0.0.1:8080/insertCart';
-                var info = {
-                    "spID": spid,
-                    "count":document.getElementById("text_box").value
-                };
-                console.log(JSON.stringify(info));
-                
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    dataType:'json',
-                    crossOrigin: true,
-                    data: info,
-                    cache: false,
-                    success: function (data) {
-                        console.log('success,'+JSON.stringify(data));
-                
-                        if (data.result === 'true') {
-                            window.location.href = "./cart.html";
-                        }
-                    },
-                    error: function (data) {
-                        console.log("false");
-                        console.log(data);
-                    }
-                });
-            };
-                
-            function logout() {
-                console.log("click");
-                $.ajax({
-                    url: "http://127.0.0.1:8080/logout",
-                    type: "GET",
-                    dataType: 'json',
-                    crossOrigin: true,
-                    success: function (data) {
-                        console.log(JSON.stringify(data));
-                        if (data.result === 'true') {
-                            window.location.href = "./login.html";
-                        }
-                    },
-                    error: function (data) {
-                        console.log(data)
-                    }
-                })
-            };
-                
-            function search() {
-                var storage = window.localStorage;
-                storage.setItem("urlpattern", "/search");
-                var keyword = $("input[type='search']").val();
-                storage.setItem("keyword", "/"+keyword);
-                window.location.href = "./goodList.html";
+                    });
+                }
+
             }
-                
-            //购买数量
-            $(document).ready(function(){
-                var t = $("#text_box");
+        })
+    });
+
+    //加入购物车
+    function add_cart () {
+        console.log('send');
+        var url = 'http://127.0.0.1:8080/insertCart';
+        var info = {
+            "spID": spid,
+            "count":document.getElementById("text_box").value
+        };
+        console.log(JSON.stringify(info));
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType:'json',
+            crossOrigin: true,
+            data: info,
+            cache: false,
+            success: function (data) {
+                console.log('success,'+JSON.stringify(data));
+
+                if (data.result === 'true') {
+                    window.location.href = "./cart.html";
+                }
+            },
+            error: function (data) {
+                console.log("false");
+                console.log(data);
+            }
+        });
+    };
+
+    function logout() {
+        console.log("click");
+        $.ajax({
+            url: "http://127.0.0.1:8080/logout",
+            type: "GET",
+            dataType: 'json',
+            crossOrigin: true,
+            success: function (data) {
+                console.log(JSON.stringify(data));
+                if (data.result === 'true') {
+                    window.location.href = "./login.html";
+                }
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        })
+    };
+
+    function search() {
+        var storage = window.localStorage;
+        storage.setItem("urlpattern", "/search");
+        var keyword = $("input[type='search']").val();
+        storage.setItem("keyword", "/"+keyword);
+        window.location.href = "./goodList.html";
+    }
+
+    //购买数量
+    $(document).ready(function(){
+        var t = $("#text_box");
+        $('#min').attr('disabled',true);
+        $("#add").click(function(){
+            t.val(parseInt(t.val())+1)
+            if (parseInt(t.val())!=1){
+                $('#min').attr('disabled',false);
+            }
+        })
+        $("#min").click(function(){
+            t.val(parseInt(t.val())-1);
+            if (parseInt(t.val())==1){
                 $('#min').attr('disabled',true);
-                $("#add").click(function(){
-                    t.val(parseInt(t.val())+1)
-                    if (parseInt(t.val())!=1){
-                        $('#min').attr('disabled',false);
-                    }
-                })
-                $("#min").click(function(){
-                    t.val(parseInt(t.val())-1);
-                    if (parseInt(t.val())==1){
-                        $('#min').attr('disabled',true);
-                    }
-                })
-            });               
+            }
+        })
+    });
 </script>
                     
              
@@ -188,17 +190,17 @@
     <!--left -->
     <div class="showbot">
             <div id="showbox">
-                <img class="spPic" src="img/photos/img01.png" width="350px">
+                <img class="spPic" src="" width="350px">
             </div>
     </div>
 
         <!--conet -->
     <div class="tb-property">
         <div class="tr-nobdr">
-            <h3> 东北特产大礼包</h3>
+            <h3> </h3>
         </div>
         <div class="txt">
-            <span class="nowprice">￥<a href="">599.00</a></span>
+            <span class="nowprice">￥<span class="spPrice"></span></span>
             <div class="cumulative">
                 <span class="number ty1">累计售出<br /><em id="add_sell_num_363">370</em></span>
                 <span class="number tyu">累计评价<br /><em id="add_sell_num_363">25</em></span>
@@ -237,10 +239,10 @@
         <div id="content" class="active_list"> 
             <div id="ui-a" class="ui-a">
                 <ul style="display:block;">
-                    <li>商品名称：<span class = "spdetail_name" >东北地区特产大礼包</span></li>
-                    <li>商品编号：<span class = "spdetail_ID">ECS001983</span></li>
-                    <li>商家：<span class = "spdetail_sName"> 一百只松鼠</span></li>
-                    <li>库存：<span class = "spdetail_stock">999</span>  </li>
+                    <li>商品名称：<span class = "spdetail_name" ></span></li>
+                    <li>商品编号：<span class = "spdetail_ID"></span></li>
+                    <li>商家：<span class = "spdetail_sName"> </span></li>
+                    <li>库存：<span class = "spdetail_stock"></span>  </li>
                     <li><img src="img/ko-1.jpg"/></li>
                     <li><img src="img/ko-2.jpg"/></li>                       
                     <li><img src="img/ko.jpg"/></li>

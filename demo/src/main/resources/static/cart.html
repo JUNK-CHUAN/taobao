@@ -120,7 +120,7 @@
                 sum = sum + parseInt(chargeList[i].value) * parseFloat(money);
             }
         }
-        $('.sum-charge').text(sum);
+        $('.sum-charge').text(sum.toFixed(2));
     }
 
     function delItem() {
@@ -133,7 +133,28 @@
                 item++;
             }
         }
-        console.log(itemIdList)
+        let delList = {
+            "spList": itemIdList
+        }
+        $.ajax({
+            url: "http://127.0.0.1:8080/deleteCart",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(delList),
+            crossOrigin: true,
+            success: function (resData) {
+                if (resData.result === "true") {
+                    location.reload();
+                }
+                else {
+                    alert("please login!");
+                    location.reload();
+                }
+            },
+            error: function (data) {
+                alert("connection error!")
+            }
+        })
     }
 
     function submit() {
