@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.DAO.CartMapper;
 import com.example.demo.Entity.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,10 +63,13 @@ public class CartController {
             System.out.println("不是顾客");
             return map;
         }
+
         cID = (String) session.getAttribute("userid");
         CAM.deleteCart(spID, cID);
+
         map.put("result", "true");
         return map;
+
     }
 
     @CrossOrigin(origins = "*")

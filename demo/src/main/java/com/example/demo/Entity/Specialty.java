@@ -13,6 +13,7 @@ public class Specialty {
     private String sPhone;
     private String sAddress;
 
+
     public int getSpID() {
         return spID;
     }
