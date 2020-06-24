@@ -22,8 +22,6 @@ function get_goods_list() {
     var storage = window.localStorage;
     var urlpattern = storage.getItem("urlpattern");
     var keyword = storage.getItem("keyword");
-    // storage.removeItem("urlpattern");
-    // storage.removeItem("keyword");
     var url = "http://127.0.0.1:8080" + urlpattern + keyword;
     console.log(url);
 
@@ -46,38 +44,7 @@ const good_row_in_page = 2
 const good_count_in_page = good_count_in_row*good_row_in_page
 
 let selectGoods;
-// let selectGoods = [{"good_id":"1234567890","good_name":"牛肉干","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312412123","good_name":"牛肉干","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"1231231","good_name":"牛肉干","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"1231231","good_name":"牛肉干","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干2","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干2","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干2","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干2","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干2","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干2","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干2","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干2","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干3","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干3","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干3","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干3","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干3","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干4","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干4","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干5","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干6","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干7","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干8","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干9","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//     {"good_id":"12312414","good_name":"牛肉干10","good_price":"123","good_info":"this is a bulk of beef this is a bulk of beef this is a bulk of beef","good_url":"/312312/1241231"},
-//
-// ]
+
 
 $(document).ready(function () {
     $.ajax({
@@ -94,9 +61,8 @@ $(document).ready(function () {
         }
     });
 
-
     }
-)
+);
 
 function load_goods_div(begin_count) {
     let exact_count = Math.min(selectGoods.length-begin_count,good_count_in_page);
@@ -105,13 +71,14 @@ function load_goods_div(begin_count) {
         // only create one row
         let row1_node = $("#row1");
         for(let i=begin_count;i<exact_count;i++){
-            let good_card = $('    <div class="col-3">\n' +
-                '            <div class="card" style="width: 18rem;">\n' +
+            let good_card = $(
+                '        <div class="col-3">\n' +
+                '            <div class="card" style="width: 16rem;">\n' +
                 '                <img src="'+selectGoods[i]['picUrl']+'" class="card-img-top" alt="...">\n' +
                 '                <div class="card-body">\n' +
                 '                    <h5 class="card-title">'+selectGoods[i]['name']+'</h5>\n' +
-                '                    <p class="card-text">'+selectGoods[i]['detail']+'</p>\n' +
-                '                    <a href="'+selectGoods[i]['good_url']+'" class="btn btn-primary">Go somewhere</a>\n' +
+                '                    <p class="card-text">￥'+selectGoods[i]['price']+'</p>\n' +
+                '                    <a id="'+selectGoods[i]['spID']+'" class="btn btn-primary" onclick="showDetail(this)">去购买</a>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '        </div>');
@@ -123,13 +90,14 @@ function load_goods_div(begin_count) {
         let i;
         for (i=begin_count;i<good_count_in_row+begin_count;i++){
             let row1_node = $("#row1");
-            let good_card = $('    <div class="col-3">\n' +
-                '            <div class="card" style="width: 18rem;">\n' +
+            let good_card = $(
+                '        <div class="col-3">\n' +
+                '            <div class="card" style="width: 16rem;">\n' +
                 '                <img src="'+selectGoods[i]['picUrl']+'" class="card-img-top" alt="...">\n' +
                 '                <div class="card-body">\n' +
                 '                    <h5 class="card-title">'+selectGoods[i]['name']+'</h5>\n' +
-                '                    <p class="card-text">'+selectGoods[i]['detail']+'</p>\n' +
-                '                    <a href="'+selectGoods[i]['good_url']+'" class="btn btn-primary">Go somewhere</a>\n' +
+                '                    <p class="card-text">￥'+selectGoods[i]['price']+'</p>\n' +
+                '                    <a id="'+selectGoods[i]['spID']+'" class="btn btn-primary" onclick="showDetail(this)">去购买</a>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '        </div>');
@@ -138,20 +106,27 @@ function load_goods_div(begin_count) {
 
         for(i=good_count_in_row+begin_count;i<begin_count+exact_count;i++) {
             let row1_node = $("#row2");
-            let good_card = $('    <div class="col-3">\n' +
-                '            <div class="card" style="width: 18rem;">\n' +
+            let good_card = $(
+                '        <div class="col-3">\n' +
+                '            <div class="card" style="width: 16rem;">\n' +
                 '                <img src="'+selectGoods[i]['picUrl']+'" class="card-img-top" alt="...">\n' +
                 '                <div class="card-body">\n' +
                 '                    <h5 class="card-title">'+selectGoods[i]['name']+'</h5>\n' +
-                '                    <p class="card-text">'+selectGoods[i]['detail']+'</p>\n' +
-                '                    <a href="'+selectGoods[i]['good_url']+'" class="btn btn-primary">Go somewhere</a>\n' +
+                '                    <p class="card-text">￥'+selectGoods[i]['price']+'</p>\n' +
+                '                    <a id="'+selectGoods[i]['spID']+'" class="btn btn-primary" onclick="showDetail(this)">去购买</a>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '        </div>');
                 row1_node.append(good_card);
         }
     }
+}
 
+function showDetail(item) {
+    let id = item.id;
+    let storage = window.localStorage;
+    storage.setItem("spID", id);
+    window.location.href = "commodity.html";
 }
 
 function pagination_createSpan(count) {

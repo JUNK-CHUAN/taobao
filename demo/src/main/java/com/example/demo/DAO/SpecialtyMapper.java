@@ -20,4 +20,6 @@ public interface SpecialtyMapper {
                          String category, float price);
 
     void reduceStock(int spID, int count);
+
+    void deleteSpecialty(int spID);
 }

@@ -123,12 +123,7 @@ spObj -> {"spID":1311,
 "price":20.8,
 "sName":"杰杰",
 "sPhone":"13012345678",
-"sAddress":"北京市某某地方",
-"detailPics":[
-	{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},
-	{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}
-	]
-}
+"sAddress":"北京市某某地方"}
 ```
 
 
@@ -199,16 +194,7 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 ​		"price":40.0,  即特产单价
 ​		"sName":"陈昌银", 即商家店名
 ​		"sPhone":"12345", 即商家联系方式
-​		"sAddress":"pppp"  即商家地址,
-​		"detailPics":[
-
-​				{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},
-
-​				{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}
-
-​			]
-
-​	}
+​		"sAddress":"pppp"  即商家地址}
 
 }
 
@@ -393,7 +379,7 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 #### RequestParam
 
- {"spList":[1,2,3,4]} 传一个特产ID的数组
+"spID"：(int or string)   特产ID
 
 #### Return
 
@@ -426,8 +412,6 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 "cID"即顾客ID,
 
-“count”数量
-
 "spName"即特产名，
 
 "picUrl"即特产图片路径，
@@ -436,43 +420,13 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 "sName"即卖家店名，
 
-"sPhone"，即卖家电话，
+"sPhone"，
 
-"sName", 商家名字
+"sName"即卖家电话，
 
 "sAddress"即卖家地址
 
 
-
-## 19、POST -> /buyFromCartWithNewCount
-
-在购物车中批量购买商品，批量生成订单
-
-#### RequestParam
-
-\*RequestBody是json格式
-
-{"data": [{"spID": "3", "count": "12"}, {"spID": "2", "count": "7"}, {"spID": "11", "count": "1"}], "recvAddress": "重庆大学a区"}
-
-#### Return
-
-没登陆或者登陆的用户类型不是customer：{"result": "false"}
-
-如果某些购买数量超过库存（可能有一部分成功下单，一部分失败）：{"result":"false","reason":"someStockNotEnough"}
-
-操作成功: {"result": "true"}
-
-
-
-## 20、GET -> /deleteSpecialty/{spID}
-
-删除一个商品（虚伪的删除）
-
-#### Return
-
-没登陆或者登陆的用户类型不是seller：{"result": "false"}
-
-操作成功：{"result": "true"}
 
 
 

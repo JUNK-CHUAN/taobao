@@ -29,6 +29,45 @@
                 if (data.result === "false") {
                     window.location.href = "./login.html";
                 }
+
+                // 动态生成订单列表
+                $.ajax({
+                    url: "http://127.0.0.1:8080/currentCustomerOrderList",
+                    type: 'GET',
+                    dataType: 'json',
+                    crossOrigin: true,
+                    success: function (resData) {
+                        console.log(JSON.stringify(resData));
+
+                        var orderList = resData["data"];
+                        var listFrame = $(".order-list > ul");
+                        for (var i = 0; i < orderList.length; i++) {
+                            var orderItem = orderList[i];
+                            let itemWritable = $(
+                                '<li class="media my-1">\n' +
+                                '<img src=' + orderItem['picUrl'] + ' class="mr-3 spimg" alt="">\n' +
+                                '<div class="media-body">\n' +
+                                '<div class="media-body-left">\n' +
+                                '<h5 class="mt-0 mb-1">' + orderItem['spName'] + '</h5>\n' +
+                                '<span>商家：' + orderItem['sName'] + '</span><br>\n' +
+                                '<span>商家联系方式：' + orderItem['sPhone'] + '</span><br>\n' +
+                                '<span>下单时间：' + orderItem['submitTime'].slice(0,10) + '</span><br>\n' +
+                                '<span>收货地址：' + orderItem['recvAddress'] + '</span><br>\n' +
+                                '</div>\n' +
+                                '<div class="media-body-right">\n' +
+                                '<h5  class="mt-0 mb-1">金额：' + orderItem['sum'] + '</h5>\n' +
+                                '<span>x ' + orderItem['count'] + '</span>\n' +
+                                '<div class="media-body-right-bottom">\n' +
+                                '<h5 class="mt-0 mb-1">' + orderItem['state'] + '</h5>\n' +
+                                '</div>\n' +
+                                '</div>\n' +
+                                '</div>\n' +
+                                '</li>'
+                            );
+                            listFrame.append(itemWritable);
+                        }
+                    }
+                })
             }
         })
     });
@@ -109,60 +148,43 @@
 </div>
 <div class="order-list">
     <ul class="list-unstyled">
-        <li class="media">
-            <img src="img/spimg.jpg" class="mr-3 spimg" alt="">
-            <div class="media-body">
-                <div class="media-body-left">
-                    <h5 class="mt-0 mb-1">商品名称spName</h5>
-                    <span>商家sName</span><br>
-                    <span>商家电话sPhone</span><br>
-                    <span>下单时间submitTime</span><br>
-                </div>
-                <div class="media-body-right">
-                    <h5  class="mt-0 mb-1">金额sum</h5>
-                    <span>x 数量count</span>
-                    <div class="media-body-right-bottom">
-                        <h5 class="mt-0 mb-1">状态state</h5>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="media my-4">
-            <img src="img/spimg.jpg" class="mr-3 spimg" alt="">
-            <div class="media-body">
-                <div class="media-body-left">
-                    <h5 class="mt-0 mb-1">商品名称spName</h5>
-                    <span>商家sName</span><br>
-                    <span>商家电话sPhone</span><br>
-                    <span>下单时间submitTime</span><br>
-                </div>
-                <div class="media-body-right">
-                    <h5  class="mt-0 mb-1">金额sum</h5>
-                    <span>x 数量count</span>
-                    <div class="media-body-right-bottom">
-                        <h5 class="mt-0 mb-1">状态state</h5>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="media">
-            <img src="img/spimg.jpg" class="mr-3 spimg" alt="">
-            <div class="media-body">
-                <div class="media-body-left">
-                    <h5 class="mt-0 mb-1">商品名称spName</h5>
-                    <span>商家sName</span><br>
-                    <span>商家电话sPhone</span><br>
-                    <span>下单时间submitTime</span><br>
-                </div>
-                <div class="media-body-right">
-                    <h5  class="mt-0 mb-1">金额sum</h5>
-                    <span>x 数量count</span>
-                    <div class="media-body-right-bottom">
-                        <h5 class="mt-0 mb-1">状态state</h5>
-                    </div>
-                </div>
-            </div>
-        </li>
+<!--        <li class="media my-1">-->
+<!--            <img src="img/spimg.jpg" class="mr-3 spimg" alt="">-->
+<!--            <div class="media-body">-->
+<!--                <div class="media-body-left">-->
+<!--                    <h5 class="mt-0 mb-1">商品名称spName</h5>-->
+<!--                    <span>商家sName</span><br>-->
+<!--                    <span>商家电话sPhone</span><br>-->
+<!--                    <span>下单时间submitTime</span><br>-->
+<!--                </div>-->
+<!--                <div class="media-body-right">-->
+<!--                    <h5  class="mt-0 mb-1">金额sum</h5>-->
+<!--                    <span>x 数量count</span>-->
+<!--                    <div class="media-body-right-bottom">-->
+<!--                        <h5 class="mt-0 mb-1">状态state</h5>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </li>-->
+<!--        <li class="media my-1">-->
+<!--            <img src="img/spimg.jpg" class="mr-3 spimg" alt="">-->
+<!--            <div class="media-body">-->
+<!--                <div class="media-body-left">-->
+<!--                    <h5 class="mt-0 mb-1">商品名称spName</h5>-->
+<!--                    <span>商家sName</span><br>-->
+<!--                    <span>商家电话sPhone</span><br>-->
+<!--                    <span>下单时间submitTime</span><br>-->
+<!--                </div>-->
+<!--                <div class="media-body-right">-->
+<!--                    <h5  class="mt-0 mb-1">金额sum</h5>-->
+<!--                    <span>x 数量count</span>-->
+<!--                    <div class="media-body-right-bottom">-->
+<!--                        <h5 class="mt-0 mb-1">状态state</h5>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </li>-->
+
     </ul>
 </div>
 </body>

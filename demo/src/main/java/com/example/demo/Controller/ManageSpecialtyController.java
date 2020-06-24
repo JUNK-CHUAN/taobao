@@ -44,7 +44,7 @@ public class ManageSpecialtyController {
         }
 
         //图片文件存储
-        File fileDir = new File("demo/src/main/resources/static/specialtyPic");
+        File fileDir = new File("src/main/resources/static/specialtyPic");
         String path = fileDir.getAbsolutePath();
         UUID uuid = UUID.randomUUID();
         String uid=uuid.toString();
@@ -100,7 +100,7 @@ public class ManageSpecialtyController {
         }
 
         //图片文件存储
-        File fileDir = new File("demo/src/main/resources/static/specialtyPic");
+        File fileDir = new File("src/main/resources/static/specialtyPic");
         String path = fileDir.getAbsolutePath();
         UUID uuid = UUID.randomUUID();
         String uid=uuid.toString();
@@ -140,5 +140,27 @@ public class ManageSpecialtyController {
     public  String ge(){
         System.out.println("来了");
         return "pic.html";
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/deleteSpecialty/{spID}", method = RequestMethod.GET)
+    @ResponseBody
+    public Map deleteSpecialty(@PathVariable int spID,
+                               HttpSession session)  throws Exception{
+        Map<String, Object> map = new HashMap<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            return map;
+        }
+        if(!session.getAttribute("category").equals("seller")) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("不是商家");
+            return map;
+        }
+        SPM.deleteSpecialty(spID);
+        map.put("result", "true");
+        return map;
+
     }
 }
