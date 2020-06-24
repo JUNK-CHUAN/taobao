@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.DAO.SpecialtyPicMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class SpecialtyInfoController {
     @Autowired
     SpecialtyMapper SM;
+    @Autowired
+    SpecialtyPicMapper SPM;
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getSpecialtyInfo/{specialty_id}", method = RequestMethod.GET)
     @ResponseBody
@@ -38,6 +41,10 @@ public class SpecialtyInfoController {
             return map;
         }
         else{
+            int i;
+            for(i=0; i<specialtyList.size(); i++){
+                specialtyList.get(i).setDetailPics(SPM.selectDetailByspID(specialtyList.get(i).getSpID()));
+            }
             map.put("result", "true");
             map.put("data", specialtyList.get(0));
             return map;
