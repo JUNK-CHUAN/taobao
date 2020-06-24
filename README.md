@@ -123,7 +123,12 @@ spObj -> {"spID":1311,
 "price":20.8,
 "sName":"杰杰",
 "sPhone":"13012345678",
-"sAddress":"北京市某某地方"}
+"sAddress":"北京市某某地方",
+"detailPics":[
+	{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},
+	{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}
+	]
+}
 ```
 
 
@@ -194,7 +199,16 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 ​		"price":40.0,  即特产单价
 ​		"sName":"陈昌银", 即商家店名
 ​		"sPhone":"12345", 即商家联系方式
-​		"sAddress":"pppp"  即商家地址}
+​		"sAddress":"pppp"  即商家地址,
+​		"detailPics":[
+
+​				{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},
+
+​				{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}
+
+​			]
+
+​	}
 
 }
 
