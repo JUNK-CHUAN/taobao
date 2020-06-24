@@ -450,6 +450,16 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 
 
+## 20、GET -> /deleteSpecialty/{spID}
+
+删除一个商品（虚伪的删除）
+
+#### Return
+
+没登陆或者登陆的用户类型不是seller：{"result": "false"}
+
+操作成功：{"result": "true"}
+
 
 
 ## 剩余需要完成的API

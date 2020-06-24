@@ -19,7 +19,7 @@
         picUrl, stock, detail, category, price, seller.name as sName,
         seller.phone as sPhone, seller.address as sAddress
         from specialty, seller
-        where specialty.sID = seller.sID and spID = #{specialty_id}
+        where specialty.sID = seller.sID and spID = #{specialty_id}  and specialty.isDeleted=0
     </select>
 
     <select id="selectSpecialtyByCategory" resultMap="BaseResultMap">
@@ -27,7 +27,7 @@
         picUrl, stock, detail, category, price, seller.name as sName,
         seller.phone as sPhone, seller.address as sAddress
         from specialty, seller
-        where specialty.sID = seller.sID and category = #{category}
+        where specialty.sID = seller.sID and category = #{category} and specialty.isDeleted=0
     </select>
 
     <select id="searchByKeyword" resultMap="BaseResultMap">
@@ -35,7 +35,7 @@
         picUrl, stock, detail, category, price, seller.name as sName,
         seller.phone as sPhone, seller.address as sAddress
         from specialty, seller
-        where specialty.sID = seller.sID and ((category like #{keyword})
+        where specialty.sID = seller.sID  and specialty.isDeleted=0 and ((category like #{keyword})
          or (specialty.name like #{keyword}) or (detail like #{keyword}) or (seller.name like #{keyword}))
     </select>
 
@@ -44,7 +44,7 @@
         picUrl, stock, detail, category, price, seller.name as sName,
         seller.phone as sPhone, seller.address as sAddress
         from specialty, seller
-        where specialty.sID = seller.sID and specialty.sID=#{sID}
+        where specialty.sID = seller.sID and specialty.sID=#{sID} and specialty.isDeleted=0
     </select>
 
     <select id="createNewSpecialty">
@@ -62,5 +62,9 @@
         where spID=#{spID}
     </select>
 
+    <select id="deleteSpecialty">
+        update specialty set isDeleted=1, stock=0
+        where spID=#{spID}
+    </select>
 
 </mapper>
