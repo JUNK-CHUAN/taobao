@@ -16,4 +16,9 @@
         insert into seller values(#{sID}, #{password},#{name},#{phone},#{address})
     </select>
 
+    <select id="updateSellerInfo">
+        update seller
+        set name=#{name}, phone=#{phone}, address=#{address}
+        where sID=#{sID}
+    </select>
 </mapper>
