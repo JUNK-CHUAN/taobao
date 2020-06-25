@@ -53,7 +53,11 @@
                                 $(".spdetail_name").text(jsonData["name"]);
                                 $(".spdetail_ID").text(jsonData["spID"]);
                                 $(".spdetail_sName").text(jsonData["sName"]);
-                                $(".spdetail_stock").text(jsonData["stock"]);
+                                $(".spdetail_text").text(jsonData["detail"]);
+                                for(let i=0; i<jsonData["detailPics"].length; i++){
+                                    console.log(jsonData["detailPics"])
+                                    $("#detailPicBox").append('<li><img src="'+ jsonData["detailPics"][i]["picUrl"] + '"/></li>');
+                                }
                             }
                         },
                         error: function (data) {
@@ -243,11 +247,12 @@
                     <li>商品名称：<span class = "spdetail_name" ></span></li>
                     <li>商品编号：<span class = "spdetail_ID"></span></li>
                     <li>商家：<span class = "spdetail_sName"> </span></li>
-                    <li>库存：<span class = "spdetail_stock"></span>  </li>
-                    <li><img src="img/ko-1.jpg"/></li>
-                    <li><img src="img/ko-2.jpg"/></li>                       
-                    <li><img src="img/ko.jpg"/></li>
-                    <li><img src="img/ko-1.jpg"/></li>
+                    <li>商品介绍：<span class = "spdetail_text"></span>  </li>
+<!--                    <li><img src="img/ko-1.jpg"/></li>-->
+<!--                    <li><img src="img/ko-2.jpg"/></li>                       -->
+<!--                    <li><img src="img/ko.jpg"/></li>-->
+<!--                    <li><img src="img/ko-1.jpg"/></li>-->
+                    <div id="detailPicBox"></div>
                 </ul>
             </div>
         </div>
