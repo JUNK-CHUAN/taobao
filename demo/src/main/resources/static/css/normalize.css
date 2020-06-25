@@ -31,7 +31,7 @@ input,button,select,textarea{outline:none; border: none; background: none;}
 textarea{resize:none}
 /*{  behavior: url(css/PIE.htc); position: relative;}*/
 
-.showbot{float: left;}
+.showbot{float: left; margin-left: 110px;}
 #showbox { background:#eee;}
 #showbox img{ width:400px;height: 400px;}
 #showbox span { background:url(../images/whitebg.png) repeat;}
@@ -550,5 +550,46 @@ top: 0;
 	text-align:left;
 	line-height: 2;
 	font-size: 14px;
+<<<<<<< HEAD
+	color: #424242;
+}	
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+/*.enlarge_box{*/
+/*    margin: 50px;*/
+/*    width: 350px;*/
+/*    height: 350px;*/
+/*    position: relative;*/
+/*}*/
+
+/*.cover{*/
+/*    width: 150px;*/
+/*    height: 150px;*/
+/*    opacity: 0.3;*/
+/*    background-color: rgb(196, 196, 166);*/
+/*    position: absolute;*/
+/*    top: 0px;*/
+/*    left: 0px;*/
+/*    display: none;*/
+/*}*/
+
+/*.big{*/
+/*    position: absolute;*/
+/*    top: -10px;*/
+/*    left: 420px;*/
+/*    display: none;*/
+/*    overflow: hidden;*/
+/*    height: 500px;*/
+/*    width: 500px;*/
+/*}*/
+
+/*.big img{*/
+/*    position: absolute;*/
+/*}*/
+=======
 	color: 424242;
 }	
+>>>>>>> 6b212dfb7344d1d7df654833fd65cd54b3577a62

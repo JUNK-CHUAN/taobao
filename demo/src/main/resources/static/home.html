@@ -179,7 +179,7 @@
                         我的
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">个人中心</a>
+                        <a class="dropdown-item" href="currinfo.html">个人中心</a>
                         <a class="dropdown-item" href="order.html">订单信息</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item logoutBtn" onclick="logout()">注销</a>
@@ -196,7 +196,7 @@
 
 
 <!--  轮播图  -->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-left: 200px; margin-right: 200px; margin-top: 100px;">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin:0;">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -224,7 +224,7 @@
 </div>
 
 <!--首页推荐栏-->
-<ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist" style="margin: 100px 200px 0 200px;">
+<ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist" style="margin-top:50px;"><!--  100px 200px 0 200px -->
     <li class="nav-item" role="presentation">
         <a class="nav-link active" id="pills-xinan-tab" data-toggle="pill" href="#pills-xinan" role="tab" aria-controls="pills-xinan" aria-selected="true">西南</a>
     </li>
@@ -241,12 +241,12 @@
         <a class="nav-link" id="pills-zhongyuan-tab" data-toggle="pill" href="#pills-zhongyuan" role="tab" aria-controls="pills-zhongyuan" aria-selected="false">中原</a>
     </li>
 </ul>
-<div class="tab-content" id="pills-tabContent" style="margin: 0 200px 0 200px;">
+<div class="tab-content" id="pills-tabContent" style="margin: 0;">
     <div class="tab-pane fade show active" id="pills-xinan" role="tabpanel" aria-labelledby="pills-xinan-tab">
         <div class="my-3 container-fluid" id="xinan-tab-detail">
             <div class="row">
                 <div class="col-3" id="xinan-detail-1">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -256,7 +256,7 @@
                     </div>
                 </div>
                 <div class="col-3" id="xinan-detail-2">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -266,7 +266,7 @@
                     </div>
                 </div>
                 <div class="col-3" id="xinan-detail-3">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -276,7 +276,49 @@
                     </div>
                 </div>
                 <div class="col-3" id="xinan-detail-4">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3" id="xinan-detail-5">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="xinan-detail-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="xinan-detail-7">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="xinan-detail-8">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -295,7 +337,7 @@
         <div class="my-3 container-fluid" id="huanan-tab-detail">
             <div class="row">
                 <div class="col-3" id="huanan-detail-1">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_2.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -305,7 +347,7 @@
                     </div>
                 </div>
                 <div class="col-3" id="huanan-detail-2">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_2.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -315,7 +357,7 @@
                     </div>
                 </div>
                 <div class="col-3" id="huanan-detail-3">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_2.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -325,7 +367,49 @@
                     </div>
                 </div>
                 <div class="col-3" id="huanan-detail-4">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_2.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3" id="huanan-detail-5">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_2.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="huanan-detail-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_2.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="huanan-detail-7">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_2.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="huanan-detail-8">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_2.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -344,7 +428,7 @@
         <div class="my-3 container-fluid" id="huadong-tab-detail">
             <div class="row">
                 <div class="col-3" id="huadong-detail-1">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_3.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -354,7 +438,7 @@
                     </div>
                 </div>
                 <div class="col-3" id="huadong-detail-2">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_3.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -364,7 +448,7 @@
                     </div>
                 </div>
                 <div class="col-3" id="huadong-detail-3">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_3.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -374,7 +458,49 @@
                     </div>
                 </div>
                 <div class="col-3" id="huadong-detail-4">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_3.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3" id="huadong-detail-5">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_3.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="huadong-detail-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_3.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="huadong-detail-7">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_3.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="huadong-detail-8">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_3.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -393,7 +519,7 @@
         <div class="my-3 container-fluid" id="dongbei-tab-detail">
             <div class="row">
                 <div class="col-3" id="dongbei-detail-1">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_4.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -403,7 +529,7 @@
                     </div>
                 </div>
                 <div class="col-3" id="dongbei-detail-2">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_4.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -413,7 +539,7 @@
                     </div>
                 </div>
                 <div class="col-3" id="dongbei-detail-3">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_4.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -423,7 +549,49 @@
                     </div>
                 </div>
                 <div class="col-3" id="dongbei-detail-4">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_4.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3" id="dongbei-detail-5">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_4.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="dongbei-detail-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_4.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="dongbei-detail-7">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_4.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="dongbei-detail-8">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_4.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -442,7 +610,7 @@
         <div class="my-3 container-fluid" id="zhongyuan-tab-detail">
             <div class="row">
                 <div class="col-3" id="zhongyuan-detail-1">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_5.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -452,7 +620,7 @@
                     </div>
                 </div>
                 <div class="col-3" id="zhongyuan-detail-2">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_5.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -462,7 +630,7 @@
                     </div>
                 </div>
                 <div class="col-3" id="zhongyuan-detail-3">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_5.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>
@@ -472,7 +640,49 @@
                     </div>
                 </div>
                 <div class="col-3" id="zhongyuan-detail-4">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_5.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3" id="zhongyuan-detail-5">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_5.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="zhongyuan-detail-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_5.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="zhongyuan-detail-7">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/spimg_5.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">商品名称</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary" onclick="showDetail(this)">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" id="zhongyuan-detail-8">
+                    <div class="card" style="width: 18rem;">
                         <img src="img/spimg_5.jpg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">商品名称</h5>

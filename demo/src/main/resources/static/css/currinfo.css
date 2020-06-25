@@ -1,0 +1,144 @@
+/* 清除边框 */
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    box-sizing:border-box;
+}
+/* 更改默认值 */
+html, body {
+    width: 100%;
+    height: 100%;
+}
+.info-head h2 {
+    font-size: 48px;
+}
+/* 改变输入框提示字体颜色 */
+input::placeholder {
+    color: #bdcada;
+}
+svg {
+    vertical-align: bottom;
+}
+/* 验证码 */
+.check{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width : 160px ;
+    height : 50px ;
+}
+.yanzhengma{
+    position: relative;
+    top:-19px;
+    left:10px;
+    height: 50px;
+    width:71%;
+    font-size:20px;
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px;
+    padding-left:5px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+}
+
+a,a:hover,a:active,a:focus {
+    display:inline-block;
+    text-decoration:none;
+    color: #7c8089;
+    font-size: 16px;
+    font-weight: 400;
+    padding:0;
+}
+p {
+    margin: 0;
+    line-height: 28px;
+    color:#97a0ba;
+    font-size:16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.currinfo {padding: 100px 0px;}
+
+.sign-content {
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+
+/*.signin-form  .form-control*/
+.signin-form  .form-control {
+    background: transparent;
+    border: transparent;
+    border: 1px solid #c3c6cf;
+    border-radius: 3px;
+    outline: 0!important;
+    box-shadow: none;
+    padding: 0px 0;
+    height: 46px;
+    -webkit-transition: linear .5s;
+    -moz-transition: linear .5s;
+    -ms-transition: linear .5s;
+    -o-transition: linear .5s;
+    transition: linear .5s;
+}
+.signin-form  .form-control:hover,.signin-form  .form-control:focus{
+    border: 1px solid #474d5b;
+    color:#464e60;
+    box-shadow: 0px 5px 10px rgba(45,50,64,.2);
+}
+
+.signin-form label{
+    color: #7c8089;
+    font-size:16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+.signin-form input[type="text"],.signin-form input[type="email"],.signin-form input[type="password"]{
+    color: #464e60;
+    font-size:16px;
+    font-weight: 400;
+    padding: 0 18px;
+}
+.signin-form .form-col{
+    width: 48.5%;
+    float: left;
+
+}
+.signin-form .form-col1{
+    width: 48%;
+    float: right;
+}
+/*.signin-form  .form-control*/
+
+
+
+.centered {
+    max-width: 620px;
+    margin: auto;
+}
+
+.title {
+    text-align: center;
+    color: rgb(69, 113, 236);
+}
+
+.btn.enterBtn, .btn.enterBtn:focus {
+    width: 595px;
+    padding: 0;
+    height: 50px;
+    background: #5a84fd;
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    box-shadow: 0 5px 30px rgba(0,66,255,.3);
+    margin-top: 23px;
+}
