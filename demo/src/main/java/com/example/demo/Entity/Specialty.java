@@ -15,6 +15,15 @@ public class Specialty {
     private String sPhone;
     private String sAddress;
     private List<SpecialtyPic> detailPics;
+    private int salesVolume;
+
+    public int getSalesVolume() {
+        return salesVolume;
+    }
+
+    public void setSalesVolume(int salesVolume) {
+        this.salesVolume = salesVolume;
+    }
 
     public List<SpecialtyPic> getDetailPics() {
         return detailPics;

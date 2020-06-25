@@ -54,6 +54,8 @@
                                 $(".spdetail_ID").text(jsonData["spID"]);
                                 $(".spdetail_sName").text(jsonData["sName"]);
                                 $(".spdetail_text").text(jsonData["detail"]);
+                                $("#add_sell_num_363").text(jsonData["salesVolume"]);
+
                                 for(let i=0; i<jsonData["detailPics"].length; i++){
                                     console.log(jsonData["detailPics"])
                                     $("#detailPicBox").append('<li><img src="'+ jsonData["detailPics"][i]["picUrl"] + '"/></li>');
@@ -207,7 +209,7 @@
         <div class="txt">
             <span class="nowprice">￥<span class="spPrice"></span></span>
             <div class="cumulative">
-                <span class="number ty1">累计售出<br /><em id="add_sell_num_363">370</em></span>
+                <span class="number ty1">累计售出<br /><em id="add_sell_num_363">0</em></span>
                 <span class="number tyu">累计评价<br /><em id="add_sell_num_363">25</em></span>
             </div>
         </div>

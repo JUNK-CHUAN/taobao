@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.DAO.OrderMapper;
 import com.example.demo.DAO.SpecialtyPicMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ public class SpecialtyInfoController {
     SpecialtyMapper SM;
     @Autowired
     SpecialtyPicMapper SPM;
+    @Autowired
+    OrderMapper OM;
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getSpecialtyInfo/{specialty_id}", method = RequestMethod.GET)
     @ResponseBody
@@ -43,7 +46,10 @@ public class SpecialtyInfoController {
         else{
             int i;
             for(i=0; i<specialtyList.size(); i++){
+                // 获取详情图片
                 specialtyList.get(i).setDetailPics(SPM.selectDetailByspID(specialtyList.get(i).getSpID()));
+                // 获取销量
+                specialtyList.get(i).setSalesVolume(OM.getSalesVolumeBySpID(specialtyList.get(i).getSpID()));
             }
             map.put("result", "true");
             map.put("data", specialtyList.get(0));
