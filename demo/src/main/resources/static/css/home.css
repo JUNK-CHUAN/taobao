@@ -34,3 +34,7 @@
     background-color: orangered;
     border-radius: 0px;
 }
+.sticky {
+    position: fixed;
+    top: 0;
+}

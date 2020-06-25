@@ -125,20 +125,15 @@ p {
     margin: auto;
 }
 
-.title {
-    text-align: center;
-    color: rgb(69, 113, 236);
-}
-
 .btn.enterBtn, .btn.enterBtn:focus {
     width: 595px;
     padding: 0;
     height: 50px;
-    background: #5a84fd;
+    background: orange;
     color: #fff;
     font-size: 14px;
     text-transform: uppercase;
     border-radius: 3px;
-    box-shadow: 0 5px 30px rgba(0,66,255,.3);
+    box-shadow: 0 5px 30px rgba(166,166,166,0.3);
     margin-top: 23px;
 }
