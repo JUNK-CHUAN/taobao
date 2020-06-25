@@ -3,7 +3,7 @@
     background: none;
 }
 .media:hover {
-    border: 2px solid #007bff;
+    border: 2px solid orangered;
     border-radius: 5px;
 }
 .order-head {

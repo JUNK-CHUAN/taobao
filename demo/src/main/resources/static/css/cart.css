@@ -4,7 +4,7 @@
     background: none;
 }
 .media:hover {
-    border: 2px solid #007bff;
+    border: 2px solid orangered;
     border-radius: 5px;
 }
 .cart-head {
@@ -66,4 +66,12 @@
 }
 .sum {
     float: right;
+}
+.btn-primary, .badge-primary {
+    background-color: orange;
+    border-color: orange;
+}
+.btn-primary:hover {
+    background-color: orangered;
+    border-color: orangered;
 }

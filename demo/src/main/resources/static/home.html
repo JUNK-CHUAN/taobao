@@ -5,14 +5,11 @@
     <link rel="shortcut icon"type="image/x-icon" href="./img/logo.ico"media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    <title>homepage</title>
+    <title>首页</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
     <script src="jquery/jquery-3.5.1.min.js"></script>
     <link href="css/template.css" rel="stylesheet">
     <link href="css/home.css" rel="stylesheet">
@@ -55,14 +52,14 @@
                             if (data["result"] === "true")
                             {
                                 console.log("get data success");
-                                var jsonData = data["data"];
-                                for (var key in jsonData) {
-                                    var dataList = jsonData[key];
+                                let jsonData = data["data"];
+                                for (let key in jsonData) {
+                                    let dataList = jsonData[key];
                                     console.log(dataList);
                                     if (key === "西南"){
-                                        for (var i = 0; i < dataList.length; i++) {
-                                            var item = dataList[i];
-                                            var detail_class = "#xinan-detail-" + (i+1);
+                                        for (let i = 0; i < dataList.length; i++) {
+                                            let item = dataList[i];
+                                            let detail_class = "#xinan-detail-" + (i+1);
                                             $(detail_class+" img").attr('src', item["picUrl"]);
                                             $(detail_class+" .btn-primary").attr('id', item["spID"]);
                                             $(detail_class+" h5").text(item["name"]);
@@ -70,9 +67,9 @@
                                         }
                                     }
                                     if (key === "华南") {
-                                        for (var i = 0; i < dataList.length; i++) {
-                                            var item = dataList[i];
-                                            var detail_class = "#huanan-detail-" + (i+1);
+                                        for (let i = 0; i < dataList.length; i++) {
+                                            let item = dataList[i];
+                                            let detail_class = "#huanan-detail-" + (i+1);
                                             $(detail_class+" img").attr('src', item["picUrl"]);
                                             $(detail_class+" .btn-primary").attr('id', item["spID"]);
                                             $(detail_class+" h5").text(item["name"]);
@@ -80,9 +77,9 @@
                                         }
                                     }
                                     if (key === "华东") {
-                                        for (var i = 0; i < dataList.length; i++) {
-                                            var item = dataList[i];
-                                            var detail_class = "#huadong-detail-" + (i+1);
+                                        for (let i = 0; i < dataList.length; i++) {
+                                            let item = dataList[i];
+                                            let detail_class = "#huadong-detail-" + (i+1);
                                             $(detail_class+" img").attr('src', item["picUrl"]);
                                             $(detail_class+" .btn-primary").attr('id', item["spID"]);
                                             $(detail_class+" h5").text(item["name"]);
@@ -90,9 +87,9 @@
                                         }
                                     }
                                     if (key === "东北") {
-                                        for (var i = 0; i < dataList.length; i++) {
-                                            var item = dataList[i];
-                                            var detail_class = "#dongbei-detail-" + (i+1);
+                                        for (let i = 0; i < dataList.length; i++) {
+                                            let item = dataList[i];
+                                            let detail_class = "#dongbei-detail-" + (i+1);
                                             $(detail_class+" img").attr('src', item["picUrl"]);
                                             $(detail_class+" .btn-primary").attr('id', item["spID"]);
                                             $(detail_class+" h5").text(item["name"]);
@@ -100,9 +97,9 @@
                                         }
                                     }
                                     if (key === "中原") {
-                                        for (var i = 0; i < dataList.length; i++) {
-                                            var item = dataList[i];
-                                            var detail_class = "#zhongyuan-detail-" + (i+1);
+                                        for (let i = 0; i < dataList.length; i++) {
+                                            let item = dataList[i];
+                                            let detail_class = "#zhongyuan-detail-" + (i+1);
                                             $(detail_class+" img").attr('src', item["picUrl"]);
                                             $(detail_class+" .btn-primary").attr('id', item["spID"]);
                                             $(detail_class+" h5").text(item["name"]);
@@ -138,9 +135,9 @@
     }
 
     function search() {
-        var storage = window.localStorage;
+        let storage = window.localStorage;
         storage.setItem("urlpattern", "/search");
-        var keyword = $("input[type='search']").val();
+        let keyword = $("input[type='search']").val();
         storage.setItem("keyword", "/"+keyword);
         window.location.href = "./goodList.html";
     }
@@ -699,7 +696,7 @@
     </div>
 </div>
 
-<div class="placeholder" style="height: 200px;">
+<div class="placeholder" style="height: 200px; background-color: orangered;">
 
 </div>
 

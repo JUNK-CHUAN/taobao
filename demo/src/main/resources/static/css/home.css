@@ -19,3 +19,18 @@
 .row {
     margin-bottom: 20px;
 }
+.btn-primary {
+    background: orange;
+    border: orange;
+}
+.btn-primary:hover {
+    background: orangered;
+    border: orangered;
+}
+.nav-pills .nav-link {
+    color: orangered;
+}
+.nav-pills .nav-link.active {
+    background-color: orangered;
+    border-radius: 0px;
+}
