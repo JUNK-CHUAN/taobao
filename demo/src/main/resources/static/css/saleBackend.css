@@ -1,28 +1,26 @@
-.media {
-    padding: 3px;
-    margin-bottom: 10px;
+.card-float {
+    padding: 10px;
     background: none;
 }
-.media:hover {
+.card-float:hover {
     border: 2px solid #007bff;
     border-radius: 5px;
 }
-.cart-head {
+.order-head {
     margin-left: 200px;
     margin-right: 200px;
     height: 200px;
     padding-top: 100px;
 }
-.cart-head h2 {
+.order-head h2 {
     font-size: 52px;
 }
-.cart-list {
-    margin: 10px 200px 50px 200px;
+.order-list {
+    margin: 10px 200px 200px 200px;
 }
 .spimg {
     height: 200px;
     width: 200px;
-    margin-left: 5px;
 }
 .media-body-left {
     height: 200px;
@@ -43,27 +41,4 @@
 }
 .media-body span {
     font-size: 18px;
-}
-.commit {
-    margin: 0 200px 200px 200px;
-}
-.commit .delete {
-    position: absolute;
-    width: 400px;
-}
-.commit .buy {
-    float: right;
-    width: 400px;
-}
-.addressContent {
-    margin-right: 200px;
-    margin-left: 200px;
-    margin-bottom: 150px;
-}
-.addressConfirm {
-    position: absolute;
-    width: 50%;
-}
-.sum {
-    float: right;
 }

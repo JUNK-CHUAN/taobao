@@ -379,7 +379,7 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 #### RequestParam
 
-"spID"：(int or string)   特产ID
+ {"spList":[1,2,3,4]} 传一个特产ID的数组
 
 #### Return
 

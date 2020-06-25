@@ -77,6 +77,7 @@ public class OrderController {
     @ResponseBody
     public Map buyFromCartWithNewCount(@RequestBody String param,
                            HttpSession session) throws Exception{
+//        System.out.println(param);
         JSONObject jsonObj = JSONObject.parseObject(param);
 
         Map<String, Object> map = new HashMap<>();

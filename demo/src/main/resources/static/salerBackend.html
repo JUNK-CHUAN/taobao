@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <title>salerBackend</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/callout.css">
+    <link rel="stylesheet" href="css/saleBackend.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/js/plugins/purify.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/themes/fa/theme.js"></script>
+    <script src="js/salerBackend.js"></script>
 </head>
 <body>
 <header>
@@ -51,43 +62,362 @@
 </header>
 <ul class="nav nav-pills nav-fill" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab"  aria-controls="home"  aria-selected="true"  href="#home">我的商品</a>
+        <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab"  aria-controls="home"  aria-selected="true"  href="#myGood">我的商品</a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" role="tab"  aria-controls="profile" aria-selected="false"  href="#profile">我的订单</a>
+        <a class="nav-link" id="profile-tab" data-toggle="tab" role="tab"  aria-controls="profile" aria-selected="false"  href="#myOrder">我的订单</a>
     </li>
 
 </ul>
 <div class="tab-content mt-5" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <div class="row">
-            <div class="col-2">
-                <div class="list-group" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">酸辣粉</a>
-                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">冒菜</a>
-                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">火锅</a>
-                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">江湖菜</a>
+    <div class="tab-pane fade show active" id="myGood" role="tabpanel" aria-labelledby="home-tab">
+        <div class="accordion" id="PanelList" style="margin-left: 200px; margin-right: 200px;">
+            <div class="card card-float my-5">
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#collapseAddSp" aria-expanded="false" aria-controls="collapseExample">添加商品</button>
+            </div>
+            <div class="collapse" id="collapseAddSp">
+                <div class="card card-body card-float">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-5 mb-3 mx-5">
+                                <label for="AddSpName">特产名称</label>
+                                <input type="text" class="form-control" id="AddSpName">
+                            </div>
+                            <div class="form-group col-5 mb-3 mx-5">
+                                <label for="AddRemainStocks">库存数量</label>
+                                <input type="text" class="form-control" id="AddRemainStocks">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-5 mb-3 mx-5">
+                                <label for="AddCategory">区域分类</label>
+                                <select class="custom-select" id="AddCategory">
+                                    <option value="xinan">西南</option>
+                                    <option value="huanan">华南</option>
+                                    <option value="huadong">华东</option>
+                                    <option value="dongbei">东北</option>
+                                    <option value="zhongyuan">中原</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-5 mb-3 mx-5">
+                                <label for="AddPrice">单价（单位：￥）</label>
+                                <input type="text" class="form-control" id="AddPrice">
+                            </div>
+                        </div>
+
+                            <div class="form-group my-3 ml-5" style=" margin-right: 9%;">
+                                <label for="f_upload">上传文件详情图片</label>
+                                <div class="file-loading">
+                                    <input id="f_upload" name="input24[]" type="file" class="file" multiple>
+                                </div>
+                            </div>
+
+                        <button type="button" class="btn btn-success float-right mr-5 ml-2">添加</button>
+                        <button type="button" class="btn btn-secondary float-right">取消</button>
+                    </form>
                 </div>
             </div>
-            <div class="col-10">
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            <!--<div class="card card-float my-5">-->
+                <!--<div class="card-header">-->
+                    <!--<h5 class="mb-0">-->
+                            <!--酸辣粉-->
+                    <!--</h5>-->
+                <!--</div>-->
+                <!--<div class="card-body">-->
+                        <!--<div class="media">-->
+                            <!--<img src="img/f5.jpg"  class="align-self-center mr-3" alt="..." style="width:20%">-->
+                            <!--<div class="media-body">-->
+                                <!--<h5 class="mt-0">小川酸辣粉（酸甜口味）</h5>-->
+                                <!--<div class="bd-callout bd-callout-warning">-->
+                                        <!--<dl class="row">-->
+                                            <!--<dt class="col-sm-3">商品ID</dt>-->
+                                            <!--<dd class="col-sm-9">870772195</dd>-->
 
+                                            <!--<dt class="col-sm-3">商品名称</dt>-->
+                                            <!--<dd class="col-sm-9">小川酸辣粉</dd>-->
+
+                                            <!--<dt class="col-sm-3">剩余库存</dt>-->
+                                            <!--<dd class="col-sm-9">500<span>(单位：件)</span></dd>-->
+
+                                            <!--<dt class="col-sm-3 text-truncate">地域分类</dt>-->
+                                            <!--<dd class="col-sm-9">西南</dd>-->
+
+                                            <!--<dt class="col-sm-3 text-truncate">价格</dt>-->
+                                            <!--<dd class="col-sm-9">￥152.50</dd>-->
+
+                                            <!--<dt class="col-sm-3 text-truncate">商品评分</dt>-->
+                                            <!--<dd class="col-sm-9">-->
+                                                <!--<p>-->
+                                                    <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M12.672.668a.75.75 0 00-1.345 0L8.27 6.865l-6.838.994a.75.75 0 00-.416 1.279l4.948 4.823-1.168 6.811a.75.75 0 001.088.791L12 18.347l6.117 3.216a.75.75 0 001.088-.79l-1.168-6.812 4.948-4.823a.75.75 0 00-.416-1.28l-6.838-.993L12.672.668z"></path></svg>-->
+                                                    <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M12.672.668a.75.75 0 00-1.345 0L8.27 6.865l-6.838.994a.75.75 0 00-.416 1.279l4.948 4.823-1.168 6.811a.75.75 0 001.088.791L12 18.347l6.117 3.216a.75.75 0 001.088-.79l-1.168-6.812 4.948-4.823a.75.75 0 00-.416-1.28l-6.838-.993L12.672.668z"></path></svg>-->
+                                                    <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M12.672.668a.75.75 0 00-1.345 0L8.27 6.865l-6.838.994a.75.75 0 00-.416 1.279l4.948 4.823-1.168 6.811a.75.75 0 001.088.791L12 18.347l6.117 3.216a.75.75 0 001.088-.79l-1.168-6.812 4.948-4.823a.75.75 0 00-.416-1.28l-6.838-.993L12.672.668z"></path></svg>-->
+                                                    <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M12.672.668a.75.75 0 00-1.345 0L8.27 6.865l-6.838.994a.75.75 0 00-.416 1.279l4.948 4.823-1.168 6.811a.75.75 0 001.088.791L12 18.347l6.117 3.216a.75.75 0 001.088-.79l-1.168-6.812 4.948-4.823a.75.75 0 00-.416-1.28l-6.838-.993L12.672.668z"></path></svg>-->
+                                                    <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M12 .25a.75.75 0 01.673.418l3.058 6.197 6.839.994a.75.75 0 01.415 1.279l-4.948 4.823 1.168 6.811a.75.75 0 01-1.088.791L12 18.347l-6.117 3.216a.75.75 0 01-1.088-.79l1.168-6.812-4.948-4.823a.75.75 0 01.416-1.28l6.838-.993L11.328.668A.75.75 0 0112 .25zm0 2.445L9.44 7.882a.75.75 0 01-.565.41l-5.725.832 4.143 4.038a.75.75 0 01.215.664l-.978 5.702 5.121-2.692a.75.75 0 01.698 0l5.12 2.692-.977-5.702a.75.75 0 01.215-.664l4.143-4.038-5.725-.831a.75.75 0 01-.565-.41L12 2.694z"></path></svg>-->
+                                                <!--</p>-->
+                                            <!--</dd>-->
+                                        <!--</dl>-->
+                                <!--</div>-->
+                                <!--<div class="ml-auto" role="group" aria-label="Basic example">-->
+                                    <!--<button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeBasicInfo">修改基础信息</button>-->
+                                    <!--<button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeDetails">修改特产详情</button>-->
+                                    <!--<button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeThumb">修改特产预览图</button>-->
+                                    <!--<button type="button" class="btn btn-warning">查看评价</button>-->
+                                    <!--<button type="button" class="btn btn-danger">删除商品</button>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>&ndash;&gt;-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="modal fade" id="ChangeBasicInfo" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="BasicInfo">基础信息</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="GoodName">特产名称</label>
+                                <input type="text" class="form-control" id="GoodName" placeholder="名称">
+                            </div>
+                            <div class="form-group">
+                                <label for="GoodName">特产剩余库存</label>
+                                <input type="text" class="form-control" id="RemainStocks" placeholder="数量">
+                            </div>
+                            <div class="form-group">
+                                <label for="category">特产地域分类</label>
+                                <select class="form-control" id="category">
+                                    <option value="xinan">西南</option>
+                                    <option value="huanan">华南</option>
+                                    <option value="huadong">华东</option>
+                                    <option value="dongbei">东北</option>
+                                    <option value="zhongyuan">中原</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
-                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
                     </div>
-                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
-
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ChangeDetails" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Details">特产详情</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <img class="figure-img  rounded" src="img/123456.jpg" width="80" height="80">
+                                </div>
+                                <div class="col-auto">
+                                    <img class="figure-img  rounded" src="img/123456.jpg" width="80" height="80">
+                                </div>
+                                <div class="col-auto">
+                                    <img class="figure-img  rounded" src="img/123456.jpg" width="80" height="80">
+                                </div>
+                                <div class="col-auto">
+                                    <img class="figure-img  rounded" src="img/123456.jpg" width="80" height="80">
+                                </div>
+                                <div class="col-auto">
+                                    <img class="figure-img  rounded" src="img/123456.jpg" width="80" height="80">
+                                </div>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                                <div class="form-group mt-3">
+                                    <label for="exampleFormControlTextarea1">详情文本信息</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ChangeThumb" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Thumb">预览图</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <img class="figure-img  rounded" src="img/f5.jpg" width="160" height="160">
+                                </div>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="ThumbFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="DeleteSp" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Delete">删除商品</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!--<form>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-auto">-->
+                                    <!--<img class="figure-img  rounded" src="" width="160" height="160">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</form>-->
+                        <div class="media">
+                            <img class="figure-img align-self-center mr-3 rounded" src="img/f5.jpg" width="160" height="160">
+                            <div class="media-body">
+                                <h5 class="mt-0">商品基础信息</h5>
+                                <!--<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>-->
+                                <!--<p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>-->
+                                <p class="spIDinDelete">商品ID:12345678</p>
+                                <p class="spNameinDelete">商品名称：广东酸辣粉</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">2222</div>
+
+    <div class="tab-pane fade" id="myOrder" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="accordion" id="PanelList2" style="margin-left: 200px; margin-right: 200px;">
+            <div class="card card-float  my-5">
+                <div class="card-header">
+                    <span class="text-left"><span class="mb-0">订单编号:</span><span><strong>W3123UU12412123W</strong></span></span>
+                    <span class="mx-5"><span class="mb-0  ml-auto">成交时间:</span><span><strong> 2020.06.05 23:50:30</strong></span></span>
+                </div>
+                <div class="card-body">
+                    <div class="media">
+                        <img src="img/f5.jpg" class="align-self-center mr-3" alt="...">
+                        <div class="media-body">
+                            <div class="media-body">
+                                <h5 class="mt-0">小川酸辣粉（酸甜口味）</h5>
+                                <div class="bd-callout bd-callout-warning">
+                                    <h5>商品信息</h5>
+                                    <dl class="row">
+                                        <dt class="col-2">商品ID</dt>
+                                        <dd class="col-4">870772195</dd>
+
+                                        <dt class="col-2">商品名称</dt>
+                                        <dd class="col-4">小川酸辣粉</dd>
+
+                                        <dt class="col-2">成交价格</dt>
+                                        <dd class="col-4">￥152.50</dd>
+
+                                        <dt class="col-2">成交数量</dt>
+                                        <dd class="col-4">4</dd>
+                                    </dl>
+                                </div>
+                                <div class="bd-callout bd-callout-warning">
+                                    <h5>买家信息</h5>
+                                    <dl class="row">
+                                        <dt class="col-2">买家ID</dt>
+                                        <dd class="col-4">905419046</dd>
+
+                                        <dt class="col-2">买家姓名</dt>
+                                        <dd class="col-4">杨小川</dd>
+
+                                        <dt class="col-2">收货地址</dt>
+                                        <dd class="col-4">重庆市沙坪坝区重庆大学A区</dd>
+
+                                        <dt class="col-2">收货人电话</dt>
+                                        <dd class="col-4">13331618765</dd>
+                                    </dl>
+                                </div>
+
+                                <button class="btn btn-primary btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    发货
+                                </button>
+                                <div class="collapse my-3" id="collapseExample">
+                                    <div class="card card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlInput1">发货订单编号</label>
+                                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="FXS903123FAA">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+  <script>
+      $("#f_upload")
+          .fileinput({
+              uploadUrl: '/file-upload-batch/2',
+              dropZoneTitle : "请上传小于5M的图片！",
+              language : "zh",
+              autoReplace : false,
+              showCaption : false,
+              showUpload : true,
+              showCancel: true,
+              overwriteInitial : false,
+              uploadAsync : true,
+              showUploadedThumbs : true,
+              maxFileCount : 5,
+              minFileCount : 1,
+              initialPreviewShowDelete : false,
+              showRemove : true,
+              showClose : true,
+              enableResumableUpload: true,
+              maxFilePreviewSize: 10240,
+              maxFileSize: 10240
+          });
+
+  </script>
 </body>
 </html>

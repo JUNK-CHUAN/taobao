@@ -28,6 +28,56 @@
                 if (data.result === "false") {
                     window.location.href = "./login.html";
                 }
+                else {
+                    $('#input-address').attr("value", data.address);
+                    $.ajax({
+                        url: "http://127.0.0.1:8080/selectCustomerCart",
+                        type: "GET",
+                        dataType: 'json',
+                        crossOrigin: true,
+                        success: function (data) {
+                            // {"result":"true",
+                            //     "data":[
+                            //         {"spID":1,"cID":"bobo","count":30,"spName":"麻花","picUrl":"6666","stock":120,"category":"西南","price":40.0,"sID":"Jerry","sName":"陈昌银","sPhone":"12345","sAddress":"pppp"},
+                            //         {"spID":2,"cID":"bobo","count":40,"spName":"火锅底料","picUrl":"7777","stock":130,"category":"西南","price":50.0,"sID":"Jerry","sName":"陈昌银","sPhone":"12345","sAddress":"pppp"}
+                            //     ]
+                            // }
+                            let dataList = data["data"];
+                            let listFrame = $(".cart-list > ul");
+                            for (let i=0; i<dataList.length; i++) {
+                                let cartItem = dataList[i];
+                                let itemWritable = $(
+                                    '        <li class="media my-1">\n' +
+                                    '            <div class="input-group">\n' +
+                                    '                <div class="input-group-prepend">\n' +
+                                    '                    <div class="input-group-text">\n' +
+                                    '                        <input type="checkbox" aria-label="Checkbox for following text input" id=' + cartItem["spID"].toString() + ' onchange="getsum()">\n' +
+                                    '                    </div>\n' +
+                                    '                </div>\n' +
+                                    '                <img src=' + cartItem["picUrl"] + ' class="mr-3 spimg" alt="">\n' +
+                                    '                <div class="media-body">\n' +
+                                    '                    <div class="media-body-left">\n' +
+                                    '                        <h5 class="mt-0 mb-1">' + cartItem["spName"] + '</h5>\n' +
+                                    '                        <span>商家:' + cartItem["sName"] + '</span><br>\n' +
+                                    '                        <span>商家电话:' + cartItem["sPhone"] + '</span><br>\n' +
+                                    '                        <span>发货地址:' + cartItem["sAddress"] + '</span><br>\n' +
+                                    '                    </div>\n' +
+                                    '                    <div class="media-body-right">\n' +
+                                    '                        <h5  class="mt-0 mb-1">单价:<span>' + cartItem["price"] + '</span></h5>\n' +
+                                    '                        <span>x <input type="text" class="charge" value=' + cartItem["count"].toString()  + ' onchange="getsum()"></span>\n' +
+                                    '                        <div class="media-body-right-bottom">\n' +
+                                    '                            <h5 class="mt-0 mb-1">库存:' + cartItem["stock"] + '</h5>\n' +
+                                    '                        </div>\n' +
+                                    '                    </div>\n' +
+                                    '                </div>\n' +
+                                    '            </div>\n' +
+                                    '        </li>'
+                                );
+                                listFrame.append(itemWritable);
+                            }
+                        }
+                    })
+                }
             }
         })
     });
@@ -52,11 +102,79 @@
     }
 
     function search() {
-        var storage = window.localStorage;
+        let storage = window.localStorage;
         storage.setItem("urlpattern", "/search");
-        var keyword = $("input[type='search']").val();
+        let keyword = $("input[type='search']").val();
         storage.setItem("keyword", "/"+keyword);
         window.location.href = "./goodList.html";
+    }
+
+    function getsum() {
+        let chargeList = document.getElementsByClassName("charge");
+        let sum = 0;
+        for (let i=0; i<chargeList.length; i++) {
+            let superCheckNode = chargeList[i].parentElement.parentElement.parentElement.previousElementSibling.previousElementSibling.firstElementChild.firstElementChild;
+            // console.log(superCheckNode);
+            if (superCheckNode.checked) {
+                let money = chargeList[i].parentElement.previousElementSibling.firstElementChild.textContent;
+                sum = sum + parseInt(chargeList[i].value) * parseFloat(money);
+            }
+        }
+        $('.sum-charge').text(sum);
+    }
+
+    function delItem() {
+        let itemList = $("input[type='checkbox']");
+        let itemIdList = [];
+        let item = 0;
+        for (let i=0; i<itemList.length; i++) {
+            if (itemList[i].checked) {
+                itemIdList[item] = itemList[i].id;
+                item++;
+            }
+        }
+        console.log(itemIdList)
+    }
+
+    function submit() {
+        let itemList = $("input[type='checkbox']");
+        let itemResList = [];
+        let item = 0;
+        let itemCount;
+        for (let i = 0; i < itemList.length; i++) {
+            if (itemList[i].checked) {
+                itemCount = itemList[i].parentElement.parentElement.nextElementSibling.nextElementSibling.lastElementChild.firstElementChild.nextElementSibling.firstElementChild;
+                itemResList[item] = {
+                    "spID": itemList[i].id,
+                    "count": itemCount.value
+                };
+                item++;
+            }
+        }
+        let resData = {
+            "data": itemResList,
+            "recvAddress": $('#input-address').val()
+        };
+        console.log(JSON.stringify(resData));
+        $.ajax({
+            url: "http://127.0.0.1:8080/buyFromCartWithNewCount",
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/text; charset=UTF-8",
+            data: JSON.stringify(resData),
+            crossOrigin: true,
+            success: function (data) {
+                if (data.result === "true") {
+                    location.reload();
+                }
+                else {
+                    alert(data.reason);
+                }
+            },
+            error: function (data) {
+                alert("connection error");
+            }
+        })
     }
 </script>
 
@@ -106,62 +224,103 @@
 </div>
 <div class="cart-list">
     <ul class="list-unstyled">
-        <li class="media my-1">
-            <img src="img/spimg.jpg" class="mr-3 spimg" alt="">
-            <div class="media-body">
-                <div class="media-body-left">
-                    <h5 class="mt-0 mb-1">商品名称spName</h5>
-                    <span>商家sName</span><br>
-                    <span>商家电话sPhone</span><br>
-                    <span>下单时间submitTime</span><br>
-                </div>
-                <div class="media-body-right">
-                    <h5  class="mt-0 mb-1">金额sum</h5>
-                    <span>x 数量count</span>
-                    <div class="media-body-right-bottom">
-                        <h5 class="mt-0 mb-1">状态state</h5>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="media my-1">
-            <img src="img/spimg.jpg" class="mr-3 spimg" alt="">
-            <div class="media-body">
-                <div class="media-body-left">
-                    <h5 class="mt-0 mb-1">商品名称spName</h5>
-                    <span>商家sName</span><br>
-                    <span>商家电话sPhone</span><br>
-                    <span>下单时间submitTime</span><br>
-                </div>
-                <div class="media-body-right">
-                    <h5  class="mt-0 mb-1">金额sum</h5>
-                    <span>x 数量count</span>
-                    <div class="media-body-right-bottom">
-                        <h5 class="mt-0 mb-1">状态state</h5>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="media my-1">
-            <img src="img/spimg.jpg" class="mr-3 spimg" alt="">
-            <div class="media-body">
-                <div class="media-body-left">
-                    <h5 class="mt-0 mb-1">商品名称spName</h5>
-                    <span>商家sName</span><br>
-                    <span>商家电话sPhone</span><br>
-                    <span>下单时间submitTime</span><br>
-                </div>
-                <div class="media-body-right">
-                    <h5  class="mt-0 mb-1">金额sum</h5>
-                    <span>x 数量count</span>
-                    <div class="media-body-right-bottom">
-                        <h5 class="mt-0 mb-1">状态state</h5>
-                    </div>
-                </div>
-            </div>
-        </li>
+<!--        <li class="media my-1">-->
+<!--            <div class="input-group">-->
+<!--                <div class="input-group-prepend">-->
+<!--                    <div class="input-group-text">-->
+<!--                        <input type="checkbox" aria-label="Checkbox for following text input" id="00000000" onchange="getsum()">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <img src="img/spimg.jpg" class="mr-3 spimg" alt="">-->
+<!--                <div class="media-body">-->
+<!--                    <div class="media-body-left">-->
+<!--                        <h5 class="mt-0 mb-1">商品名称spName</h5>-->
+<!--                        <span>商家:sName</span><br>-->
+<!--                        <span>商家电话:sPhone</span><br>-->
+<!--                        <span>发货地址:sAddress</span><br>-->
+<!--                    </div>-->
+<!--                    <div class="media-body-right">-->
+<!--                        <h5  class="mt-0 mb-1">单价sum:<span>100</span></h5>-->
+<!--                        <span>x 数量<input type="text" class="charge" value="200" onchange="getsum()"></span>-->
+<!--                        <div class="media-body-right-bottom">-->
+<!--                            <h5 class="mt-0 mb-1">目前库存:stock</h5>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </li>-->
+<!--        <li class="media my-1">-->
+<!--            <div class="input-group">-->
+<!--                <div class="input-group-prepend">-->
+<!--                    <div class="input-group-text">-->
+<!--                        <input type="checkbox" aria-label="Checkbox for following text input" id="00000001" onchange="getsum()">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <img src="img/spimg.jpg" class="mr-3 spimg" alt="">-->
+<!--                <div class="media-body">-->
+<!--                    <div class="media-body-left">-->
+<!--                        <h5 class="mt-0 mb-1">商品名称spName</h5>-->
+<!--                        <span>商家:sName</span><br>-->
+<!--                        <span>商家电话:sPhone</span><br>-->
+<!--                        <span>发货地址:sAddress</span><br>-->
+<!--                    </div>-->
+<!--                    <div class="media-body-right">-->
+<!--                        <h5  class="mt-0 mb-1">单价sum:<span>100</span></h5>-->
+<!--                        <span>x 数量<input type="text" class="charge" value="100" onchange="getsum()"></span>-->
+<!--                        <div class="media-body-right-bottom">-->
+<!--                            <h5 class="mt-0 mb-1">目前库存:stock</h5>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </li>-->
+<!--        <li class="media my-1">-->
+<!--            <div class="input-group">-->
+<!--                <div class="input-group-prepend">-->
+<!--                    <div class="input-group-text">-->
+<!--                        <input type="checkbox" aria-label="Checkbox for following text input" id="00000002" onchange="getsum()">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <img src="img/spimg.jpg" class="mr-3 spimg" alt="">-->
+<!--                <div class="media-body">-->
+<!--                    <div class="media-body-left">-->
+<!--                        <h5 class="mt-0 mb-1">商品名称spName</h5>-->
+<!--                        <span>商家:sName</span><br>-->
+<!--                        <span>商家电话:sPhone</span><br>-->
+<!--                        <span>发货地址:sAddress</span><br>-->
+<!--                    </div>-->
+<!--                    <div class="media-body-right">-->
+<!--                        <h5  class="mt-0 mb-1">单价sum:<span>100</span></h5>-->
+<!--                        <span>x 数量<input type="text" class="charge" value="100" onchange="getsum()"></span>-->
+<!--                        <div class="media-body-right-bottom">-->
+<!--                            <h5 class="mt-0 mb-1">目前库存:stock</h5>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </li>-->
     </ul>
 </div>
+<div class="addressContent">
+    <div class="input-group mb-3 addressConfirm">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="input-address">
+    </div>
+    <div class="sum">
+        <a class="badge badge-primary" style="font-size: 26px; color: whitesmoke;">总价：<span class="sum-charge">0</span> </a>
+    </div>
+</div>
+<div class="commit">
+    <div class="delete">
+        <button class="btn btn-primary btn-lg btn-block" id="delBtn" onclick="delItem()">删除</button>
+    </div>
+    <div class="buy">
+        <button class="btn btn-primary btn-lg btn-block" id="buyBtn" onclick="submit()">下单</button>
+    </div>
+</div>
 
+<div style="height: 100px"></div>
 </body>
 </html>
