@@ -73,12 +73,12 @@ function load_goods_div(begin_count) {
         for(let i=begin_count;i<exact_count;i++){
             let good_card = $(
                 '        <div class="col-3">\n' +
-                '            <div class="card" style="width: 18rem;">\n' +
+                '            <div class="card" style="width: 16rem;">\n' +
                 '                <img src="'+selectGoods[i]['picUrl']+'" class="card-img-top" alt="...">\n' +
                 '                <div class="card-body">\n' +
                 '                    <h5 class="card-title">'+selectGoods[i]['name']+'</h5>\n' +
-                '                    <p class="card-text">'+selectGoods[i]['detail']+'</p>\n' +
-                '                    <a href="'+selectGoods[i]['good_url']+'" class="btn btn-primary">Go somewhere</a>\n' +
+                '                    <p class="card-text">￥'+selectGoods[i]['price']+'</p>\n' +
+                '                    <a id="'+selectGoods[i]['spID']+'" class="btn btn-primary" onclick="showDetail(this)">去购买</a>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '        </div>');
@@ -92,12 +92,12 @@ function load_goods_div(begin_count) {
             let row1_node = $("#row1");
             let good_card = $(
                 '        <div class="col-3">\n' +
-                '            <div class="card" style="width: 18rem;">\n' +
+                '            <div class="card" style="width: 16rem;">\n' +
                 '                <img src="'+selectGoods[i]['picUrl']+'" class="card-img-top" alt="...">\n' +
                 '                <div class="card-body">\n' +
                 '                    <h5 class="card-title">'+selectGoods[i]['name']+'</h5>\n' +
-                '                    <p class="card-text">'+selectGoods[i]['detail']+'</p>\n' +
-                '                    <a href="'+selectGoods[i]['good_url']+'" class="btn btn-primary">Go somewhere</a>\n' +
+                '                    <p class="card-text">￥'+selectGoods[i]['price']+'</p>\n' +
+                '                    <a id="'+selectGoods[i]['spID']+'" class="btn btn-primary" onclick="showDetail(this)">去购买</a>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '        </div>');
@@ -108,19 +108,25 @@ function load_goods_div(begin_count) {
             let row1_node = $("#row2");
             let good_card = $(
                 '        <div class="col-3">\n' +
-                '            <div class="card" style="width: 18rem;">\n' +
+                '            <div class="card" style="width: 16rem;">\n' +
                 '                <img src="'+selectGoods[i]['picUrl']+'" class="card-img-top" alt="...">\n' +
                 '                <div class="card-body">\n' +
                 '                    <h5 class="card-title">'+selectGoods[i]['name']+'</h5>\n' +
-                '                    <p class="card-text">'+selectGoods[i]['detail']+'</p>\n' +
-                '                    <a href="'+selectGoods[i]['good_url']+'" class="btn btn-primary">Go somewhere</a>\n' +
+                '                    <p class="card-text">￥'+selectGoods[i]['price']+'</p>\n' +
+                '                    <a id="'+selectGoods[i]['spID']+'" class="btn btn-primary" onclick="showDetail(this)">去购买</a>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '        </div>');
                 row1_node.append(good_card);
         }
     }
+}
 
+function showDetail(item) {
+    let id = item.id;
+    let storage = window.localStorage;
+    storage.setItem("spID", id);
+    window.location.href = "commodity.html";
 }
 
 function pagination_createSpan(count) {

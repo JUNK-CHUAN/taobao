@@ -10,4 +10,5 @@ public interface CustomerMapper {
 
     List<Customer> getAllCustomer();
     void insertCustomer(String cID, String password, String name, String phone, String address);
+    void updateCustomerInfo(String cID, String name, String phone, String address);
 }

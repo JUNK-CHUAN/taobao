@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.DAO.SpecialtyPicMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.Entity.SpecialtyPic">
+        <result column="picUrl" property="picUrl" jdbcType="VARCHAR"/>
+        <result column="spID" property="spID" jdbcType="INTEGER"/>
+        <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="selectDetailByspID" resultMap="BaseResultMap">
+        select picUrl, spID, updateTime
+        from specialtyPic
+        where spID=#{spID}
+        order by updateTime ASC
+    </select>
+
+
+</mapper>

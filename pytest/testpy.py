@@ -1,7 +1,7 @@
 import requests
 import json
 url = 'http://127.0.0.1:8080/login'
-d = {'userid': 'jerry', 'password': '123', 'category': 'customer'}
+d = {'userid': 'jerry', 'password': '123', 'category': 'seller'}
 r = requests.post(url, data=d)
 print(r.text)
 cookies = r.cookies
@@ -61,9 +61,9 @@ cookies = r.cookies
 # #顾客查询自己的购物车内容测试：
 # url = 'http://127.0.0.1:8080/selectCustomerCart'
 # r = requests.get(url, cookies=cookies)
-# print(r.text)
+# print(r.te"xt)
 
-url = 'http://127.0.0.1:8080/deleteCart'
-a = {"spList":[1,2,3,4]}
-r = requests.post(url, data= json.dumps(a), cookies=cookies)
+url = 'http://127.0.0.1:8080/updateSellerInfo'
+a = {"name":"渣渣飞", "phone":"123", "address": "hahaaddre"}
+r = requests.post(url, data=a, cookies=cookies)
 print(r.text)

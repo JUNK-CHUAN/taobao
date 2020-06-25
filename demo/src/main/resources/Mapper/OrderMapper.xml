@@ -38,6 +38,7 @@
         from ordertable, specialty, seller, customer
         where ordertable.spID=specialty.spID and ordertable.cID=customer.cID
         and seller.sID=specialty.sID and ordertable.cID=#{cID}
+        order by submitTime DESC
     </select>
 
     <select id="selectOrderBysID" resultMap="BaseResultMap">
@@ -49,10 +50,17 @@
         from ordertable, specialty, seller, customer
         where ordertable.spID=specialty.spID and ordertable.cID=customer.cID
         and seller.sID=specialty.sID and seller.sID=#{sID}
+        order by submitTime DESC
     </select>
 
     <select id="changeOrderState">
         update ordertable set state=#{state}, expressNo=#{expressNo} where oID=#{oID}
+    </select>
+
+    <select id="getSalesVolumeBySpID" resultType="INTEGER">
+        select IFNULL(sum(count), 0)
+        from ordertable
+        where spID=#{spID}
     </select>
 
 </mapper>

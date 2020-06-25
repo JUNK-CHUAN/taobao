@@ -1,5 +1,7 @@
 package com.example.demo.Entity;
 
+import java.util.List;
+
 public class Specialty {
     private int spID;
     private String sID;
@@ -12,6 +14,24 @@ public class Specialty {
     private String sName;
     private String sPhone;
     private String sAddress;
+    private List<SpecialtyPic> detailPics;
+    private int salesVolume;
+
+    public int getSalesVolume() {
+        return salesVolume;
+    }
+
+    public void setSalesVolume(int salesVolume) {
+        this.salesVolume = salesVolume;
+    }
+
+    public List<SpecialtyPic> getDetailPics() {
+        return detailPics;
+    }
+
+    public void setDetailPics(List<SpecialtyPic> detailPics) {
+        this.detailPics = detailPics;
+    }
 
     public int getSpID() {
         return spID;

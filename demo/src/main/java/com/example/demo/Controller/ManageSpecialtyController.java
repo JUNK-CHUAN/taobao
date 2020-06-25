@@ -141,4 +141,26 @@ public class ManageSpecialtyController {
         System.out.println("来了");
         return "pic.html";
     }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/deleteSpecialty/{spID}", method = RequestMethod.GET)
+    @ResponseBody
+    public Map deleteSpecialty(@PathVariable int spID,
+                               HttpSession session)  throws Exception{
+        Map<String, Object> map = new HashMap<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            return map;
+        }
+        if(!session.getAttribute("category").equals("seller")) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("不是商家");
+            return map;
+        }
+        SPM.deleteSpecialty(spID);
+        map.put("result", "true");
+        return map;
+
+    }
 }

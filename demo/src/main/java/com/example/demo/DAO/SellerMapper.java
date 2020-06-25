@@ -10,4 +10,5 @@ public interface SellerMapper {
     List<Seller> selectSeller(String seller_id);
     void insertSeller(String sID, String password, String name,
                       String phone, String address);
+    void updateSellerInfo(String sID, String name, String phone, String address);
 }

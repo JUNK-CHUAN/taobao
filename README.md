@@ -123,7 +123,13 @@ spObj -> {"spID":1311,
 "price":20.8,
 "sName":"杰杰",
 "sPhone":"13012345678",
-"sAddress":"北京市某某地方"}
+"sAddress":"北京市某某地方",
+"salesVolume":10,
+"detailPics":[
+	{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},
+	{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}
+	]
+}
 ```
 
 
@@ -194,7 +200,17 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 ​		"price":40.0,  即特产单价
 ​		"sName":"陈昌银", 即商家店名
 ​		"sPhone":"12345", 即商家联系方式
-​		"sAddress":"pppp"  即商家地址}
+​		"sAddress":"pppp"  即商家地址,
+​	   "salesVolume":10,
+​		"detailPics":[
+
+​				{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},
+
+​				{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}
+
+​			]
+
+​	}
 
 }
 
@@ -311,8 +327,8 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 ```json
 {"result":"true",
  "data":[
-     {"spID":1,"sID":"jerry","name":"广东酸辣粉","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼好吃，狠辣","category":"华南","price":20.8,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区"},
-     {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区"}
+     {"spID":1,"sID":"jerry","name":"广东酸辣粉","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼好吃，狠辣","category":"华南","price":20.8,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "salesVolume":10, "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
+     {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "salesVolume":10, "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]}
  	]
 }
 ```
@@ -447,6 +463,58 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 如果某些购买数量超过库存（可能有一部分成功下单，一部分失败）：{"result":"false","reason":"someStockNotEnough"}
 
 操作成功: {"result": "true"}
+
+
+
+## 20、GET -> /deleteSpecialty/{spID}
+
+删除一个商品（虚伪的删除）
+
+#### Return
+
+没登陆或者登陆的用户类型不是seller：{"result": "false"}
+
+操作成功：{"result": "true"}
+
+
+
+## 21、POST -> /updateCustomerInfo
+
+修改顾客信息
+
+#### RequestParam
+
+”name": (string) 
+
+"phone": (string) 11位，限制长度
+
+"address": (string) varchar(45)，限制下长度
+
+#### Return
+
+成功：{“result": "true"}
+
+失败: {"result": "false"} 
+
+
+
+## 22、POST -> /updateSellerInfo
+
+修改商家信息
+
+#### RequestParam
+
+”name": (string) 
+
+"phone": (string) 11位，限制长度
+
+"address": (string) varchar(45)，限制下长度
+
+#### Return
+
+成功：{“result": "true"}
+
+失败: {"result": "false"} 
 
 
 
