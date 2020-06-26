@@ -45,5 +45,27 @@ div .card {
 }
 .sticky {
     position: fixed;
-    top: 0;
+    bottom: 10px;
+    left: 10px;
+}
+.rank {
+    height: 55px;
+    width: 160px;
+    background-color: darkorange;
+    border-radius: 3px;
+    text-align: center;
+    padding-top: 5px;
+    opacity: 0.8;
+}
+.rank h2 {
+    color: #FFFFFF;
+}
+.rank-category {
+    position: fixed;
+    bottom: 65px;
+    left: 10px;
+    display: none;
+}
+.rank-active {
+    display: block;
 }

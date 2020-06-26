@@ -36,9 +36,22 @@
 .media-body-right .media-body-right-bottom {
     padding-top: 100px;
 }
+.media-body-right-bottom span {
+    font-size: 24px !important;
+}
 .media-body h5 {
     font-size: 24px;
 }
 .media-body span {
     font-size: 18px;
+}
+.btn-primary {
+    color: #FFFFFF;
+    background: orange;
+    border: orange;
+    float: right;
+}
+.btn-primary:hover {
+    background: orangered;
+    border: orangered;
 }

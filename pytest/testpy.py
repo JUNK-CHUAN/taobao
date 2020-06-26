@@ -33,7 +33,7 @@ cookies = r.cookies
 # print(r.text)
 
 url = 'http://127.0.0.1:8080/setOrderStateSent'
-d = {"oID": "29", "expressNo": "123456888"};
+d = {"oID": "27", "expressNo": "123456888"};
 r = requests.post(url, data=d, cookies=cookies)
 print(r.text)
 
