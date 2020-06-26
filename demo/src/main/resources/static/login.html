@@ -103,7 +103,12 @@
             success: function (data) {
                 console.log('success,'+JSON.stringify(data));
                 if (data.result === 'true') {
-                    window.location.href = "./home.html";
+                    if(info["category"] === 'customer'){
+                        window.location.href = "./home.html";
+                    }
+                    if(info["category"] === 'seller'){
+                        window.location.href = "./salerBackend.html";
+                    }
                 }
             },
             error: function (data) {
