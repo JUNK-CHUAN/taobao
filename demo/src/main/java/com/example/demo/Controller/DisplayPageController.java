@@ -37,8 +37,8 @@ public class DisplayPageController {
         map.put("data", category2Specialty);
         for(i=0; i<categoryList.size(); i++){
             specialtyList = SPM.selectSpecialtyByCategory(categoryList.get(i));
-            if(specialtyList.size() > 4){
-                specialtyList = specialtyList.subList(0, 4);
+            if(specialtyList.size() > 8){
+                specialtyList = specialtyList.subList(0, 8);
             }
             ((Map)(map.get("data"))).put(categoryList.get(i), specialtyList);
         }

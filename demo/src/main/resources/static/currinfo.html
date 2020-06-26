@@ -1,18 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>主页静态样例</title>
     <meta charset="UTF-8">
-    <link rel="shortcut icon"type="image/x-icon" href="./img/logo.ico"media="screen" />
+    <title>个人信息</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./img/logo.ico" media="screen" />
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="jquery/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="css/currinfo.css">
+    <link rel="stylesheet" href="css/template.css">
 </head>
 <body>
 
 <script>
+    $(document).ready(function () {
+        $.ajax({
+            url : "http://127.0.0.1:8080/getCurrentUserInfo",
+            type : 'GET',
+            dataType : 'json',
+            crossOrigin: true,
+            success: function (data) {
+                console.log(JSON.stringify(data));
+                if (data.result === "false") {
+                    window.location.href = "./login.html";
+                } else {
+                    let categroy = data.categroy;
+                    let username = data.name;
+                    let phone = data.phone;
+                    let address = data.address;
+                    $(".btn.enterBtn").attr('id', categroy);
+                    $("input[id='username']").attr('value', username);
+                    $("input[id='telephone']").attr('value', phone);
+                    $("input[id='address']").attr('value', address);
+                }
+            }
+        })
+    });
+
     function logout() {
         console.log("click");
         $.ajax({
@@ -34,11 +60,26 @@
 
 
     function search() {
-        var storage = window.localStorage;
+        let storage = window.localStorage;
         storage.setItem("urlpattern", "/search");
-        var keyword = $("input[type='search']").val();
+        let keyword = $("input[type='search']").val();
         storage.setItem("keyword", "/"+keyword);
         window.location.href = "./goodList.html";
+    }
+
+    function updateInfo(id) {
+        let data = {
+            name: $("input[id='username']").val(),
+            phone: $("input[id='telephone']").val(),
+            address: $("input[id='address']").val()
+        };
+        let ajaxNode = {
+            url: id,
+            type: 'POST',
+            dataType: 'json',
+            data: data
+        };
+        console.log(ajaxNode);
     }
 </script>
 
@@ -82,6 +123,51 @@
         </div>
     </nav>
 </header>
+
+<section class="currinfo">
+    <div class="container sign-content">
+
+        <div class="row my-3 info-head">
+            <h2>个人中心</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="signin-form">
+                    <form>
+                        <div class="form-group">
+                            <label>姓名</label>
+                            <input type="text" class="form-control" id="username" placeholder="请输入真实姓名">
+                        </div>
+                        <div class="form-group">
+                            <label>电话</label>
+                            <input type="email" class="form-control" id="telephone" placeholder="请输入手机号码">
+                        </div>
+                        <div class="form-group">
+                            <label>地址</label>
+                            <input type="text" class="form-control" id="address" placeholder="请输入地址">
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <canvas id="canvas" onclick="dj()" class = "check"></canvas>
+                            <input type="text" value="" placeholder="请输入验证码（区分大小写）" id ="text" class = "yanzhengma">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="signin-footer">
+                    <button type="button" class="btn enterBtn" id="submit" data-toggle="modal" data-target=".signin_modal" onclick="updateInfo(this.id)">
+                        更新信息
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 </body>
 </html>
