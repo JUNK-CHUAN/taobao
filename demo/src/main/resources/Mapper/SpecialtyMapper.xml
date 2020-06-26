@@ -70,8 +70,8 @@
     <select id="specialtySaleRank" resultMap="BaseResultMap">
         select spID, specialty.sID as sID, specialty.name as name,
         picUrl, stock, detail, category, price, seller.name as sName,
-        seller.phone as sPhone, seller.address as sAddress, 
-        from specialty, seller
+        seller.phone as sPhone, seller.address as sAddress,
+        from specialty, seller, ordertable
         where specialty.sID = seller.sID
     </select>
 
