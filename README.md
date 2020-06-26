@@ -27,6 +27,7 @@ Table of Contents
       * [21、POST -&gt; /updateCustomerInfo](#21post---updatecustomerinfo)
       * [22、POST -&gt; /updateSellerInfo](#22post---updatesellerinfo)
       * [23、GET -&gt; /specialtySaleRank](#23get---specialtysalerank)
+      * [24、GET -&gt; /setOrderStateRecv/{oID}](#24get---setorderstaterecvoid)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -606,6 +607,20 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 ```
 
 
+
+## 24、GET -> /setOrderStateRecv/{oID}
+
+按销量获取商品排行榜
+
+#### Param
+
+oID: (string or int) 订单id
+
+#### Return
+
+没登陆：{"result": "false"}
+
+成功: {"result": "true"}
 
 
 
