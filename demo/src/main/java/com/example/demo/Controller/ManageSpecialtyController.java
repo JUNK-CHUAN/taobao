@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.HashMap;
@@ -20,15 +21,16 @@ public class ManageSpecialtyController {
     SpecialtyMapper SPM;
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/createSpecialty", method = RequestMethod.POST)
+    @RequestMapping(value = "/createSpecialty")
     @ResponseBody
-    public Map createSpecialty(@RequestParam(value = "name") String name,
-                               @RequestParam(value ="file") MultipartFile file,
-                               @RequestParam(value = "stock") int stock,
-                               @RequestParam(value = "detail") String detail,
-                               @RequestParam(value = "category") String category,
-                               @RequestParam(value = "price") float price,
-                            HttpSession session)  throws Exception{
+    public Map createSpecialty(
+            @RequestParam(value ="file_1") MultipartFile[] file,
+//                               @RequestParam(value = "stock") int stock,
+//                               @RequestParam(value = "detail") String detail,
+//                               @RequestParam(value = "category") String category,
+//                               @RequestParam(value = "price") float price,
+//                               @RequestParam(value = "name") String name,
+            HttpSession session)  throws Exception{
         System.out.println("上传来了");
         Map<String, Object> map = new HashMap<>();
         // 处理未登录情况
@@ -44,36 +46,36 @@ public class ManageSpecialtyController {
         }
 
         //图片文件存储
-        File fileDir = new File("src/main/resources/static/specialtyPic");
-        String path = fileDir.getAbsolutePath();
-        UUID uuid = UUID.randomUUID();
-        String uid=uuid.toString();
-        System.out.println(uid);
-        if(!fileDir.exists()){
-            fileDir.mkdir();
-            System.out.println(path);
-            System.out.println("指定目录不存在");
-            map.put("result", "false");   // 目录不存在
-            return map;
-        }
-        try {
-            file.transferTo(new File(path, uid+".jpg"));
-            String picUrl="specialtyPic/"+uid+".jpg";
-            map.put("result", "true");
-            map.put("url", picUrl);
-            System.out.println("上传成功");
-
-            String sID = (String) session.getAttribute("userid");
-            SPM.createNewSpecialty(sID, name, picUrl, stock, detail, category, price);
-            map.put("result", "true");
-        } catch (Exception e) {
-            map.put("result","false");
-            System.out.println("上传失败");
-            e.printStackTrace();
-        }
-
-        return map;
-
+//        File fileDir = new File("src/main/resources/static/specialtyPic");
+//        String path = fileDir.getAbsolutePath();
+//        UUID uuid = UUID.randomUUID();
+//        String uid=uuid.toString();
+//        System.out.println(uid);
+//        if(!fileDir.exists()){
+//            fileDir.mkdir();
+//            System.out.println(path);
+//            System.out.println("指定目录不存在");
+//            map.put("result", "false");   // 目录不存在
+//            return map;
+//        }
+//        try {
+//            file.transferTo(new File(path, uid+".jpg"));
+//            String picUrl="specialtyPic/"+uid+".jpg";
+//            map.put("result", "true");
+//            map.put("url", picUrl);
+//            System.out.println("上传成功");
+//
+//            String sID = (String) session.getAttribute("userid");
+//         //   SPM.createNewSpecialty(sID, name, picUrl, stock, detail, category, price);
+//            map.put("result", "true");
+//        } catch (Exception e) {
+//            map.put("result","false");
+//            System.out.println("上传失败");
+//            e.printStackTrace();
+//        }
+//
+//        return map;
+      return map;
     }
 
     @CrossOrigin(origins = "*")
