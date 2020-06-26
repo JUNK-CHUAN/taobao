@@ -18,7 +18,9 @@ import java.util.*;
 public class ManageSpecialtyController {
     @Autowired
     SpecialtyMapper SPM;
+    @Autowired
     SpecialtyPicMapper SPPM;
+
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/uploadPic", method = RequestMethod.POST)
     @ResponseBody
@@ -27,7 +29,7 @@ public class ManageSpecialtyController {
                                HttpSession session)  throws Exception{
         System.out.println("图片上传来了");
         Map<String, Object> map = new HashMap<>();
-        List<String> picUrls = null;
+        List<String> picUrls = new ArrayList<>();
         // 处理未登录情况
         if(session.getAttribute("isLogIn") == null) {
             map.put("result", "false");   // 还没登陆
@@ -78,12 +80,13 @@ public class ManageSpecialtyController {
     @RequestMapping(value = "/createSpecialty", method = RequestMethod.POST)
     @ResponseBody
     public Map createSpecialty(@RequestParam(value = "name") String name,
-                               @RequestParam(value ="picUrls") List<String> picUrls,
+                               @RequestParam(value ="picUrls") String picUrls_str,
                                @RequestParam(value = "stock") int stock,
                                @RequestParam(value = "detail") String detail,
                                @RequestParam(value = "category") String category,
                                @RequestParam(value = "price") float price,
                                HttpSession session)  throws Exception{
+        List<String> picUrls = Arrays.asList(picUrls_str.split(","));
         Map<String, String> map = new HashMap<>();
         // 处理未登录情况
         if(session.getAttribute("isLogIn") == null) {
