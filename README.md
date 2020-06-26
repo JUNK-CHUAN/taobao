@@ -1,10 +1,44 @@
 # 卖特产的
 
+Table of Contents
+=================
+
+   * [接口文档](#接口文档)
+      * [1、POST -&gt; /login](#1post---login)
+      * [2、POST -&gt; /Register](#2post---register)
+      * [3、GET -&gt; /logout](#3get---logout)
+      * [4、GET -&gt; /getCurrentUserInfo](#4get---getcurrentuserinfo)
+      * [5、GET -&gt; /customerHome](#5get---customerhome)
+      * [6、GET -&gt; /getSpecilatyByCategory/{category}](#6get---getspecilatybycategorycategory)
+      * [7、GET -&gt; /search/{keyword}](#7get---searchkeyword)
+      * [8、GET -&gt; /getSpecialtyInfo/{specialty_id}](#8get---getspecialtyinfospecialty_id)
+      * [9、POST -&gt; /insertCart](#9post---insertcart)
+      * [10、POST -&gt; /buyFromCart](#10post---buyfromcart)
+      * [11、GET -&gt; /currentCustomerOrderList](#11get---currentcustomerorderlist)
+      * [12、GET -&gt; /currentSellerOrderList](#12get---currentsellerorderlist)
+      * [13、POST -&gt; /setOrderStateSent](#13post---setorderstatesent)
+      * [14、GET -&gt; /getSellerSpecialtyList](#14get---getsellerspecialtylist)
+      * [15、POST -&gt; /createSpecialty](#15post---createspecialty)
+      * [16、POST -&gt; /updateSpecialty](#16post---updatespecialty)
+      * [17、POST -&gt; /deleteCart](#17post---deletecart)
+      * [18、GET -&gt; /selectCustomerCart](#18get---selectcustomercart)
+      * [19、POST -&gt; /buyFromCartWithNewCount](#19post---buyfromcartwithnewcount)
+      * [20、GET -&gt; /deleteSpecialty/{spID}](#20get---deletespecialtyspid)
+      * [21、POST -&gt; /updateCustomerInfo](#21post---updatecustomerinfo)
+      * [22、POST -&gt; /updateSellerInfo](#22post---updatesellerinfo)
+      * [23、GET -&gt; /specialtySaleRank](#23get---specialtysalerank)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
+
+
 
 
 # Usage
 
 use idea import /demo
+
+
 
 
 
@@ -124,6 +158,7 @@ spObj -> {"spID":1311,
 "sName":"杰杰",
 "sPhone":"13012345678",
 "sAddress":"北京市某某地方",
+"salesVolume":10,
 "detailPics":[
 	{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},
 	{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}
@@ -200,6 +235,7 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 ​		"sName":"陈昌银", 即商家店名
 ​		"sPhone":"12345", 即商家联系方式
 ​		"sAddress":"pppp"  即商家地址,
+​	   "salesVolume":10,
 ​		"detailPics":[
 
 ​				{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},
@@ -325,8 +361,8 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 ```json
 {"result":"true",
  "data":[
-     {"spID":1,"sID":"jerry","name":"广东酸辣粉","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼好吃，狠辣","category":"华南","price":20.8,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区"},
-     {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区"}
+     {"spID":1,"sID":"jerry","name":"广东酸辣粉","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼好吃，狠辣","category":"华南","price":20.8,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "salesVolume":10, "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
+     {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "salesVolume":10, "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]}
  	]
 }
 ```
@@ -473,6 +509,98 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 没登陆或者登陆的用户类型不是seller：{"result": "false"}
 
 操作成功：{"result": "true"}
+
+
+
+## 21、POST -> /updateCustomerInfo
+
+修改顾客信息
+
+#### RequestParam
+
+”name": (string) 
+
+"phone": (string) 11位，限制长度
+
+"address": (string) varchar(45)，限制下长度
+
+#### Return
+
+成功：{“result": "true"}
+
+失败: {"result": "false"} 
+
+
+
+## 22、POST -> /updateSellerInfo
+
+修改商家信息
+
+#### RequestParam
+
+”name": (string) 
+
+"phone": (string) 11位，限制长度
+
+"address": (string) varchar(45)，限制下长度
+
+#### Return
+
+成功：{“result": "true"}
+
+失败: {"result": "false"} 
+
+
+
+## 23、GET -> /specialtySaleRank
+
+按销量获取商品排行榜
+
+#### Return
+
+没登陆：{"result": "false"}
+
+操作成功：
+
+```json
+{
+    "result": "true", 
+    "data": [
+        {
+            "spID": 935, 
+            "sID": "3", 
+            "name": "乌江榨菜", 
+            "picUrl": "img/testsp/西南/乌江榨菜.jpg", 
+            "stock": 310, 
+            "detail": "小面是作为南方人的重庆市民唯一普遍接受的面...", 
+            "category": "西南", 
+            "price": 16, 
+            "sName": "重大饭堂旗舰店", 
+            "sPhone": "13460986283", 
+            "sAddress": "重庆市沙坪坝区沙正街174号", 
+            "detailPics": null, 
+            "salesVolume": 14
+        }, 
+        {
+            "spID": 936, 
+            "sID": "3", 
+            "name": "云南花椒", 
+            "picUrl": "img/testsp/西南/云南花椒.jpg", 
+            "stock": 553, 
+            "detail": "小面是作为南方人的重庆市民唯一...", 
+            "category": "西南", 
+            "price": 46, 
+            "sName": "重大饭堂旗舰店", 
+            "sPhone": "13460986283", 
+            "sAddress": "重庆市沙坪坝区沙正街174号", 
+            "detailPics": null, 
+            "salesVolume": 10
+        }
+    ]
+}
+```
+
+
 
 
 

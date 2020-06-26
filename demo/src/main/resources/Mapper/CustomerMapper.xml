@@ -19,4 +19,10 @@
     <select id="insertCustomer">
         insert into customer values(#{cID}, #{password},#{name},#{phone},#{address})
     </select>
+
+    <select id="updateCustomerInfo">
+        update customer
+        set name=#{name}, phone=#{phone}, address=#{address}
+        where cID=#{cID}
+    </select>
 </mapper>

@@ -16,3 +16,34 @@
     color: darkblue;
     text-decoration: none;
 }
+.row {
+    margin-bottom: 20px;
+}
+.btn-primary {
+    background: orange;
+    border: orange;
+}
+.btn-primary:hover {
+    background: orangered;
+    border: orangered;
+}
+.nav-pills .nav-link {
+    color: orangered;
+}
+.nav-choice {
+    border-bottom: 2px solid orangered;
+    border-radius: 0 !important;
+}
+
+.nav-pills .nav-link.active {
+    background-color: orangered;
+    border-bottom: 2px solid orangered;
+    border-radius: 0;
+}
+div .card {
+    margin: auto !important;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+}

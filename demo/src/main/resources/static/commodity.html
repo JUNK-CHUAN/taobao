@@ -3,21 +3,19 @@
 <head>
     <title>商品详情静态样例</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
-
-    <link rel="shortcut icon"type="image/x-icon" href="./img/logo.ico"media="screen" />
+    <link rel="shortcut icon" type="image/x-icon" href="./img/logo.ico" media="screen" />
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
     <script src="jquery/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/template.css">
 </head>
 <body>
 
 <script>
+
     let spid;
 
     $(document).ready(function () {
@@ -44,7 +42,7 @@
                             console.log('success,'+JSON.stringify(data));
 
                             if (data.result === 'true') {
-                                var jsonData = data["data"];
+                                let jsonData = data["data"];
                                 $(".tr-nobdr").text(jsonData["name"]);
                                 $(".spPrice").text(jsonData["price"]);
                                 $(".spPic").attr('src',jsonData["picUrl"]);
@@ -53,7 +51,13 @@
                                 $(".spdetail_name").text(jsonData["name"]);
                                 $(".spdetail_ID").text(jsonData["spID"]);
                                 $(".spdetail_sName").text(jsonData["sName"]);
-                                $(".spdetail_stock").text(jsonData["stock"]);
+                                $(".spdetail_text").text(jsonData["detail"]);
+                                $("#add_sell_num_363").text(jsonData["salesVolume"]);
+
+                                for(let i=0; i<jsonData["detailPics"].length; i++){
+                                    console.log(jsonData["detailPics"])
+                                    $("#detailPicBox").append('<li><img src="'+ jsonData["detailPics"][i]["picUrl"] + '"/></li>');
+                                }
                             }
                         },
                         error: function (data) {
@@ -63,6 +67,7 @@
                     });
                 }
 
+
             }
         })
     });
@@ -70,8 +75,8 @@
     //加入购物车
     function add_cart () {
         console.log('send');
-        var url = 'http://127.0.0.1:8080/insertCart';
-        var info = {
+        let url = 'http://127.0.0.1:8080/insertCart';
+        let info = {
             "spID": spid,
             "count":document.getElementById("text_box").value
         };
@@ -119,23 +124,23 @@
     };
 
     function search() {
-        var storage = window.localStorage;
+        let storage = window.localStorage;
         storage.setItem("urlpattern", "/search");
-        var keyword = $("input[type='search']").val();
+        let keyword = $("input[type='search']").val();
         storage.setItem("keyword", "/"+keyword);
         window.location.href = "./goodList.html";
     }
 
     //购买数量
     $(document).ready(function(){
-        var t = $("#text_box");
+        let t = $("#text_box");
         $('#min').attr('disabled',true);
         $("#add").click(function(){
             t.val(parseInt(t.val())+1)
             if (parseInt(t.val())!=1){
                 $('#min').attr('disabled',false);
             }
-        })
+        });
         $("#min").click(function(){
             t.val(parseInt(t.val())-1);
             if (parseInt(t.val())==1){
@@ -144,8 +149,8 @@
         })
     });
 </script>
-                    
-             
+
+
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px; font-size: 22px; padding-left: 200px; padding-right: 200px;">
         <a href="home.html">
@@ -195,7 +200,7 @@
             </div>
     </div>
 
-        <!--conet -->
+    <!--conet -->
     <div class="tb-property">
         <div class="tr-nobdr">
             <h3> </h3>
@@ -203,15 +208,15 @@
         <div class="txt">
             <span class="nowprice">￥<span class="spPrice"></span></span>
             <div class="cumulative">
-                <span class="number ty1">累计售出<br /><em id="add_sell_num_363">370</em></span>
+                <span class="number ty1">累计售出<br /><em id="add_sell_num_363">0</em></span>
                 <span class="number tyu">累计评价<br /><em id="add_sell_num_363">25</em></span>
             </div>
         </div>
-  
+
         <div class="gcIpt">
             <span class="guT">数量</span>
-            <input id="min" name="" type="button" value="-" />  
-            <input id="text_box" name="" type="text" value="1"style="width:30px; text-align: center; color: #0F0F0F;"/>  
+            <input id="min" name="" type="button" value="-" />
+            <input id="text_box" name="" type="text" value="1"style="width:30px; text-align: center; color: #0F0F0F;"/>
             <input id="add" name="" type="button" value="+" />
             <span class="Hgt">库存（<span class="stock_num">99</span>）</span>
         </div>
@@ -223,10 +228,10 @@
             <span>邮费：包邮&nbsp;&nbsp;支持货到付款 <a href=""><img src="img/me.png"/></a></span>
         </div>
     </div>
-        <!--right -->
-</div>             
-             
-<!-- 商品介紹 -->                
+    <!--right -->
+</div>
+
+<!-- 商品介紹 -->
 <div class="gdetail">
     <!-- 详情 -->
     <div class="detail">
@@ -237,21 +242,22 @@
                 </li>
             </ul>
         </div>
-        <div id="content" class="active_list"> 
+        <div id="content" class="active_list">
             <div id="ui-a" class="ui-a">
                 <ul style="display:block;">
                     <li>商品名称：<span class = "spdetail_name" ></span></li>
                     <li>商品编号：<span class = "spdetail_ID"></span></li>
                     <li>商家：<span class = "spdetail_sName"> </span></li>
-                    <li>库存：<span class = "spdetail_stock"></span>  </li>
-                    <li><img src="img/ko-1.jpg"/></li>
-                    <li><img src="img/ko-2.jpg"/></li>                       
-                    <li><img src="img/ko.jpg"/></li>
-                    <li><img src="img/ko-1.jpg"/></li>
+                    <li>商品介绍：<span class = "spdetail_text"></span>  </li>
+<!--                    <li><img src="img/ko-1.jpg"/></li>-->
+<!--                    <li><img src="img/ko-2.jpg"/></li>-->
+<!--                    <li><img src="img/ko.jpg"/></li>-->
+<!--                    <li><img src="img/ko-1.jpg"/></li>-->
+                    <div id="detailPicBox"></div>
                 </ul>
             </div>
         </div>
-                                 <!--商品评价-->      
+        <!--商品评价-->
         <div id="ui-c" class="ui-c">
             <ul style="display:none;">
             </ul>

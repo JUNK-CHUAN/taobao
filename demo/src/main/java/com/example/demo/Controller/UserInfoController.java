@@ -6,10 +6,7 @@ import com.example.demo.Entity.Customer;
 import com.example.demo.Entity.Seller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,27 +25,6 @@ public class UserInfoController {
     @RequestMapping(value = "/getCurrentUserInfo", method = RequestMethod.GET)
     @ResponseBody
     public Map getCurrentUserInfo(HttpSession session, HttpServletRequest request) throws Exception {
-//        System.out.println(session.getAttribute("isLogIn"));
-//        System.out.println(session.getAttribute("userid"));
-//        System.out.println(session.getAttribute("category"));
-//        System.out.println("==================");
-//        Cookie cookies[] = request.getCookies();
-//        if (cookies != null){
-//
-//            for (Cookie cookie : cookies)
-//            {
-//                String key = cookie.getName();
-//                String val = cookie.getValue();
-//                System.out.println(key + " --- " + val);
-//
-//            }
-//        }
-//        else  {
-//            System.out.println(" no cookie");
-//        }
-//        System.out.println();
-//        System.out.println("==================");
-
 
         List<Customer> customerList;
         List<Seller> sellerList;
@@ -94,6 +70,56 @@ public class UserInfoController {
             map.put("result", "false");
             return map;
         }
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/updateCustomerInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Map updateCustomerInfo(@RequestParam(value = "name") String name,
+                        @RequestParam(value = "phone") String phone,
+                        @RequestParam(value = "address") String address,
+                        HttpSession session) throws Exception {
+
+        Map<String, Object> map = new HashMap<>();
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("还没登录");
+            return map;
+        }
+        if(!session.getAttribute("category").equals("customer")) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("不是顾客");
+            return map;
+        }
+        String cID = (String) session.getAttribute("userid");
+        CM.updateCustomerInfo(cID, name, phone, address);
+        map.put("result", "true");
+        return map;
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/updateSellerInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Map updateSellerInfo(@RequestParam(value = "name") String name,
+                                  @RequestParam(value = "phone") String phone,
+                                  @RequestParam(value = "address") String address,
+                                  HttpSession session) throws Exception {
+
+        Map<String, Object> map = new HashMap<>();
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("还没登录");
+            return map;
+        }
+        if(!session.getAttribute("category").equals("seller")) {
+            map.put("result", "false");
+            System.out.println("不是商家");
+            return map;
+        }
+        String sID = (String) session.getAttribute("userid");
+        SM.updateSellerInfo(sID, name, phone, address);
+        map.put("result", "true");
+        return map;
     }
 
 }

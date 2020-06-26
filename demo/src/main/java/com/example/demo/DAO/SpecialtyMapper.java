@@ -22,4 +22,6 @@ public interface SpecialtyMapper {
     void reduceStock(int spID, int count);
 
     void deleteSpecialty(int spID);
+
+    List<Specialty> specialtySaleRank();
 }

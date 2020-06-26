@@ -16,4 +16,5 @@ public interface OrderMapper {
     List<Order> selectOrderBycID(String cID);
     List<Order> selectOrderBysID(String sID);
     void changeOrderState(int oID, String state, String expressNo);
+    int getSalesVolumeBySpID(int spID);
 }

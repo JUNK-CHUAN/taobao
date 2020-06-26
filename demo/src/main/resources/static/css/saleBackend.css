@@ -1,9 +1,9 @@
-.media {
+.card-float {
     padding: 10px;
     background: none;
 }
-.media:hover {
-    border: 2px solid orangered;
+.card-float:hover {
+    border: 2px solid #007bff;
     border-radius: 5px;
 }
 .order-head {
