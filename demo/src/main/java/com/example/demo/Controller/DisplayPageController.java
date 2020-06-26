@@ -1,7 +1,9 @@
 package com.example.demo.Controller;
 
+import com.example.demo.DAO.OrderMapper;
 import com.example.demo.DAO.SellerMapper;
 import com.example.demo.DAO.SpecialtyMapper;
+import com.example.demo.DAO.SpecialtyPicMapper;
 import com.example.demo.Entity.Specialty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,10 @@ public class DisplayPageController {
     @Autowired SellerMapper SM;
     @Autowired
     SpecialtyMapper SPM;
+    @Autowired
+    SpecialtyPicMapper SPICM;
+    @Autowired
+    OrderMapper OM;
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/customerHome", method = RequestMethod.GET)
@@ -99,6 +105,15 @@ public class DisplayPageController {
         String sID = (String) session.getAttribute("userid");
         map.put("result", "true");
         specialtyList = SPM.selectSpecialtyBySid(sID);
+
+        int i;
+        for(i=0; i<specialtyList.size(); i++){
+            // 获取详情图片
+            specialtyList.get(i).setDetailPics(SPICM.selectDetailByspID(specialtyList.get(i).getSpID()));
+            // 获取销量
+            specialtyList.get(i).setSalesVolume(OM.getSalesVolumeBySpID(specialtyList.get(i).getSpID()));
+        }
+
         map.put("data", specialtyList);
         return map;
     }
