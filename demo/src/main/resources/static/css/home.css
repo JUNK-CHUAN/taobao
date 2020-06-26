@@ -30,9 +30,17 @@
 .nav-pills .nav-link {
     color: orangered;
 }
+.nav-link {
+    border-bottom: 2px solid orangered;
+    border-radius: 0 !important;
+}
 .nav-pills .nav-link.active {
     background-color: orangered;
-    border-radius: 0px;
+    border-bottom: 2px solid orangered;
+    border-radius: 0;
+}
+div .card {
+    margin: auto !important;
 }
 .sticky {
     position: fixed;
