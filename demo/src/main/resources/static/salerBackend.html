@@ -417,9 +417,18 @@
             showUploadedThumbs : true,
             initialPreviewShowDelete : false,
             showRemove : true,
-            showClose : true,
-         //    enableResumableUpload: true
+            showClose : true
         });
+
+
+    //同步上传返回结果处理
+    $("#f_upload").on("filebatchuploadsuccess",
+        function(event, data, previewId, index) {
+            console.log("filebatchuploadsuccess");
+            
+        });
+
+
 </script>
 </body>
 </html>

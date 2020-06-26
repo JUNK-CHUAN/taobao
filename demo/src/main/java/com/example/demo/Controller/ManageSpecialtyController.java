@@ -31,19 +31,25 @@ public class ManageSpecialtyController {
 //                               @RequestParam(value = "price") float price,
 //                               @RequestParam(value = "name") String name,
             HttpSession session)  throws Exception{
-        System.out.println("上传来了");
+
         Map<String, Object> map = new HashMap<>();
-        // 处理未登录情况
-        if(session.getAttribute("isLogIn") == null) {
-            map.put("result", "false");   // 还没登陆
-            System.out.println("还没登录");
-            return map;
-        }
-        if(!session.getAttribute("category").equals("seller")) {
-            map.put("result", "false");   // 还没登陆
-            System.out.println("不是商家");
-            return map;
-        }
+        map.put("1",1);
+        map.put("result",123);
+        return map;
+
+//        System.out.println("上传来了");
+//        Map<String, Object> map = new HashMap<>();
+//        // 处理未登录情况
+//        if(session.getAttribute("isLogIn") == null) {
+//            map.put("result", "false");   // 还没登陆
+//            System.out.println("还没登录");
+//            return map;
+//        }
+//        if(!session.getAttribute("category").equals("seller")) {
+//            map.put("result", "false");   // 还没登陆
+//            System.out.println("不是商家");
+//            return map;
+//        }
 
         //图片文件存储
 //        File fileDir = new File("src/main/resources/static/specialtyPic");
@@ -75,7 +81,7 @@ public class ManageSpecialtyController {
 //        }
 //
 //        return map;
-      return map;
+      //return map;
     }
 
     @CrossOrigin(origins = "*")
