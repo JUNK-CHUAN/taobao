@@ -39,28 +39,51 @@
 
                         let orderList = resData["data"];
                         let listFrame = $(".order-list > ul");
+
+                        let confirm_btn = '';
+                        let commit_btn = '';
+
                         for (let i = 0; i < orderList.length; i++) {
                             let orderItem = orderList[i];
+                            if (orderItem['state'] === "已发货") {
+                                confirm_btn =
+                                    '<a href="#" class="btn btn-primary" id="' +
+                                    orderItem['oID'].toString() +
+                                    '" onclick="receive(this.id)">确认收货</a>';
+                                commit_btn = '';
+                            }
+                            else if (orderItem['state'] === "已收货，待评价") {
+                                confirm_btn = '';
+                                commit_btn =
+                                    '<a href="#" class="btn btn-primary" id="' +
+                                    orderItem['oID'].toString() +
+                                    '" onclick="javascript:void(0)">去评价</a>';
+                            }
+                            else {
+                                confirm_btn = '';
+                                commit_btn = '';
+                            }
+
                             let itemWritable = $(
-                                '<li class="media my-1">\n' +
-                                '<img src=' + orderItem['picUrl'] + ' class="mr-3 spimg" alt="">\n' +
-                                '<div class="media-body">\n' +
-                                '<div class="media-body-left">\n' +
-                                '<h5 class="mt-0 mb-1">' + orderItem['spName'] + '</h5>\n' +
-                                '<span>商家：' + orderItem['sName'] + '</span><br>\n' +
-                                '<span>商家联系方式：' + orderItem['sPhone'] + '</span><br>\n' +
-                                '<span>下单时间：' + orderItem['submitTime'].slice(0,10) + '</span><br>\n' +
-                                '<span>收货地址：' + orderItem['recvAddress'] + '</span><br>\n' +
-                                '</div>\n' +
-                                '<div class="media-body-right">\n' +
-                                '<h5  class="mt-0 mb-1">金额：' + orderItem['sum'] + '</h5>\n' +
-                                '<span>x ' + orderItem['count'] + '</span>\n' +
-                                '<div class="media-body-right-bottom">\n' +
-                                '<h5 class="mt-0 mb-1">' + orderItem['state'] + '</h5>\n' +
-                                '</div>\n' +
-                                '</div>\n' +
-                                '</div>\n' +
-                                '</li>'
+                                '        <li class="media my-1">\n' +
+                                '            <img src="' + orderItem['picUrl'] + '" class="mr-3 spimg" alt="">\n' +
+                                '            <div class="media-body">\n' +
+                                '                <div class="media-body-left">\n' +
+                                '                    <h5 class="mt-0 mb-1">' + orderItem['spName'] + '</h5>\n' +
+                                '                    <span>商家：' + orderItem['sName'] + '</span><br>\n' +
+                                '                    <span>商家联系方式：' + orderItem['sPhone'] + '</span><br>\n' +
+                                '                    <span>下单时间：' + orderItem['submitTime'].slice(0,10) + '</span><br>\n' +
+                                '                    <span>收货地址：' + orderItem['recvAddress'] + '</span><br>\n' +
+                                '                </div>\n' +
+                                '                <div class="media-body-right">\n' +
+                                '                    <h5 class="mt-0 mb-1">金额：' + orderItem['sum'] + '</h5>\n' +
+                                '                    <span>x ' + orderItem['count'] + '</span>\n' +
+                                '                    <div class="media-body-right-bottom">\n' +
+                                '                        <span class="mt-0 mb-1">' + orderItem['state'] + '</span>\n' + confirm_btn + commit_btn +
+                                '                    </div>\n' +
+                                '                </div>\n' +
+                                '            </div>\n' +
+                                '        </li>'
                             );
                             listFrame.append(itemWritable);
                         }
@@ -95,6 +118,27 @@
         let keyword = $("input[type='search']").val();
         storage.setItem("keyword", "/"+keyword);
         window.location.href = "./goodList.html";
+    }
+
+    function receive(oid) {
+        $.ajax({
+            url: "http://127.0.0.1:8080/setOrderStateRecv/" + oid,
+            type: 'GET',
+            dataType: 'json',
+            crossOrigin: true,
+            success: function (data) {
+                if (data.result === "true") {
+                    alert("收获成功");
+                    location.reload();
+                }
+                else {
+                    alert("收获出错");
+                }
+            },
+            error: function (data) {
+                alert("connection error");
+            }
+        })
     }
 </script>
 
