@@ -1,8 +1,36 @@
 # 卖特产的
 
+Table of Contents
+=================
+
+   * [接口文档](#接口文档)
+      * [1、POST -&gt; /login](#1post---login)
+      * [2、POST -&gt; /Register](#2post---register)
+      * [3、GET -&gt; /logout](#3get---logout)
+      * [4、GET -&gt; /getCurrentUserInfo](#4get---getcurrentuserinfo)
+      * [5、GET -&gt; /customerHome](#5get---customerhome)
+      * [6、GET -&gt; /getSpecilatyByCategory/{category}](#6get---getspecilatybycategorycategory)
+      * [7、GET -&gt; /search/{keyword}](#7get---searchkeyword)
+      * [8、GET -&gt; /getSpecialtyInfo/{specialty_id}](#8get---getspecialtyinfospecialty_id)
+      * [9、POST -&gt; /insertCart](#9post---insertcart)
+      * [10、POST -&gt; /buyFromCart](#10post---buyfromcart)
+      * [11、GET -&gt; /currentCustomerOrderList](#11get---currentcustomerorderlist)
+      * [12、GET -&gt; /currentSellerOrderList](#12get---currentsellerorderlist)
+      * [13、POST -&gt; /setOrderStateSent](#13post---setorderstatesent)
+      * [14、GET -&gt; /getSellerSpecialtyList](#14get---getsellerspecialtylist)
+      * [15、POST -&gt; /createSpecialty](#15post---createspecialty)
+      * [16、POST -&gt; /updateSpecialty](#16post---updatespecialty)
+      * [17、POST -&gt; /deleteCart](#17post---deletecart)
+      * [18、GET -&gt; /selectCustomerCart](#18get---selectcustomercart)
+      * [19、POST -&gt; /buyFromCartWithNewCount](#19post---buyfromcartwithnewcount)
+      * [20、GET -&gt; /deleteSpecialty/{spID}](#20get---deletespecialtyspid)
+      * [21、POST -&gt; /updateCustomerInfo](#21post---updatecustomerinfo)
+      * [22、POST -&gt; /updateSellerInfo](#22post---updatesellerinfo)
+      * [23、GET -&gt; /specialtySaleRank](#23get---specialtysalerank)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 
-[TOC]
 
 
 
