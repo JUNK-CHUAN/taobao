@@ -338,7 +338,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+                        <button type="submit" class="btn btn-danger" onclick="deleteSp(this)">删除</button>
                     </div>
                 </div>
             </div>
@@ -448,7 +448,6 @@
             // 添加到本地
             if(pic_info['result']==="true")
             {
-                cur_thumb_url = pic_info['picUrls'][0];
                 for(let i=0;i<pic_info['picUrls'].length;i++){
                   //  cur_info_pic_url.append(pic_info['picUrls'][i]);
                     cur_info_pic_url[i] = pic_info['picUrls'][i];

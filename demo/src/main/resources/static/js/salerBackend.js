@@ -47,30 +47,47 @@ function categoryConvertR(English){
 
 function addSp(button) {
     // console.log(cur_info_pic_url);
-    $('#AddSuccess').toast('show');
-    $('#collapseAddSp').collapse('toggle');
     let new_sp_name = $('#AddSpName').val();
     let new_sp_stock = $('#AddRemainStocks').val();
     let new_sp_price = $('#AddPrice').val();
     let new_sp_category =$("#AddCategory option:selected").val();
-    let new_sp_info = $('#Addinfo').text();
+    let new_sp_info = $('#Addinfo').val();
     $.ajax({
         url : "http://127.0.0.1:8080/createSpecialty",
         type : 'POST',
         dataType : 'json',
         crossOrigin: true,
         data: {"name":new_sp_name,
-               "picUrl":cur_info_pic_url,
+               "picUrls":cur_info_pic_url.toString(),
                "stock":new_sp_stock,
                "detail":new_sp_info,
                "category":categoryConvertR(new_sp_category),
                "price":new_sp_price},
         success: function (data) {
             console.log(JSON.stringify(data));
-
+            $('#AddSuccess').toast('show');
+            $('#collapseAddSp').collapse('toggle');
             }
     });
 
+}
+
+function deleteSp() {
+    let index = $('#DeleteSp').attr('index');
+    let sp_id = all_goods[index].spID;
+    $.ajax({
+        url : "http://127.0.0.1:8080/deleteSpecialty/"+sp_id,
+        type : 'GET',
+        dataType : 'json',
+        crossOrigin: true,
+        success: function (data) {
+            console.log(JSON.stringify(data));
+            if(data.result==="true"){
+                $('.card[data-goodindex=\''+index+'\']').remove();
+                $('#DeleteSp').modal('hide');
+            }
+        }
+    });
 }
 function returnShipDiv(number){
     if (order_list[number].state==='已发货')
@@ -147,6 +164,7 @@ function page_init(){
         let modal = $(this);
         modal.find('.spIDinDelete').text('商品ID:' + all_goods[number]['spID']);
         modal.find('.spNameinDelete').text('商品名称:'+all_goods[number]['name']);
+        modal.attr("index",number);
     });
 
     $('#ChangeBasicInfo').on('show.bs.modal',function(event){
@@ -210,7 +228,7 @@ function load_all_goods()
 {
     let PanelListNode = $("#PanelList");
     for(let i=0;i<all_goods.length;i++){
-        let panel = $(' <div class="card card-float my-5">\n' +
+        let panel = $(' <div class="card card-float my-5" data-goodindex="'+i+'">\n' +
             '                <div class="card-header">\n' +
             '                    <h5 class="mb-0">\n' +
                                      all_goods[i]["name"] +
