@@ -148,6 +148,27 @@
             }
         })
     });
+
+    //详情&评论区转换
+    window.onload=function(){
+        var tab_t=document.getElementById('tab');
+        var tab_t_li=tab_t.getElementsByTagName('li');
+        var tab_c=document.getElementById('ui-a');
+        var tab_c_li=tab_c.getElementsByTagName('li');
+        var len=tab_t_li.length;
+        var i=0;
+        for(i=0;i<len;i++){
+            tab_t_li[i].index=i;
+            tab_t_li[i].onclick=function(){
+                for(i=0;i<len;i++){
+                    tab_t_li[i].className='';
+                    tab_c_li[i].className='hide';
+                }
+                tab_t_li[this.index].className='act_active';
+                tab_c_li[this.index].className='';
+            }
+        }
+    }
 </script>
 
 
@@ -237,22 +258,76 @@
     <div class="detail">
         <div class="active_tab" id="outer">
             <ul class="act_title_left" id="tab">
-                <li class="act_active">
+                <li class="act_active" >
                     <a href="#">商品详情</a>
+                </li>
+                <li>
+                    <a href="#">用户评价</a>
                 </li>
             </ul>
         </div>
         <div id="content" class="active_list">
             <div id="ui-a" class="ui-a">
                 <ul style="display:block;">
-                    <li>商品名称：<span class = "spdetail_name" ></span></li>
-                    <li>商品编号：<span class = "spdetail_ID"></span></li>
-                    <li>商家：<span class = "spdetail_sName"> </span></li>
-                    <li>商品介绍：<span class = "spdetail_text"></span>  </li>
-<!--                    <li><img src="img/ko-1.jpg"/></li>-->
-<!--                    <li><img src="img/ko-2.jpg"/></li>-->
-<!--                    <li><img src="img/ko.jpg"/></li>-->
-<!--                    <li><img src="img/ko-1.jpg"/></li>-->
+                    <li>商品名称：<span class = "spdetail_name" ></span> <br>
+                        商品编号：<span class = "spdetail_ID"></span> <br>
+                        商家：<span class = "spdetail_sName"> </span> <br>
+                        库存：<span class = "spdetail_stock"></span>  <br>
+                        <!-- <img src="img/ko-1.jpg"/> 
+                        <img src="img/ko-2.jpg"/>                  
+                        <img src="img/ko.jpg"/> 
+                        <img src="img/ko-1.jpg"/>  -->
+                    </li>
+                    <!-- 评论区 -->
+                    <li class='hide'>
+                        <div class="comments">
+                            <div class="comment-wrap">
+                                <div class="photo">
+                                    <div class="avatar" style="background-image: url('./img/LOGO.jpg')"></div>
+                                </div>
+                                <div class="comment-block">
+                                    <form action="">
+                                        <textarea name="" id="" cols="30" rows="3" placeholder="Say somthing..."></textarea>
+                                    </form>
+                                    <ul class="comment-actions">
+                                            <li class="complain">Submit</li>
+                                        </ul>
+                                </div>
+                            </div>
+                                    
+                            <div class="comment-wrap">
+                                <div class="photo">
+                                    <div class="avatar" style="background-image: url('./img/LOGO.jpg')"></div>
+                                </div>
+                                <div class="comment-block">
+                                    <p class="comment-text">之前人的评论</p>
+                                    <div class="bottom-comment">
+                                        <div class="comment-date">23.5 2020</div>
+                                        <ul class="comment-actions">
+                                            <li class="complain">Complain</li>
+                                            <li class="reply">Reply</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                                    
+                            <div class="comment-wrap">
+                                <div class="photo">
+                                    <div class="avatar" style="background-image: url('./img/LOGO.jpg')"></div>
+                                </div>
+                                <div class="comment-block">
+                                    <p class="comment-text">之前有一个人评论</p>
+                                    <div class="bottom-comment">
+                                        <div class="comment-date">22.2 2020</div>
+                                        <ul class="comment-actions">
+                                            <li class="complain">Complain</li>
+                                            <li class="reply">Reply</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <div id="detailPicBox"></div>
                 </ul>
             </div>

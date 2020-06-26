@@ -696,6 +696,19 @@
     </div>
 </div>
 
+<script>
+    let rank_isShow = false;
+    function showRank() {
+        document.getElementById("rank-category").classList.add("rank-active")
+    }
+</script>
+<div class="rank sticky" onmousemove="showRank()">
+    <h2>近期畅销</h2>
+</div>
+<div class="rank-category" id="rank-category">
+
+</div>
+
 <div class="placeholder" style="height: 200px; background-color: orangered;">
 
 </div>
