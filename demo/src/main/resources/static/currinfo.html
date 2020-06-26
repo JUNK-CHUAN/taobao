@@ -69,17 +69,28 @@
 
     function updateInfo(id) {
         let data = {
-            name: $("input[id='username']").val(),
-            phone: $("input[id='telephone']").val(),
-            address: $("input[id='address']").val()
+            "name": $("input[id='username']").val(),
+            "phone": $("input[id='telephone']").val(),
+            "address": $("input[id='address']").val()
         };
         let ajaxNode = {
             url: id,
             type: 'POST',
             dataType: 'json',
-            data: data
+            data: JSON.stringify(data),
+            success: function (data) {
+                if (data.result === "false") {
+                    alert("change failed");
+                }
+                else {
+                    alert("change info success");
+                }
+            },
+            error: function (data) {
+                alert("connection error");
+            }
         };
-        console.log(ajaxNode);
+        $.ajax(ajaxNode);
     }
 </script>
 
@@ -146,10 +157,6 @@
                         <div class="form-group">
                             <label>地址</label>
                             <input type="text" class="form-control" id="address" placeholder="请输入地址">
-                        </div>
-                        <div class="form-group" style="margin-top: 20px;">
-                            <canvas id="canvas" onclick="dj()" class = "check"></canvas>
-                            <input type="text" value="" placeholder="请输入验证码（区分大小写）" id ="text" class = "yanzhengma">
                         </div>
                     </form>
                 </div>
