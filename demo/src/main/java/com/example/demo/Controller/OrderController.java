@@ -186,7 +186,7 @@ public class OrderController {
         }
         List<Order> orderList = OM.selectOrderByoID(oID);
         if(orderList.size() != 0){
-            if(orderList.get(0).getState().equals("已下单")){
+            if((orderList.get(0).getState().equals("已下单")) || (orderList.get(0).getState().equals("已发货")) ){
                 OM.changeOrderState(oID, "已发货", expressNo);
                 map.put("result", "true");
                 return map;
