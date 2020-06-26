@@ -2,9 +2,15 @@
 
 
 
+[TOC]
+
+
+
 # Usage
 
 use idea import /demo
+
+
 
 
 
@@ -515,6 +521,56 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 成功：{“result": "true"}
 
 失败: {"result": "false"} 
+
+
+
+## 23、GET -> /specialtySaleRank
+
+按销量获取商品排行榜
+
+#### Return
+
+没登陆：{"result": "false"}
+
+操作成功：
+
+```json
+{
+    "result": "true", 
+    "data": [
+        {
+            "spID": 935, 
+            "sID": "3", 
+            "name": "乌江榨菜", 
+            "picUrl": "img/testsp/西南/乌江榨菜.jpg", 
+            "stock": 310, 
+            "detail": "小面是作为南方人的重庆市民唯一普遍接受的面...", 
+            "category": "西南", 
+            "price": 16, 
+            "sName": "重大饭堂旗舰店", 
+            "sPhone": "13460986283", 
+            "sAddress": "重庆市沙坪坝区沙正街174号", 
+            "detailPics": null, 
+            "salesVolume": 14
+        }, 
+        {
+            "spID": 936, 
+            "sID": "3", 
+            "name": "云南花椒", 
+            "picUrl": "img/testsp/西南/云南花椒.jpg", 
+            "stock": 553, 
+            "detail": "小面是作为南方人的重庆市民唯一...", 
+            "category": "西南", 
+            "price": 46, 
+            "sName": "重大饭堂旗舰店", 
+            "sPhone": "13460986283", 
+            "sAddress": "重庆市沙坪坝区沙正街174号", 
+            "detailPics": null, 
+            "salesVolume": 10
+        }
+    ]
+}
+```
 
 
 
