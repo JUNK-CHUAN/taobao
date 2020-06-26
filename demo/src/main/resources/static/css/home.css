@@ -30,10 +30,11 @@
 .nav-pills .nav-link {
     color: orangered;
 }
-.nav-link {
+.nav-choice {
     border-bottom: 2px solid orangered;
     border-radius: 0 !important;
 }
+
 .nav-pills .nav-link.active {
     background-color: orangered;
     border-bottom: 2px solid orangered;

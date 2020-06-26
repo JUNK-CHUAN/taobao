@@ -26,11 +26,11 @@
                 if (data.result === "false") {
                     window.location.href = "./login.html";
                 } else {
-                    let categroy = data.categroy;
+                    let category = data.category;
                     let username = data.name;
                     let phone = data.phone;
                     let address = data.address;
-                    $(".btn.enterBtn").attr('id', categroy);
+                    $(".btn.enterBtn").attr('id', category);
                     $("input[id='username']").attr('value', username);
                     $("input[id='telephone']").attr('value', phone);
                     $("input[id='address']").attr('value', address);
@@ -68,18 +68,35 @@
     }
 
     function updateInfo(id) {
+        let url;
+        if (id === "customer") {
+            url = "http://127.0.0.1:8080/updateCustomerInfo";
+        }
+        else if(id === "seller"){
+            url = "http://127.0.0.1:8080/updateSellerInfo";
+        }
         let data = {
-            name: $("input[id='username']").val(),
-            phone: $("input[id='telephone']").val(),
-            address: $("input[id='address']").val()
+            "name": $("input[id='username']").val(),
+            "phone": $("input[id='telephone']").val(),
+            "address": $("input[id='address']").val()
         };
         let ajaxNode = {
-            url: id,
+            url: url,
             type: 'POST',
-            dataType: 'json',
-            data: data
+            data: data,
+            success: function (data) {
+                if (data.result === "false") {
+                    alert("change failed");
+                }
+                else {
+                    alert("change info success");
+                }
+            },
+            error: function (data) {
+                alert("connection error");
+            }
         };
-        console.log(ajaxNode);
+        $.ajax(ajaxNode);
     }
 </script>
 
@@ -146,10 +163,6 @@
                         <div class="form-group">
                             <label>地址</label>
                             <input type="text" class="form-control" id="address" placeholder="请输入地址">
-                        </div>
-                        <div class="form-group" style="margin-top: 20px;">
-                            <canvas id="canvas" onclick="dj()" class = "check"></canvas>
-                            <input type="text" value="" placeholder="请输入验证码（区分大小写）" id ="text" class = "yanzhengma">
                         </div>
                     </form>
                 </div>
