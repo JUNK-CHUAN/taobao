@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface SpecialtyPicMapper {
     List<SpecialtyPic> selectDetailByspID(int spID);
+    void createNewSpecialtyPic(int spID,String picUrl);
 }

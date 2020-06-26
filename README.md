@@ -369,16 +369,21 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 
 
-## 15、POST -> /createSpecialty
-
-创建新的商品, 前端ajax写法参考demo/src/main/resources/static/pic.html
+## 15、POST -> /uploadPic、POST -> /createSpecialty  
+15.1 POST -> /uploadPic
+#### RequestParam
+ "file"：（MultipartFile）多个图片文件
+#### Return
+未登录或身份不是商家或者上传目录不存在或者上传过程中失败{"result": "false"}
+图片上传成功：{"result": "true"}
+15.2 POST -> /createSpecialty
 
 #### RequestParam
 
 “name”: (string) 商品名
 
   "file"：（MultipartFile）图片文件,
-
+"picUrls":  (List<String>) 存放图片路径的List
 “stock”: (int or string) 库存
 
 “detail”: (string) 简介

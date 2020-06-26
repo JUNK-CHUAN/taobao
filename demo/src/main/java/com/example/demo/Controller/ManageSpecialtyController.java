@@ -1,7 +1,9 @@
 package com.example.demo.Controller;
 
 import com.example.demo.DAO.SpecialtyMapper;
+import com.example.demo.DAO.SpecialtyPicMapper;
 import com.example.demo.Entity.Specialty;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +16,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Controller
 public class ManageSpecialtyController {
     @Autowired
     SpecialtyMapper SPM;
-
+    SpecialtyPicMapper SPPM;
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/uploadPic", method = RequestMethod.POST)
     @ResponseBody
@@ -95,12 +98,9 @@ public class ManageSpecialtyController {
         }
         String sID = (String) session.getAttribute("userid");
         SPM.createNewSpecialty(sID, name, picUrls.get(0), stock, detail, category, price);
-        for(int i=0;i<picUrls.size();i++){
-            
-            SPM.createNewSpecialty(sID, name, picUrl, stock, detail, category, price);
-        }
-        for(String picUrl:picUrls) {
-            SPM.createNewSpecialty(sID, name, picUrl, stock, detail, category, price);
+        int spID=SPM.selectSpecialtyByPicUrl(picUrls.get(0));
+        for(int i=1;i<picUrls.size();i++){
+            SPPM.createNewSpecialtyPic(spID,picUrls.get(i));
         }
         map.put("result", "true");
         return map;

@@ -2,6 +2,7 @@ package com.example.demo.DAO;
 
 import com.example.demo.Entity.Specialty;
 import org.apache.ibatis.annotations.Mapper;
+import org.omg.CORBA.INTERNAL;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public interface SpecialtyMapper {
     List<Specialty> selectSpecialtyByCategory(String category);
     List<Specialty> searchByKeyword(String keyword);
     List<Specialty> selectSpecialtyBySid(String sID);
+    Integer selectSpecialtyByPicUrl(String picUrl);
 
     void createNewSpecialty(String sID, String name, String picUrl, int stock, String detail,
                             String category, float price);

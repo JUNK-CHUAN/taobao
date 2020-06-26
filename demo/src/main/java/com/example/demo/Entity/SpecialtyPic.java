@@ -1,11 +1,5 @@
 package com.example.demo.Entity;
-<<<<<<< HEAD
 import java.util.Date;
-=======
-
-import java.util.Date;
-
->>>>>>> 562408db70734392729ba9756c14ed912b600d06
 public class SpecialtyPic {
     private String picUrl;
     private int spID;
