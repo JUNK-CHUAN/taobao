@@ -18,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.1/themes/fa/theme.js"></script>
     <script src="js/salerBackend.js"></script>
+
 </head>
 <body>
 <header>
@@ -109,11 +110,18 @@
                             <div class="form-group my-3 ml-5" style=" margin-right: 9%;">
                                 <label for="f_upload">上传文件详情图片</label>
                                 <div class="file-loading">
-                                    <input id="f_upload" name="input24[]" type="file" class="file" multiple>
+                                    <input id="f_upload" name="file_1" type="file" class="file" multiple>
                                 </div>
                             </div>
 
-                        <button type="button" class="btn btn-success float-right mr-5 ml-2">添加</button>
+                            <div class="form-group mt-3 ml-5" style=" margin-right: 9%;">
+                                <label for="exampleFormControlTextarea2">详情文本信息</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea2" rows="5"></textarea>
+                            </div>
+
+
+
+                        <button type="button" class="btn btn-success float-right mr-5 ml-2" onclick="addSp(this)">添加</button>
                         <button type="button" class="btn btn-secondary float-right">取消</button>
                     </form>
                 </div>
@@ -395,29 +403,23 @@
         </div>
     </div>
 </div>
-  <script>
-      $("#f_upload")
-          .fileinput({
-              uploadUrl: '/file-upload-batch/2',
-              dropZoneTitle : "请上传小于5M的图片！",
-              language : "zh",
-              autoReplace : false,
-              showCaption : false,
-              showUpload : true,
-              showCancel: true,
-              overwriteInitial : false,
-              uploadAsync : true,
-              showUploadedThumbs : true,
-              maxFileCount : 5,
-              minFileCount : 1,
-              initialPreviewShowDelete : false,
-              showRemove : true,
-              showClose : true,
-              enableResumableUpload: true,
-              maxFilePreviewSize: 10240,
-              maxFileSize: 10240
-          });
-
-  </script>
+<script>
+    $("#f_upload")
+        .fileinput({
+            uploadUrl: '/createSpecialty',
+            dropZoneTitle : "请上传小于5M的图片！",
+            autoReplace : false,
+            showCaption : false,
+            showUpload : true,
+            showCancel: true,
+            overwriteInitial : false,
+            uploadAsync : false,
+            showUploadedThumbs : true,
+            initialPreviewShowDelete : false,
+            showRemove : true,
+            showClose : true,
+         //    enableResumableUpload: true
+        });
+</script>
 </body>
 </html>

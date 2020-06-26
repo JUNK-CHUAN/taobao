@@ -1,38 +1,186 @@
 
 let all_goods = [
-    {"spID":1,"sID":"jerry","name":"广东酸辣粉","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼好吃，狠辣","category":"华南","price":20.8,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
-    {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
-    {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
-    {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
-    {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
-    {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
-    {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]}
+    // {"spID":1,"sID":"jerry","name":"广东酸辣粉","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼好吃，狠辣","category":"华南","price":20.8,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
+    // {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
+    // {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
+    // {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
+    // {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
+    // {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
+    // {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]}
 ];
 
 let order_list = [
-    {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
-    {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
-    {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
-    {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
-    {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
-    {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
-    {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"}
+    // {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"未发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
+    // {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"未发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
+    // {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"未发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
+    // {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
+    // {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
+    // {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"},
+    // {"oID":1,"count":6,"submitTime":"2020-06-19T01:48:09.000+00:00","recvAddress":"重庆大学a区","state":"已发货","spID":1,"spName":"广东酸辣粉","picUrl":"img/123456.jpg","detail":"这个酸辣粉贼好吃，狠辣","category":"华南","sID":"jerry","sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区","cID":"Jerry","cName":"飞飞","cPhone":"18088884444","sum":124.8,"expressNo":"123456888"}
 
 ];
-$(document).ready(function () {
-   load_all_goods();
-   load_all_order();
+function categoryConvert(Chinese){
+    if (Chinese==='西南')
+        return 'xinan';
+    else if(Chinese==='华南')
+        return 'huanan';
+    else if (Chinese==='华东')
+        return 'huadong';
+    else if(Chinese==='东北')
+        return 'dongbei';
+    else if(Chinese==='中原')
+        return 'zhongyuan';
+}
+
+function categoryConvertR(English){
+    if (English==='xinan')
+        return '西南';
+    else if(English==='huanan')
+        return '华南';
+    else if (English==='huadong')
+        return '华东';
+    else if(English==='dongbei')
+        return '东北';
+    else if(English==='zhongyuan')
+        return '中原';
+}
+
+function addSp() {
+
+}
+function returnShipDiv(number){
+    if (order_list[number].state==='已发货')
+        return '  <button class="btn btn-primary btn-info" type="button" data-toggle="collapse" data-target="#Ship'+number+'" aria-expanded="false" aria-controls="collapseExample" >\n' +
+            '状态:已发货\n' +
+            '</button>'+
+            '  <div class="collapse my-3" id="Ship'+number+'">\n' +
+            '                                    <div class="card card-body">\n' +
+            '                                            <div class="form-group shipDiv" >\n' +
+            '                                                <label for="exampleFormControlInput1">发货订单编号</label>\n' +
+            '                                                <input type="email" class="form-control Expressno" id="exampleFormControlInput1" placeholder="FXS903123FAA" disabled value="'+order_list[number].expressNo+'">\n' +
+            '                                            </div>\n' +
+            '                                    </div>\n' +
+            '                                </div>\n';
+    else
+        return'                                <button class="btn btn-primary btn-info" type="button" data-toggle="collapse" data-target="#Ship'+number+'"  aria-expanded="false" aria-controls="collapseExample">\n' +
+            '                                    发货\n' +
+            '                                </button>\n' +
+            '                                <div class="collapse my-3" id="Ship'+number+'">\n' +
+            '                                    <div class="card card-body">\n' +
+            '                                        <form>\n' +
+            '                                            <div class="form-group shipDiv" >\n' +
+            '                                                <label for="exampleFormControlInput1">发货订单编号</label>\n' +
+            '                                                <input type="email" class="form-control Expressno" id="exampleFormControlInput1" placeholder="FXS903123FAA">\n' +
+            '                                            </div>\n' +
+            '                                            <button type="button" class="btn btn-primary" onclick="ShipOperate(this,'+number+')">Submit</button>\n' +
+            '                                        </form>\n' +
+            '                                    </div>\n' +
+            '                                </div>\n' ;
+}
+
+function returnExpress(express_no) {
+    return    '                            <div class="card card-body">\n' +
+        '                                            <div class="form-group shipDiv" >\n' +
+        '                                                <label for="exampleFormControlInput1">发货订单编号</label>\n' +
+        '                                                <input type="email" class="form-control Expressno"  placeholder="FXS903123FAA" disabled value="'+express_no+'">\n' +
+        '                                            </div>\n' +
+        '                                    </div>\n' ;
+
+}
+function ShipOperate(buttonNode,number){
+    let  express_no = $(buttonNode).siblings().find(".Expressno").val();
+    $.ajax({
+        url : "http://127.0.0.1:8080/setOrderStateSent",
+        type : 'POST',
+        dataType : 'json',
+        crossOrigin: true,
+        data: {"oID":order_list[number].oID,"expressNo":express_no},
+        success: function (data) {
+            console.log(JSON.stringify(data));
+            if(data.result==="true"){
+                console.log("修改状态成功");
+                order_list[number].expressNo = express_no;
+                $('#Ship'+number).empty();
+                $('#Ship'+number).append(returnExpress(express_no));
+                $('#Ship'+number).prev().text("状态:已发货");
+            }else{
+                alert("修改状态失败");
+            }
+        }
+    });
+}
+
+function page_init(){
+    load_all_goods();
+    load_all_order();
 
     $('#DeleteSp').on('show.bs.modal', function (event) {
-        console.log("sdasd");
+        //  console.log("sdasd");
         let button = $(event.relatedTarget);// Button that triggered the modal
         let number = button.data('whatever');// Extract info from data-* attributes
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         let modal = $(this);
         modal.find('.spIDinDelete').text('商品ID:' + all_goods[number]['spID']);
-        modal.find('.spNameinDelete').val('商品名称:'+all_goods[number]['spName']);
+        modal.find('.spNameinDelete').text('商品名称:'+all_goods[number]['name']);
     });
+
+    $('#ChangeBasicInfo').on('show.bs.modal',function(event){
+        let button = $(event.relatedTarget);
+        let number = button.data('whatever');
+        let modal = $(this);
+        modal.find('#GoodName').val(all_goods[number]['name']);
+        modal.find('#RemainStocks').val(all_goods[number]['stock']);
+        // modal.find('#category').find('option[text=\''+categoryConvert(all_goods[number]['category'])+'\']').attr("selected",true);
+    });
+
+
+
+}
+$(document).ready(function () {
+
+    $.ajax({
+        url : "http://127.0.0.1:8080/getCurrentUserInfo",
+        type : 'GET',
+        dataType : 'json',
+        crossOrigin: true,
+        success: function (data) {
+            console.log(JSON.stringify(data));
+            if (data.result === "false") {
+                window.location.href = "./login.html";
+            }
+        }
+    });
+
+    $.ajax({
+        url : "http://127.0.0.1:8080/getSellerSpecialtyList",
+        type : 'GET',
+        dataType : 'json',
+        crossOrigin: true,
+        success: function (data) {
+            console.log(JSON.stringify(data));
+            if (data.result === "true") {
+                all_goods = data.data;
+                $.ajax({
+                    url : "http://127.0.0.1:8080/currentSellerOrderList",
+                    type : 'GET',
+                    dataType : 'json',
+                    crossOrigin: true,
+                    success: function (data) {
+                        console.log(JSON.stringify(data));
+                        if (data.result === "true") {
+                            order_list = data.data;
+                            page_init();
+                        }
+                    }
+                });
+            }
+
+        }
+    });
+
+
+
 });
 function load_all_goods()
 {
@@ -79,7 +227,7 @@ function load_all_goods()
             '                                        </dl>\n' +
             '                                </div>\n' +
             '                                <div class="ml-auto" role="group" aria-label="Basic example">\n' +
-            '                                    <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeBasicInfo">修改基础信息</button>\n' +
+            '                                    <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeBasicInfo" data-whatever="'+i+'">修改基础信息</button>\n' +
             '                                    <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeDetails">修改特产详情</button>\n' +
             '                                    <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeThumb">修改特产预览图</button>\n' +
             '                                    <button type="button" class="btn btn-warning">查看评价</button>\n' +
@@ -142,21 +290,7 @@ function load_all_order() {
             '                                        <dd class="col-4">'+order_list[i]['cPhone']+'</dd>\n' +
             '                                    </dl>\n' +
             '                                </div>\n' +
-            '\n' +
-            '                                <button class="btn btn-primary btn-info" type="button" data-toggle="collapse" data-target="#Ship'+i+'"  aria-expanded="false" aria-controls="collapseExample">\n' +
-            '                                    发货\n' +
-            '                                </button>\n' +
-            '                                <div class="collapse my-3" id="Ship'+i+'">\n' +
-            '                                    <div class="card card-body">\n' +
-            '                                        <form>\n' +
-            '                                            <div class="form-group">\n' +
-            '                                                <label for="exampleFormControlInput1">发货订单编号</label>\n' +
-            '                                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="FXS903123FAA">\n' +
-            '                                            </div>\n' +
-            '                                            <button type="submit" class="btn btn-primary">Submit</button>\n' +
-            '                                        </form>\n' +
-            '                                    </div>\n' +
-            '                                </div>\n' +
+                                            returnShipDiv(i)+
             '                            </div>\n' +
             '\n' +
             '\n' +
