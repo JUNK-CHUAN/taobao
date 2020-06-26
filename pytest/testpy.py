@@ -1,7 +1,7 @@
 import requests
 import json
 url = 'http://127.0.0.1:8080/login'
-d = {'userid': 'jerry', 'password': '123', 'category': 'seller'}
+d = {'userid': '3', 'password': '123', 'category': 'seller'}
 r = requests.post(url, data=d)
 print(r.text)
 cookies = r.cookies
@@ -32,10 +32,10 @@ cookies = r.cookies
 # r = requests.post(url, data=json.dumps(d), cookies=cookies)
 # print(r.text)
 
-# url = 'http://127.0.0.1:8080/setOrderStateSent'
-# d = {"oID": "1", "expressNo": "123456888"};
-# r = requests.post(url, data=d, cookies=cookies)
-# print(r.text)
+url = 'http://127.0.0.1:8080/setOrderStateSent'
+d = {"oID": "29", "expressNo": "123456888"};
+r = requests.post(url, data=d, cookies=cookies)
+print(r.text)
 
 # url = 'http://127.0.0.1:8080/createSpecialty'
 # d = {"name": "火锅底料", "picUrl": "123456888.jpg", 
@@ -63,7 +63,7 @@ cookies = r.cookies
 # r = requests.get(url, cookies=cookies)
 # print(r.te"xt)
 
-url = 'http://127.0.0.1:8080/updateSellerInfo'
-a = {"name":"渣渣飞", "phone":"123", "address": "hahaaddre"}
-r = requests.post(url, data=a, cookies=cookies)
-print(r.text)
+# url = 'http://127.0.0.1:8080/updateSellerInfo'
+# a = {"name":"渣渣飞", "phone":"123", "address": "hahaaddre"}
+# r = requests.post(url, data=a, cookies=cookies)
+# print(r.text)

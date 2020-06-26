@@ -57,10 +57,25 @@
         update ordertable set state=#{state}, expressNo=#{expressNo} where oID=#{oID}
     </select>
 
+    <select id="changeOrderStateOnly">
+        update ordertable set state=#{state} where oID=#{oID}
+    </select>
+
     <select id="getSalesVolumeBySpID" resultType="INTEGER">
         select IFNULL(sum(count), 0)
         from ordertable
         where spID=#{spID}
+    </select>
+
+    <select id="selectOrderByoID" resultMap="BaseResultMap">
+        select oID, ordertable.count as count, submitTime, ordertable.address as recvAddress,
+        state, ordertable.spID as spID, specialty.name as spName, picUrl, detail, category,
+        seller.sID as sID, seller.name as sName, seller.phone as sPhone, seller.address as sAddress,
+        ordertable.cID as cID, customer.name as cName, customer.phone as cPhone,
+        ordertable.sum as sumPrice, expressNo
+        from ordertable, specialty, seller, customer
+        where ordertable.spID=specialty.spID and ordertable.cID=customer.cID
+        and seller.sID=specialty.sID and ordertable.oID=#{oID}
     </select>
 
 </mapper>

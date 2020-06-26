@@ -1,10 +1,45 @@
 # 卖特产的
 
+Table of Contents
+=================
+
+   * [接口文档](#接口文档)
+      * [1、POST -&gt; /login](#1post---login)
+      * [2、POST -&gt; /Register](#2post---register)
+      * [3、GET -&gt; /logout](#3get---logout)
+      * [4、GET -&gt; /getCurrentUserInfo](#4get---getcurrentuserinfo)
+      * [5、GET -&gt; /customerHome](#5get---customerhome)
+      * [6、GET -&gt; /getSpecilatyByCategory/{category}](#6get---getspecilatybycategorycategory)
+      * [7、GET -&gt; /search/{keyword}](#7get---searchkeyword)
+      * [8、GET -&gt; /getSpecialtyInfo/{specialty_id}](#8get---getspecialtyinfospecialty_id)
+      * [9、POST -&gt; /insertCart](#9post---insertcart)
+      * [10、POST -&gt; /buyFromCart](#10post---buyfromcart)
+      * [11、GET -&gt; /currentCustomerOrderList](#11get---currentcustomerorderlist)
+      * [12、GET -&gt; /currentSellerOrderList](#12get---currentsellerorderlist)
+      * [13、POST -&gt; /setOrderStateSent](#13post---setorderstatesent)
+      * [14、GET -&gt; /getSellerSpecialtyList](#14get---getsellerspecialtylist)
+      * [15、POST -&gt; /createSpecialty](#15post---createspecialty)
+      * [16、POST -&gt; /updateSpecialty](#16post---updatespecialty)
+      * [17、POST -&gt; /deleteCart](#17post---deletecart)
+      * [18、GET -&gt; /selectCustomerCart](#18get---selectcustomercart)
+      * [19、POST -&gt; /buyFromCartWithNewCount](#19post---buyfromcartwithnewcount)
+      * [20、GET -&gt; /deleteSpecialty/{spID}](#20get---deletespecialtyspid)
+      * [21、POST -&gt; /updateCustomerInfo](#21post---updatecustomerinfo)
+      * [22、POST -&gt; /updateSellerInfo](#22post---updatesellerinfo)
+      * [23、GET -&gt; /specialtySaleRank](#23get---specialtysalerank)
+      * [24、GET -&gt; /setOrderStateRecv/{oID}](#24get---setorderstaterecvoid)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
+
+
 
 
 # Usage
 
 use idea import /demo
+
+
 
 
 
@@ -335,16 +370,21 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 
 
-## 15、POST -> /createSpecialty
-
-创建新的商品, 前端ajax写法参考demo/src/main/resources/static/pic.html
+## 15、POST -> /uploadPic、POST -> /createSpecialty  
+15.1 POST -> /uploadPic
+#### RequestParam
+ "file"：（MultipartFile）多个图片文件
+#### Return
+未登录或身份不是商家或者上传目录不存在或者上传过程中失败{"result": "false"}
+图片上传成功：{"result": "true"}
+15.2 POST -> /createSpecialty
 
 #### RequestParam
 
 “name”: (string) 商品名
 
   "file"：（MultipartFile）图片文件,
-
+"picUrls":  (List<String>) 存放图片路径的List
 “stock”: (int or string) 库存
 
 “detail”: (string) 简介
@@ -517,6 +557,70 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 失败: {"result": "false"} 
 
 
+
+## 23、GET -> /specialtySaleRank
+
+按销量获取商品排行榜
+
+#### Return
+
+没登陆：{"result": "false"}
+
+操作成功：
+
+```json
+{
+    "result": "true", 
+    "data": [
+        {
+            "spID": 935, 
+            "sID": "3", 
+            "name": "乌江榨菜", 
+            "picUrl": "img/testsp/西南/乌江榨菜.jpg", 
+            "stock": 310, 
+            "detail": "小面是作为南方人的重庆市民唯一普遍接受的面...", 
+            "category": "西南", 
+            "price": 16, 
+            "sName": "重大饭堂旗舰店", 
+            "sPhone": "13460986283", 
+            "sAddress": "重庆市沙坪坝区沙正街174号", 
+            "detailPics": null, 
+            "salesVolume": 14
+        }, 
+        {
+            "spID": 936, 
+            "sID": "3", 
+            "name": "云南花椒", 
+            "picUrl": "img/testsp/西南/云南花椒.jpg", 
+            "stock": 553, 
+            "detail": "小面是作为南方人的重庆市民唯一...", 
+            "category": "西南", 
+            "price": 46, 
+            "sName": "重大饭堂旗舰店", 
+            "sPhone": "13460986283", 
+            "sAddress": "重庆市沙坪坝区沙正街174号", 
+            "detailPics": null, 
+            "salesVolume": 10
+        }
+    ]
+}
+```
+
+
+
+## 24、GET -> /setOrderStateRecv/{oID}
+
+按销量获取商品排行榜
+
+#### Param
+
+oID: (string or int) 订单id
+
+#### Return
+
+没登陆：{"result": "false"}
+
+成功: {"result": "true"}
 
 
 

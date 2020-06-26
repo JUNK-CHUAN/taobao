@@ -184,11 +184,44 @@ public class OrderController {
             System.out.println("不是商家");
             return map;
         }
-        OM.changeOrderState(oID, "已发货", expressNo);
-        map.put("result", "true");
-
+        List<Order> orderList = OM.selectOrderByoID(oID);
+        if(orderList.size() != 0){
+            if((orderList.get(0).getState().equals("已下单")) || (orderList.get(0).getState().equals("已发货")) ){
+                OM.changeOrderState(oID, "已发货", expressNo);
+                map.put("result", "true");
+                return map;
+            }
+        }
+        map.put("result", "false");
         return map;
+    }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/setOrderStateRecv/{oID}", method = RequestMethod.GET)
+    @ResponseBody
+    public Map setOrderStateRecv(@PathVariable int oID,
+                                 HttpSession session) throws Exception{
+        Map<String, Object> map = new HashMap<>();
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("还没登录");
+            return map;
+        }
+        if(!session.getAttribute("category").equals("customer")) {
+            map.put("result", "false");
+            System.out.println("不是顾客");
+            return map;
+        }
+        List<Order> orderList = OM.selectOrderByoID(oID);
+        if(orderList.size() != 0){
+            if(orderList.get(0).getState().equals("已发货")){
+                OM.changeOrderStateOnly(oID, "已收货，待评价");
+                map.put("result", "true");
+                return map;
+            }
+        }
+        map.put("result", "false");
+        return map;
     }
 
 }
