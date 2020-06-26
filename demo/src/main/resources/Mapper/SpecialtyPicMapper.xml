@@ -15,4 +15,7 @@
     <select id="createNewSpecialtyPic">
         insert into specialtyPic(spID,picUrl) values(#{spID},#{picUrl})
     </select>
+    <select id="deleteSpecialtyPicByspID">
+        delete from specialtyPic where spID=#{spID}
+    </select>
 </mapper>

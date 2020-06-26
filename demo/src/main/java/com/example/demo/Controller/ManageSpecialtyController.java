@@ -107,13 +107,11 @@ public class ManageSpecialtyController {
 
     }
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/updateSpecialty", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateSpecialtyInfo", method = RequestMethod.POST)
     @ResponseBody
     public Map updateSpecialty(@RequestParam(value = "spID") int spID,
                                @RequestParam(value = "name") String name,
-                               @RequestParam(value ="file") MultipartFile file,
                                @RequestParam(value = "stock") int stock,
-                               @RequestParam(value = "detail") String detail,
                                @RequestParam(value = "category") String category,
                                @RequestParam(value = "price") float price,
                                HttpSession session)  throws Exception{
@@ -128,47 +126,56 @@ public class ManageSpecialtyController {
             System.out.println("不是商家");
             return map;
         }
-
-        //图片文件存储
-        File fileDir = new File("src/main/resources/static/specialtyPic");
-        String path = fileDir.getAbsolutePath();
-        UUID uuid = UUID.randomUUID();
-        String uid=uuid.toString();
-        System.out.println(uid);
-        if(!fileDir.exists()){
-            fileDir.mkdir();
-            System.out.println(path);
-            System.out.println("指定目录不存在");
-            map.put("result", "false");   // 目录不存在
+        SPM.updateSpecialtyInfo(spID,name,stock,category,price);
+        map.put("result", "true");
+        return map;
+    }
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/updateSpecialtyDetail", method = RequestMethod.POST)
+    @ResponseBody
+    public Map updateSpecialty(@RequestParam(value = "spID") int spID,
+                               @RequestParam(value ="picUrls") List<String> picUrls,
+                               @RequestParam(value = "detail") String detail,
+                               HttpSession session)  throws Exception{
+        Map<String, Object> map = new HashMap<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
             return map;
         }
-        try {
-            file.transferTo(new File(path, uid+".jpg"));
-            String picUrl="specialtyPic/"+uid+".jpg";
-            map.put("result", "true");
-            map.put("url", picUrl);
-            System.out.println("上传成功");
-
-            String sID = (String) session.getAttribute("userid");
-            SPM.updateSpecialty(spID, name, picUrl, stock, detail, category, price);
-            map.put("result", "true");
-        } catch (Exception e) {
-            map.put("result","false");
-            System.out.println("上传失败");
-            e.printStackTrace();
+        if(!session.getAttribute("category").equals("seller")) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("不是商家");
+            return map;
         }
-
+        SPM.updateSpecialtyDetail(spID,detail);
+        SPPM.deleteSpecialtyPicByspID(spID);
+        for(int i=0;i<picUrls.size();i++){
+            SPPM.createNewSpecialtyPic(spID,picUrls.get(i));
+        }
+        map.put("result", "true");
         return map;
-
     }
-
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/ge",method = RequestMethod.GET)
-    public  String ge(){
-        System.out.println("来了");
-        return "pic.html";
+    @RequestMapping(value = "/updateSpecialtyPic", method = RequestMethod.POST)
+    @ResponseBody
+    public Map updateSpecialty(@RequestParam(value = "spID") int spID,
+                               @RequestParam(value ="picUrl") String picUrl,
+                               HttpSession session)  throws Exception{
+        Map<String, Object> map = new HashMap<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            return map;
+        }
+        if(!session.getAttribute("category").equals("seller")) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("不是商家");
+            return map;
+        }
+        SPM.updateSpecialtyPic(spID,picUrl);
+        return map;
     }
-
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/deleteSpecialty/{spID}", method = RequestMethod.GET)
     @ResponseBody

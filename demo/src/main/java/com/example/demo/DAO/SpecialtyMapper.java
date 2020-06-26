@@ -18,9 +18,9 @@ public interface SpecialtyMapper {
     void createNewSpecialty(String sID, String name, String picUrl, int stock, String detail,
                             String category, float price);
 
-    void updateSpecialty(int spID, String name, String picUrl, int stock, String detail,
-                         String category, float price);
-
+    void updateSpecialtyInfo(int spID, String name, int stock, String category, float price);
+    void updateSpecialtyDetail(int spID,String detail);
+    void updateSpecialtyPic(int spID,  String picUrl);
     void reduceStock(int spID, int count);
 
     void deleteSpecialty(int spID);

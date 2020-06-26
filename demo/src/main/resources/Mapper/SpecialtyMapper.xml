@@ -57,11 +57,16 @@
         values(#{sID}, #{name}, #{picUrl}, #{stock}, #{detail}, #{category}, #{price})
     </select>
 
-    <select id="updateSpecialty">
-        update specialty set name=#{name}, picUrl=#{picUrl}, stock=#{stock}, detail=#{detail}, category=#{category}, price=#{price}
+    <select id="updateSpecialtyInfo">
+        update specialty set name=#{name},stock=#{stock},category=#{category}, price=#{price}
         where spID=#{spID}
     </select>
-
+    <select id="updateSpecialtyDetail">
+        update specialty set detail=#{detail} where spID=#{spID}
+    </select>
+    <select id="updateSpecialtyPic">
+        update specialty set picUrl=#{picUrl} where spID=#{spID}
+    </select>
     <select id="reduceStock">
         update specialty set stock = stock - #{count}
         where spID=#{spID}
