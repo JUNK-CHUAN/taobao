@@ -10,10 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class ManageSpecialtyController {
@@ -21,67 +18,86 @@ public class ManageSpecialtyController {
     SpecialtyMapper SPM;
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/createSpecialty")
+    @RequestMapping(value = "/uploadPic", method = RequestMethod.POST)
     @ResponseBody
-    public Map createSpecialty(
-            @RequestParam(value ="file_1") MultipartFile[] file,
-//                               @RequestParam(value = "stock") int stock,
-//                               @RequestParam(value = "detail") String detail,
-//                               @RequestParam(value = "category") String category,
-//                               @RequestParam(value = "price") float price,
-//                               @RequestParam(value = "name") String name,
-            HttpSession session)  throws Exception{
-
+    public Map uploadPic(@RequestParam(value ="file_1") MultipartFile[] files,
+                         HttpSession session)  throws Exception{
+        System.out.println("图片上传来了");
         Map<String, Object> map = new HashMap<>();
-        map.put("1",1);
-        map.put("result",123);
+        List<String> picUrls = new ArrayList<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("还没登录");
+            return map;
+        }
+        if(!session.getAttribute("category").equals("seller")) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("不是商家");
+            return map;
+        }
+        //图片文件存储
+
+        //存放目录
+        File fileDir = new File("src/main/resources/static/specialtyPic");
+        String path = fileDir.getAbsolutePath();
+        if(!fileDir.exists()){
+            fileDir.mkdir();
+            System.out.println(path);
+            System.out.println("指定目录不存在");
+            map.put("result", "false");   // 目录不存在
+            return map;
+        }
+        //上传存储
+        try {
+            for(MultipartFile file:files){
+                UUID uuid = UUID.randomUUID();
+                String uid=uuid.toString();
+                System.out.println(uid);
+                file.transferTo(new File(path, uid+".jpg"));
+                picUrls.add("specialtyPic/"+uid+".jpg");
+            }
+            map.put("picUrls",picUrls);
+            map.put("result", "true");
+            System.out.println("图片文件上传成功");
+        } catch (Exception e) {
+            map.put("result","false");
+            System.out.println("图片上传失败");
+            e.printStackTrace();
+        }
         return map;
 
-//        System.out.println("上传来了");
-//        Map<String, Object> map = new HashMap<>();
-//        // 处理未登录情况
-//        if(session.getAttribute("isLogIn") == null) {
-//            map.put("result", "false");   // 还没登陆
-//            System.out.println("还没登录");
-//            return map;
-//        }
-//        if(!session.getAttribute("category").equals("seller")) {
-//            map.put("result", "false");   // 还没登陆
-//            System.out.println("不是商家");
-//            return map;
-//        }
+    }
 
-        //图片文件存储
-//        File fileDir = new File("src/main/resources/static/specialtyPic");
-//        String path = fileDir.getAbsolutePath();
-//        UUID uuid = UUID.randomUUID();
-//        String uid=uuid.toString();
-//        System.out.println(uid);
-//        if(!fileDir.exists()){
-//            fileDir.mkdir();
-//            System.out.println(path);
-//            System.out.println("指定目录不存在");
-//            map.put("result", "false");   // 目录不存在
-//            return map;
-//        }
-//        try {
-//            file.transferTo(new File(path, uid+".jpg"));
-//            String picUrl="specialtyPic/"+uid+".jpg";
-//            map.put("result", "true");
-//            map.put("url", picUrl);
-//            System.out.println("上传成功");
-//
-//            String sID = (String) session.getAttribute("userid");
-//         //   SPM.createNewSpecialty(sID, name, picUrl, stock, detail, category, price);
-//            map.put("result", "true");
-//        } catch (Exception e) {
-//            map.put("result","false");
-//            System.out.println("上传失败");
-//            e.printStackTrace();
-//        }
-//
-//        return map;
-      //return map;
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/createSpecialty", method = RequestMethod.POST)
+    @ResponseBody
+    public Map createSpecialty(@RequestParam(value = "name") String name,
+                               @RequestParam(value ="picUrls") List<String> picUrls,
+                               @RequestParam(value = "stock") int stock,
+                               @RequestParam(value = "detail") String detail,
+                               @RequestParam(value = "category") String category,
+                               @RequestParam(value = "price") float price,
+                               HttpSession session)  throws Exception{
+        Map<String, String> map = new HashMap<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("还没登录");
+            return map;
+        }
+        if(!session.getAttribute("category").equals("seller")) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("不是商家");
+            return map;
+        }
+        String sID = (String) session.getAttribute("userid");
+        for(String picUrl:picUrls) {
+            SPM.createNewSpecialty(sID, name, picUrl, stock, detail, category, price);
+        }
+        map.put("result", "true");
+        return map;
+
     }
 
     @CrossOrigin(origins = "*")

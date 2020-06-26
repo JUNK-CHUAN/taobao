@@ -1,9 +1,9 @@
 package com.example.demo.DAO;
 
-import com.example.demo.Entity.SpecialtyPic;
-import org.apache.ibatis.annotations.Mapper;
+        import com.example.demo.Entity.SpecialtyPic;
+        import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
+        import java.util.List;
 
 @Mapper
 public interface SpecialtyPicMapper {
