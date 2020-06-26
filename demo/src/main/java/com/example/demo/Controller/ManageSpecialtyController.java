@@ -20,17 +20,13 @@ public class ManageSpecialtyController {
     SpecialtyMapper SPM;
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/createSpecialty", method = RequestMethod.POST)
+    @RequestMapping(value = "/uploadPic", method = RequestMethod.POST)
     @ResponseBody
-    public Map createSpecialty(@RequestParam(value = "name") String name,
-                               @RequestParam(value ="file") MultipartFile file,
-                               @RequestParam(value = "stock") int stock,
-                               @RequestParam(value = "detail") String detail,
-                               @RequestParam(value = "category") String category,
-                               @RequestParam(value = "price") float price,
-                            HttpSession session)  throws Exception{
-        System.out.println("上传来了");
+    public Map uploadPic(@RequestParam(value ="file_1") MultipartFile[] files,
+                               HttpSession session)  throws Exception{
+        System.out.println("图片上传来了");
         Map<String, Object> map = new HashMap<>();
+        List<String> picUrls = null;
         // 处理未登录情况
         if(session.getAttribute("isLogIn") == null) {
             map.put("result", "false");   // 还没登陆
@@ -42,13 +38,11 @@ public class ManageSpecialtyController {
             System.out.println("不是商家");
             return map;
         }
+    //图片文件存储
 
-        //图片文件存储
+        //存放目录
         File fileDir = new File("src/main/resources/static/specialtyPic");
         String path = fileDir.getAbsolutePath();
-        UUID uuid = UUID.randomUUID();
-        String uid=uuid.toString();
-        System.out.println(uid);
         if(!fileDir.exists()){
             fileDir.mkdir();
             System.out.println(path);
@@ -56,26 +50,62 @@ public class ManageSpecialtyController {
             map.put("result", "false");   // 目录不存在
             return map;
         }
+        //上传存储
         try {
-            file.transferTo(new File(path, uid+".jpg"));
-            String picUrl="specialtyPic/"+uid+".jpg";
+            for(MultipartFile file:files){
+                UUID uuid = UUID.randomUUID();
+                String uid=uuid.toString();
+                System.out.println(uid);
+                file.transferTo(new File(path, uid+".jpg"));
+                picUrls.add("specialtyPic/"+uid+".jpg");
+            }
+            map.put("picUrls",picUrls);
             map.put("result", "true");
-            map.put("url", picUrl);
-            System.out.println("上传成功");
-
-            String sID = (String) session.getAttribute("userid");
-            SPM.createNewSpecialty(sID, name, picUrl, stock, detail, category, price);
-            map.put("result", "true");
+            System.out.println("图片文件上传成功");
         } catch (Exception e) {
             map.put("result","false");
-            System.out.println("上传失败");
+            System.out.println("图片上传失败");
             e.printStackTrace();
         }
-
         return map;
 
     }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/createSpecialty", method = RequestMethod.POST)
+    @ResponseBody
+    public Map createSpecialty(@RequestParam(value = "name") String name,
+                               @RequestParam(value ="picUrls") List<String> picUrls,
+                               @RequestParam(value = "stock") int stock,
+                               @RequestParam(value = "detail") String detail,
+                               @RequestParam(value = "category") String category,
+                               @RequestParam(value = "price") float price,
+                               HttpSession session)  throws Exception{
+        Map<String, String> map = new HashMap<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("还没登录");
+            return map;
+        }
+        if(!session.getAttribute("category").equals("seller")) {
+            map.put("result", "false");   // 还没登陆
+            System.out.println("不是商家");
+            return map;
+        }
+        String sID = (String) session.getAttribute("userid");
+        SPM.createNewSpecialty(sID, name, picUrls.get(0), stock, detail, category, price);
+        for(int i=0;i<picUrls.size();i++){
+            
+            SPM.createNewSpecialty(sID, name, picUrl, stock, detail, category, price);
+        }
+        for(String picUrl:picUrls) {
+            SPM.createNewSpecialty(sID, name, picUrl, stock, detail, category, price);
+        }
+        map.put("result", "true");
+        return map;
+
+    }
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/updateSpecialty", method = RequestMethod.POST)
     @ResponseBody
@@ -131,9 +161,6 @@ public class ManageSpecialtyController {
         return map;
 
     }
-
-
-
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/ge",method = RequestMethod.GET)
