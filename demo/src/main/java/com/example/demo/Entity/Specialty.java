@@ -33,6 +33,7 @@ public class Specialty {
         this.detailPics = detailPics;
     }
 
+
     public int getSpID() {
         return spID;
     }

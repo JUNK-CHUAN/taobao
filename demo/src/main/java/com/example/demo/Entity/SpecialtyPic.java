@@ -1,7 +1,5 @@
 package com.example.demo.Entity;
-
 import java.util.Date;
-
 public class SpecialtyPic {
     private String picUrl;
     private int spID;

@@ -12,6 +12,7 @@
         where spID=#{spID}
         order by updateTime ASC
     </select>
-
-
+    <select id="createNewSpecialtyPic">
+        insert into specialtyPic(spID,picUrl) values(#{spID},#{picUrl})
+    </select>
 </mapper>

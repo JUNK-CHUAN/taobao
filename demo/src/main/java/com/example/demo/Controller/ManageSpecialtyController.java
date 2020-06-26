@@ -1,30 +1,33 @@
 package com.example.demo.Controller;
 
 import com.example.demo.DAO.SpecialtyMapper;
+import com.example.demo.DAO.SpecialtyPicMapper;
 import com.example.demo.Entity.Specialty;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.*;
 
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Controller
 public class ManageSpecialtyController {
     @Autowired
     SpecialtyMapper SPM;
-
+    SpecialtyPicMapper SPPM;
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/uploadPic", method = RequestMethod.POST)
     @ResponseBody
     public Map uploadPic(@RequestParam(value ="file_1") MultipartFile[] files,
-                         HttpSession session)  throws Exception{
+
+                               HttpSession session)  throws Exception{
         System.out.println("图片上传来了");
         Map<String, Object> map = new HashMap<>();
-        List<String> picUrls = new ArrayList<>();
+        List<String> picUrls = null;
         // 处理未登录情况
         if(session.getAttribute("isLogIn") == null) {
             map.put("result", "false");   // 还没登陆
@@ -36,7 +39,8 @@ public class ManageSpecialtyController {
             System.out.println("不是商家");
             return map;
         }
-        //图片文件存储
+
+    //图片文件存储
 
         //存放目录
         File fileDir = new File("src/main/resources/static/specialtyPic");
@@ -67,6 +71,7 @@ public class ManageSpecialtyController {
         }
         return map;
 
+
     }
 
     @CrossOrigin(origins = "*")
@@ -92,14 +97,15 @@ public class ManageSpecialtyController {
             return map;
         }
         String sID = (String) session.getAttribute("userid");
-        for(String picUrl:picUrls) {
-            SPM.createNewSpecialty(sID, name, picUrl, stock, detail, category, price);
+        SPM.createNewSpecialty(sID, name, picUrls.get(0), stock, detail, category, price);
+        int spID=SPM.selectSpecialtyByPicUrl(picUrls.get(0));
+        for(int i=1;i<picUrls.size();i++){
+            SPPM.createNewSpecialtyPic(spID,picUrls.get(i));
         }
         map.put("result", "true");
         return map;
 
     }
-
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/updateSpecialty", method = RequestMethod.POST)
     @ResponseBody
@@ -155,9 +161,6 @@ public class ManageSpecialtyController {
         return map;
 
     }
-
-
-
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/ge",method = RequestMethod.GET)

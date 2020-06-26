@@ -103,6 +103,23 @@ public class DisplayPageController {
         return map;
     }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/specialtySaleRank", method = RequestMethod.GET)
+    @ResponseBody
+    public Map specialtySaleRank(HttpSession session)  throws Exception{
+        List<Specialty> specialtyList;
+        Map<String, Object> map = new HashMap<>();
+        // 处理未登录情况
+        if(session.getAttribute("isLogIn") == null) {
+            map.put("result", "false");   // 还没登陆
+            return map;
+        }
+        map.put("result", "true");
+        specialtyList = SPM.specialtySaleRank();
+        map.put("data", specialtyList);
+        return map;
+    }
+
 
 
 }

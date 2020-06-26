@@ -13,7 +13,9 @@
         <result column="sName" property="sName" jdbcType="VARCHAR"/>
         <result column="sPhone" property="sPhone" jdbcType="VARCHAR"/>
         <result column="sAddress" property="sAddress" jdbcType="VARCHAR"/>
+        <result column="sales" property="salesVolume" jdbcType="INTEGER"/>
     </resultMap>
+
     <select id="selectSpecialty" resultMap="BaseResultMap">
         select spID, specialty.sID as sID, specialty.name as name,
         picUrl, stock, detail, category, price, seller.name as sName,
@@ -28,6 +30,9 @@
         seller.phone as sPhone, seller.address as sAddress
         from specialty, seller
         where specialty.sID = seller.sID and category = #{category} and specialty.isDeleted=0
+    </select>
+    <select id="selectSpecialtyByPicUrl" resultType="INTEGER">
+        select spID from specialty where picUrl = #{picUrl}
     </select>
 
     <select id="searchByKeyword" resultMap="BaseResultMap">
@@ -68,11 +73,13 @@
     </select>
 
     <select id="specialtySaleRank" resultMap="BaseResultMap">
-        select spID, specialty.sID as sID, specialty.name as name,
-        picUrl, stock, detail, category, price, seller.name as sName,
-        seller.phone as sPhone, seller.address as sAddress,
-        from specialty, seller, ordertable
-        where specialty.sID = seller.sID
+        select sp.spID as spID, sp.sID as sID, sp.name as name,
+        picUrl, stock, detail, sp.category as category, sp.price as price, seller.name as sName,
+        seller.phone as sPhone, seller.address as sAddress, sum(ordertable.count) as sales
+        from specialty as sp, seller, ordertable
+        where sp.sID = seller.sID and sp.spID=ordertable.spID
+        group by sp.spID
+        order by sales DESC
     </select>
 
 </mapper>

@@ -8,4 +8,5 @@ package com.example.demo.DAO;
 @Mapper
 public interface SpecialtyPicMapper {
     List<SpecialtyPic> selectDetailByspID(int spID);
+    void createNewSpecialtyPic(int spID,String picUrl);
 }
