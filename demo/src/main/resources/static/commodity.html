@@ -56,7 +56,7 @@
 
                                 for(let i=0; i<jsonData["detailPics"].length; i++){
                                     console.log(jsonData["detailPics"])
-                                    $("#detailPicBox").append('<li><img src="'+ jsonData["detailPics"][i]["picUrl"] + '"/></li>');
+                                    $("#detailPicBox").append('<img src="'+ jsonData["detailPics"][i]["picUrl"] + '"/>');
                                 }
                             }
                         },
@@ -161,6 +161,8 @@
             tab_t_li[i].index=i;
             tab_t_li[i].onclick=function(){
                 for(i=0;i<len;i++){
+                    console.log("haha");
+                    console.log(tab_t_li[i]);
                     tab_t_li[i].className='';
                     tab_c_li[i].className='hide';
                 }
@@ -272,7 +274,8 @@
                     <li>商品名称：<span class = "spdetail_name" ></span> <br>
                         商品编号：<span class = "spdetail_ID"></span> <br>
                         商家：<span class = "spdetail_sName"> </span> <br>
-                        库存：<span class = "spdetail_stock"></span>  <br>
+                        商品介绍：<span class = "spdetail_text"></span>  <br>
+                        <span id="detailPicBox"></span>
                         <!-- <img src="img/ko-1.jpg"/> 
                         <img src="img/ko-2.jpg"/>                  
                         <img src="img/ko.jpg"/> 
@@ -328,7 +331,7 @@
                             </div>
                         </div>
                     </li>
-                    <div id="detailPicBox"></div>
+
                 </ul>
             </div>
         </div>
