@@ -45,6 +45,8 @@ function categoryConvertR(English){
         return '中原';
 }
 
+
+
 function addSp(button) {
     // console.log(cur_info_pic_url);
     let new_sp_name = $('#AddSpName').val();
@@ -72,6 +74,87 @@ function addSp(button) {
 
 }
 
+function changeThumb() {
+    let index = $('#ChangeThumb').attr('index');
+    let sp_id = all_goods[index].spID;
+    let changed_sp_thumb_url = cur_info_pic_url[0];
+    $.ajax({
+        url:"http://127.0.0.1:8080/updateSpecialtyPic",
+        type : 'POST',
+        dataType : 'json',
+        crossOrigin: true,
+        data:{
+            "spID":sp_id,
+            "picUrl":changed_sp_thumb_url,
+        },
+        success: function (data) {
+            console.log(JSON.stringify(data));
+            $('#ChangeBasicInfoSuccess').toast('show');
+            $('#ChangeThumb').modal('hide');
+            $(".card[data-goodindex=\'"+index+"\'] img").attr("src",changed_sp_thumb_url);
+            all_goods[index].picUrl = changed_sp_thumb_url;
+
+        }
+    });
+}
+function changeBasicInfo() {
+    let index = $('#ChangeBasicInfo').attr('index');
+    let sp_id = all_goods[index].spID;
+    let changed_sp_name = $('#GoodName').val();
+    let changed_sp_stock = $('#RemainStocks').val();
+    let changed_sp_price = $('#price').val();
+    let changed_sp_category = $('#category option:selected').val();
+    $.ajax({
+        url:"http://127.0.0.1:8080/updateSpecialtyInfo",
+        type : 'POST',
+        dataType : 'json',
+        crossOrigin: true,
+        data:{
+            "spID":sp_id,
+            "name":changed_sp_name,
+            "stock":changed_sp_stock,
+            "category":categoryConvertR(changed_sp_category),
+            "price":changed_sp_price
+        },
+        success: function (data) {
+            console.log(JSON.stringify(data));
+            $('#ChangeBasicInfoSuccess').toast('show');
+            $('#ChangeBasicInfo').modal('hide');
+            // console.log( $(".card[data-goodindex=\'"+index+"\']  [data-target='price']").val());
+            $(".card[data-goodindex=\'"+index+"\']  [data-target='spName']").text(changed_sp_name);
+            $(".card[data-goodindex=\'"+index+"\']  [data-target='remainStocks']").text(changed_sp_stock);
+            $(".card[data-goodindex=\'"+index+"\']  [data-target='category']").text(categoryConvertR(changed_sp_category));
+            $(".card[data-goodindex=\'"+index+"\']  [data-target='price']").text("￥"+changed_sp_price);
+
+            all_goods[index].spName = changed_sp_name;
+            all_goods[index].stock = changed_sp_stock;
+            all_goods[index].price = changed_sp_price;
+            all_goods[index].category = categoryConvertR(changed_sp_category);
+        }
+    });
+}
+function changeInfo() {
+    let index = $('#ChangeDetails').attr('index');
+    let sp_id = all_goods[index].spID;
+    let changed_info_picurls_subarr = cur_info_pic_url.slice(1);
+    let changed_info_text = $('#spInfoText').val();
+    $.ajax({
+        url : "http://127.0.0.1:8080/updateSpecialtyDetail",
+        type : 'POST',
+        dataType : 'json',
+        crossOrigin: true,
+        data: {"spID":sp_id,
+               "picUrls":changed_info_picurls_subarr.toString(),
+               "detail":changed_info_text,
+              },
+        success: function (data) {
+            console.log(JSON.stringify(data));
+            $('#AddSuccess').toast('show');
+            $('#ChangeDetails').modal('hide');
+        }
+    });
+
+}
 function deleteSp() {
     let index = $('#DeleteSp').attr('index');
     let sp_id = all_goods[index].spID;
@@ -164,7 +247,9 @@ function page_init(){
         let modal = $(this);
         modal.find('.spIDinDelete').text('商品ID:' + all_goods[number]['spID']);
         modal.find('.spNameinDelete').text('商品名称:'+all_goods[number]['name']);
+        modal.find('.imgInDeleteModal').attr("src",all_goods[number]['picUrl']);
         modal.attr("index",number);
+
     });
 
     $('#ChangeBasicInfo').on('show.bs.modal',function(event){
@@ -173,12 +258,28 @@ function page_init(){
         let modal = $(this);
         modal.find('#GoodName').val(all_goods[number]['name']);
         modal.find('#RemainStocks').val(all_goods[number]['stock']);
+        modal.find('#price').val(all_goods[number]['price']);
+        modal.attr("index",number);
         // modal.find('#category').find('option[text=\''+categoryConvert(all_goods[number]['category'])+'\']').attr("selected",true);
     });
 
+    $('#ChangeThumb').on('show.bs.modal',function (event) {
+        let button = $(event.relatedTarget);
+        let number = button.data('whatever');
+        let modal = $(this);
+        modal.attr('index',number);
+    });
+
+    $('#ChangeDetails').on('show.bs.modal',function (event) {
+        let button = $(event.relatedTarget);
+        let number = button.data('whatever');
+        let modal = $(this);
+        modal.attr('index',number);
+    });
 
 
 }
+
 $(document).ready(function () {
 
     $.ajax({
@@ -224,6 +325,7 @@ $(document).ready(function () {
 
 
 });
+
 function load_all_goods()
 {
     let PanelListNode = $("#PanelList");
@@ -242,19 +344,19 @@ function load_all_goods()
             '                                <div class="bd-callout bd-callout-warning">\n' +
             '                                        <dl class="row">\n' +
             '                                            <dt class="col-sm-3">商品ID</dt>\n' +
-            '                                            <dd class="col-sm-9">'+ all_goods[i]["spID"]+'</dd>\n' +
+            '                                            <dd class="col-sm-9" data-target="spID">'+ all_goods[i]["spID"]+'</dd>\n' +
             '\n' +
             '                                            <dt class="col-sm-3">商品名称</dt>\n' +
-            '                                            <dd class="col-sm-9">'+ all_goods[i]["name"]+'</dd>\n' +
+            '                                            <dd class="col-sm-9" data-target="spName">'+ all_goods[i]["name"]+'</dd>\n' +
             '\n' +
             '                                            <dt class="col-sm-3">剩余库存</dt>\n' +
-            '                                            <dd class="col-sm-9">'+  all_goods[i]["stock"]+'<span>(单位：件)</span></dd>\n' +
+            '                                            <dd class="col-sm-9" data-target="remainStocks">'+  all_goods[i]["stock"]+'<span>(单位：件)</span></dd>\n' +
             '\n' +
             '                                            <dt class="col-sm-3 text-truncate">地域分类</dt>\n' +
-            '                                            <dd class="col-sm-9">'+ all_goods[i]["category"]+'</dd>\n' +
+            '                                            <dd class="col-sm-9" data-target="category">'+ all_goods[i]["category"]+'</dd>\n' +
             '\n' +
             '                                            <dt class="col-sm-3 text-truncate">价格</dt>\n' +
-            '                                            <dd class="col-sm-9">￥'+ all_goods[i]["price"]+'</dd>\n' +
+            '                                            <dd class="col-sm-9" data-target="price">￥'+ all_goods[i]["price"]+'</dd>\n' +
             '\n' +
             '                                            <dt class="col-sm-3 text-truncate">商品评分</dt>\n' +
             '                                            <dd class="col-sm-9">\n' +
@@ -270,8 +372,8 @@ function load_all_goods()
             '                                </div>\n' +
             '                                <div class="ml-auto" role="group" aria-label="Basic example">\n' +
             '                                    <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeBasicInfo" data-whatever="'+i+'">修改基础信息</button>\n' +
-            '                                    <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeDetails">修改特产详情</button>\n' +
-            '                                    <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeThumb">修改特产预览图</button>\n' +
+            '                                    <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeDetails" data-whatever="'+i+'">修改特产详情</button>\n' +
+            '                                    <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#ChangeThumb" data-whatever="'+i+'">修改特产预览图</button>\n' +
             '                                    <button type="button" class="btn btn-warning">查看评价</button>\n' +
             '                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#DeleteSp" data-whatever="'+i+'">删除商品</button>\n' +
             '                                </div>\n' +

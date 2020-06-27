@@ -137,9 +137,11 @@ public class ManageSpecialtyController {
     @RequestMapping(value = "/updateSpecialtyDetail", method = RequestMethod.POST)
     @ResponseBody
     public Map updateSpecialty(@RequestParam(value = "spID") int spID,
-                               @RequestParam(value ="picUrls") List<String> picUrls,
+                               @RequestParam(value ="picUrls") String picUrls_str,
                                @RequestParam(value = "detail") String detail,
                                HttpSession session)  throws Exception{
+
+        List<String> picUrls = Arrays.asList(picUrls_str.split(","));
         Map<String, Object> map = new HashMap<>();
         // 处理未登录情况
         if(session.getAttribute("isLogIn") == null) {
