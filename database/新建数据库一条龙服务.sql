@@ -123,6 +123,7 @@ alter table ordertable modify column submitTime datetime null default current_ti
 alter table specialty modify spID int auto_increment;
 alter table specialty modify column insertTime datetime null default current_timestamp;.
 alter table cart modify column submitTime datetime null default current_timestamp;
+alter table comment modify column submitTime datetime null default current_timestamp;
 
 alter table cart add constraint FK_Reference_1 foreign key (cID)
       references customer (cID) on delete restrict on update restrict;
