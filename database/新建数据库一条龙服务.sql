@@ -118,6 +118,12 @@ create table specialtyPic
    primary key (picUrl)
 );
 
+alter table ordertable modify oID int auto_increment;
+alter table ordertable modify column submitTime datetime null default current_timestamp;
+alter table specialty modify spID int auto_increment;
+alter table specialty modify column insertTime datetime null default current_timestamp;.
+alter table cart modify column submitTime datetime null default current_timestamp;
+
 alter table cart add constraint FK_Reference_1 foreign key (cID)
       references customer (cID) on delete restrict on update restrict;
 
@@ -140,11 +146,7 @@ alter table specialtyPic add constraint FK_Reference_6 foreign key (spID)
       references specialty (spID) on delete restrict on update restrict;
 
 
-alter table ordertable modify oID int auto_increment;
-alter table ordertable modify column submitTime datetime null default current_timestamp;
-alter table specialty modify spID int auto_increment;
-alter table specialty modify column insertTime datetime null default current_timestamp;.
-alter table cart modify column submitTime datetime null default current_timestamp;
+
 
 
 
