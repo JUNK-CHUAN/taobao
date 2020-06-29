@@ -3,6 +3,10 @@
 /* Created on:     2020/6/29 11:11:45                           */
 /*==============================================================*/
 
+drop database demo;
+create database demo;
+
+use demo;
 
 drop table if exists cart;
 
@@ -97,7 +101,7 @@ create table specialty
    detail               varchar(500),
    category             varchar(20),
    price                float,
-   isDeleted            bool,
+   isDeleted            bool DEFAULT false,
    picUrl               varchar(100),
    insertTime           datetime,
    primary key (spID)
@@ -136,6 +140,11 @@ alter table specialtyPic add constraint FK_Reference_6 foreign key (spID)
       references specialty (spID) on delete restrict on update restrict;
 
 
+alter table ordertable modify oID int auto_increment;
+alter table ordertable modify column submitTime datetime null default current_timestamp;
+alter table specialty modify spID int auto_increment;
+alter table specialty modify column insertTime datetime null default current_timestamp;.
+alter table cart modify column submitTime datetime null default current_timestamp;
 
 
 
