@@ -141,6 +141,7 @@
                                 window.location.href = "./login.html";
                             }
                             else if (data.result === "true") {
+                                console.log(data);
                                 let saleRankList = data.data;
                                 let rankCount = saleRankList.length;
                                 if (rankCount > 8)
@@ -152,7 +153,7 @@
 
                                     let itemWritable = $(
                                         '                <div class="card rank-card">\n' +
-                                        '                    <img src="' + rankItem["picUrl"] + '" class="card-img-top" alt="" id="' + 'rank-' + rankItem["spID"] + '" onclick="rankDetail(this)">\n' +
+                                        '                    <img src="' + rankItem["picUrl"] + '" class="card-img-top" alt="" id="' + 'rank-' + rankItem["spID"] + '" onclick="rankDetail(this)" style="cursor: pointer;">\n' +
                                         '                    <div class="card-body" style="padding: 0.25rem">\n' +
                                         '                        <h5 class="card-title" style="font-size: 16px">' + rankItem["name"] + '</h5>\n' +
                                         '                        <p class="card-text" style="font-size: 12px">销量:' + rankItem["salesVolume"] + '</p>\n' +
@@ -762,9 +763,9 @@
     function showRank() {
         document.getElementById("rank-category").classList.add("rank-active");
     }
-    // function hideRank() {
-    //     document.getElementById("rank-category").classList.remove("rank-active");
-    // }
+    function hideRank() {
+        document.getElementById("rank-category").classList.remove("rank-active");
+    }
     function showCount() {
         document.getElementById("count-content").classList.add("rank-active");
         document.getElementById("good-content").classList.remove("rank-active");
