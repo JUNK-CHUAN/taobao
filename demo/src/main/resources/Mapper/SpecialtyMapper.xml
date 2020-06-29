@@ -22,6 +22,7 @@
         seller.phone as sPhone, seller.address as sAddress
         from specialty, seller
         where specialty.sID = seller.sID and spID = #{specialty_id}  and specialty.isDeleted=0
+        order by specialty.insertTime DESC
     </select>
 
     <select id="selectSpecialtyByCategory" resultMap="BaseResultMap">
@@ -30,6 +31,7 @@
         seller.phone as sPhone, seller.address as sAddress
         from specialty, seller
         where specialty.sID = seller.sID and category = #{category} and specialty.isDeleted=0
+        order by specialty.insertTime DESC
     </select>
     <select id="selectSpecialtyByPicUrl" resultType="INTEGER">
         select spID from specialty where picUrl = #{picUrl}
@@ -42,6 +44,7 @@
         from specialty, seller
         where specialty.sID = seller.sID  and specialty.isDeleted=0 and ((category like #{keyword})
          or (specialty.name like #{keyword}) or (detail like #{keyword}) or (seller.name like #{keyword}))
+        order by specialty.insertTime DESC
     </select>
 
     <select id="selectSpecialtyBySid" resultMap="BaseResultMap">
@@ -50,6 +53,7 @@
         seller.phone as sPhone, seller.address as sAddress
         from specialty, seller
         where specialty.sID = seller.sID and specialty.sID=#{sID} and specialty.isDeleted=0
+        order by specialty.insertTime DESC
     </select>
 
     <select id="createNewSpecialty">

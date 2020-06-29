@@ -17,7 +17,7 @@
     </resultMap>
 
     <select id="insertCart">
-        insert into cart values(#{spID}, #{cID},#{count})
+        insert into cart(spID, cID, count) values(#{spID}, #{cID},#{count})
     </select>
 
     <select id="selectCartBycID" resultMap="BaseResultMap">

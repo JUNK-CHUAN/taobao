@@ -67,13 +67,25 @@ function addSp(button) {
                "price":new_sp_price},
         success: function (data) {
             console.log(JSON.stringify(data));
-            $('#AddSuccess').toast('show');
-            $('#collapseAddSp').collapse('toggle');
+            if(data.result==="true"){
+                $('#AddSuccess').toast('show');
+                $('#collapseAddSp').collapse('toggle');
+                setTimeout("refresh_page()",3000);
             }
+            else{
+                $('#collapseAddSp').modal('hide');
+                $('#SomeFail').toast('show');
+            }
+
+
+        }
     });
 
 }
 
+function refresh_page() {
+    location.reload();
+}
 function changeThumb() {
     let index = $('#ChangeThumb').attr('index');
     let sp_id = all_goods[index].spID;
@@ -89,10 +101,17 @@ function changeThumb() {
         },
         success: function (data) {
             console.log(JSON.stringify(data));
-            $('#ChangeBasicInfoSuccess').toast('show');
-            $('#ChangeThumb').modal('hide');
-            $(".card[data-goodindex=\'"+index+"\'] img").attr("src",changed_sp_thumb_url);
-            all_goods[index].picUrl = changed_sp_thumb_url;
+            if(data.result==="true"){
+                $('#ChangeBasicInfoSuccess').toast('show');
+                $('#ChangeThumb').modal('hide');
+                $(".card[data-goodindex=\'"+index+"\'] img").attr("src",changed_sp_thumb_url);
+                all_goods[index].picUrl = changed_sp_thumb_url;
+            }
+            else{
+                $('#SomeFail').toast('show');
+                $('#ChangeThumb').modal('hide');
+            }
+
 
         }
     });
@@ -118,18 +137,26 @@ function changeBasicInfo() {
         },
         success: function (data) {
             console.log(JSON.stringify(data));
-            $('#ChangeBasicInfoSuccess').toast('show');
-            $('#ChangeBasicInfo').modal('hide');
-            // console.log( $(".card[data-goodindex=\'"+index+"\']  [data-target='price']").val());
-            $(".card[data-goodindex=\'"+index+"\']  [data-target='spName']").text(changed_sp_name);
-            $(".card[data-goodindex=\'"+index+"\']  [data-target='remainStocks']").text(changed_sp_stock);
-            $(".card[data-goodindex=\'"+index+"\']  [data-target='category']").text(categoryConvertR(changed_sp_category));
-            $(".card[data-goodindex=\'"+index+"\']  [data-target='price']").text("￥"+changed_sp_price);
+            if(data.result==="true"){
+                $('#ChangeBasicInfoSuccess').toast('show');
+                $('#ChangeBasicInfo').modal('hide');
+                // console.log( $(".card[data-goodindex=\'"+index+"\']  [data-target='price']").val());
+                $(".card[data-goodindex=\'"+index+"\']  [data-target='spName']").text(changed_sp_name);
+                $(".card[data-goodindex=\'"+index+"\']  [data-target='remainStocks']").text(changed_sp_stock);
+                $(".card[data-goodindex=\'"+index+"\']  [data-target='category']").text(categoryConvertR(changed_sp_category));
+                $(".card[data-goodindex=\'"+index+"\']  [data-target='price']").text("￥"+changed_sp_price);
 
-            all_goods[index].spName = changed_sp_name;
-            all_goods[index].stock = changed_sp_stock;
-            all_goods[index].price = changed_sp_price;
-            all_goods[index].category = categoryConvertR(changed_sp_category);
+                all_goods[index].spName = changed_sp_name;
+                all_goods[index].stock = changed_sp_stock;
+                all_goods[index].price = changed_sp_price;
+                all_goods[index].category = categoryConvertR(changed_sp_category);
+            }
+            else
+            {
+                $('#SomeFail').toast('show');
+                $('#ChangeBasicInfo').modal('hide');
+            }
+
         }
     });
 }
@@ -149,8 +176,15 @@ function changeInfo() {
               },
         success: function (data) {
             console.log(JSON.stringify(data));
-            $('#AddSuccess').toast('show');
-            $('#ChangeDetails').modal('hide');
+            if(data.result==="false"){
+                $('#AddSuccess').toast('show');
+                $('#ChangeDetails').modal('hide');
+            }else{
+                $('#SomeFail').toast('show');
+                $('#ChangeDetails').modal('hide');
+            }
+
+
         }
     });
 
@@ -168,6 +202,12 @@ function deleteSp() {
             if(data.result==="true"){
                 $('.card[data-goodindex=\''+index+'\']').remove();
                 $('#DeleteSp').modal('hide');
+                $('#DeleteSuccess').toast('show');
+            }
+            else
+            {
+                $('#DeleteSp').modal('hide');
+                $('#SomeFail').toast('show');
             }
         }
     });
@@ -176,6 +216,30 @@ function returnShipDiv(number){
     if (order_list[number].state==='已发货')
         return '  <button class="btn btn-primary btn-info" type="button" data-toggle="collapse" data-target="#Ship'+number+'" aria-expanded="false" aria-controls="collapseExample" >\n' +
             '状态:已发货\n' +
+            '</button>'+
+            '  <div class="collapse my-3" id="Ship'+number+'">\n' +
+            '                                    <div class="card card-body">\n' +
+            '                                            <div class="form-group shipDiv" >\n' +
+            '                                                <label for="exampleFormControlInput1">发货订单编号</label>\n' +
+            '                                                <input type="email" class="form-control Expressno" id="exampleFormControlInput1" placeholder="FXS903123FAA" disabled value="'+order_list[number].expressNo+'">\n' +
+            '                                            </div>\n' +
+            '                                    </div>\n' +
+            '                                </div>\n';
+    else if(order_list[number].state==='已收货，待评价')
+        return '  <button class="btn btn-primary btn-info" type="button" data-toggle="collapse" data-target="#Ship'+number+'" aria-expanded="false" aria-controls="collapseExample" >\n' +
+            '状态:已收货\n' +
+            '</button>'+
+            '  <div class="collapse my-3" id="Ship'+number+'">\n' +
+            '                                    <div class="card card-body">\n' +
+            '                                            <div class="form-group shipDiv" >\n' +
+            '                                                <label for="exampleFormControlInput1">发货订单编号</label>\n' +
+            '                                                <input type="email" class="form-control Expressno" id="exampleFormControlInput1" placeholder="FXS903123FAA" disabled value="'+order_list[number].expressNo+'">\n' +
+            '                                            </div>\n' +
+            '                                    </div>\n' +
+            '                                </div>\n';
+    else if(order_list[number].state==='已完成')
+        return '  <button class="btn btn-primary btn-info" type="button" data-toggle="collapse" data-target="#Ship'+number+'" aria-expanded="false" aria-controls="collapseExample" >\n' +
+            '状态:已完成\n' +
             '</button>'+
             '  <div class="collapse my-3" id="Ship'+number+'">\n' +
             '                                    <div class="card card-body">\n' +
@@ -357,6 +421,8 @@ function load_all_goods()
             '\n' +
             '                                            <dt class="col-sm-3 text-truncate">价格</dt>\n' +
             '                                            <dd class="col-sm-9" data-target="price">￥'+ all_goods[i]["price"]+'</dd>\n' +
+            '                                            <dt class="col-sm-3 text-truncate">销量</dt>\n' +
+            '                                            <dd class="col-sm-9" data-target="salesVolume">'+ all_goods[i]["salesVolume"]+'</dd>\n' +
             '\n' +
             '                                            <dt class="col-sm-3 text-truncate">商品评分</dt>\n' +
             '                                            <dd class="col-sm-9">\n' +
@@ -398,7 +464,7 @@ function load_all_order() {
             '                </div>\n' +
             '                <div class="card-body">\n' +
             '                    <div class="media">\n' +
-            '                        <img src="img/f5.jpg" class="align-self-center mr-3" alt="...">\n' +
+            '                        <img src="'+order_list[i].picUrl+'" class="align-self-center mr-3" alt="..." style="width:20%">\n' +
             '                        <div class="media-body">\n' +
             '                            <div class="media-body">\n' +
             '                                <h5 class="mt-0">'+order_list[i]['oID']+'</h5>\n' +
