@@ -356,6 +356,9 @@ $(document).ready(function () {
             if (data.result === "false") {
                 window.location.href = "./login.html";
             }
+            else if (data.category === "customer"){
+                window.location.href = "./home.html";
+            }
         }
     });
 
