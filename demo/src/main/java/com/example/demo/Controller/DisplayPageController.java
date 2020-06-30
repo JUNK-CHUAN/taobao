@@ -1,9 +1,6 @@
 package com.example.demo.Controller;
 
-import com.example.demo.DAO.OrderMapper;
-import com.example.demo.DAO.SellerMapper;
-import com.example.demo.DAO.SpecialtyMapper;
-import com.example.demo.DAO.SpecialtyPicMapper;
+import com.example.demo.DAO.*;
 import com.example.demo.Entity.Specialty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +21,8 @@ public class DisplayPageController {
     SpecialtyPicMapper SPICM;
     @Autowired
     OrderMapper OM;
+    @Autowired
+    CommentMapper COMM;
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/customerHome", method = RequestMethod.GET)
@@ -112,6 +111,12 @@ public class DisplayPageController {
             specialtyList.get(i).setDetailPics(SPICM.selectDetailByspID(specialtyList.get(i).getSpID()));
             // 获取销量
             specialtyList.get(i).setSalesVolume(OM.getSalesVolumeBySpID(specialtyList.get(i).getSpID()));
+            // 获取star数
+            specialtyList.get(i).setStar(COMM.getStarBySpID(specialtyList.get(i).getSpID()));
+            // 获取每条评论
+            specialtyList.get(i).setComments(COMM.selectCommentBySpID(specialtyList.get(i).getSpID()));
+            // 获取评论数
+            specialtyList.get(i).setCommentNum(specialtyList.get(i).getComments().size());
         }
 
         map.put("data", specialtyList);
