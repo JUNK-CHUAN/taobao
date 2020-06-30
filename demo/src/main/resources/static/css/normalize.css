@@ -142,18 +142,10 @@ input,button,select,textarea{
 	padding:10px 0px 10px 20px;
 }
 /*   推荐搭配    */
-.gdetail{
+.gdetail {
 	width: 1240px;
 	margin: 0 auto;
 	clear: both;
-}
-/* 商品评价 */
-.gdetail{
-	width:1240px;
-	margin: 0 auto;
-	margin-left: 200px;
-	margin-top: 20px;
-	clear:both;
 }
 
 .active_tab{
