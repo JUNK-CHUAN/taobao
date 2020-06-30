@@ -1,4 +1,5 @@
 
+
 let all_goods = [
     // {"spID":1,"sID":"jerry","name":"广东酸辣粉","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼好吃，狠辣","category":"华南","price":20.8,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
     // {"spID":2,"sID":"jerry","name":"广东酸辣粉2","picUrl":"img/123456.jpg","stock":10,"detail":"这个酸辣粉贼ggg好吃，狠辣","category":"华南","price":2122.0,"sName":"商家飞","sPhone":"18088881231","sAddress":"北京大学某校区", "detailPics":[{"picUrl":"img/123456.jpg","spID":14,"updateTime":"2020-06-24T08:55:08.000+00:00"},{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}]},
@@ -116,6 +117,7 @@ function changeThumb() {
         }
     });
 }
+
 function changeBasicInfo() {
     let index = $('#ChangeBasicInfo').attr('index');
     let sp_id = all_goods[index].spID;
@@ -187,8 +189,8 @@ function changeInfo() {
 
         }
     });
-
 }
+
 function deleteSp() {
     let index = $('#DeleteSp').attr('index');
     let sp_id = all_goods[index].spID;
@@ -212,6 +214,7 @@ function deleteSp() {
         }
     });
 }
+
 function returnShipDiv(number){
     if (order_list[number].state==='已发货')
         return '  <button class="btn btn-primary btn-info" type="button" data-toggle="collapse" data-target="#Ship'+number+'" aria-expanded="false" aria-controls="collapseExample" >\n' +
@@ -388,8 +391,6 @@ $(document).ready(function () {
 
         }
     });
-
-
 
 });
 

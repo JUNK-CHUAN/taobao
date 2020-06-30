@@ -3,7 +3,7 @@
     background: none;
 }
 .card-float:hover {
-    border: 2px solid #007bff;
+    border: 2px solid orange;
     border-radius: 5px;
 }
 .order-head {
@@ -41,4 +41,23 @@
 }
 .media-body span {
     font-size: 18px;
+}
+.bg-light{
+    background-color: orange !important;
+}
+.collapse.navbar-collapse a {
+    color: #FFFFFF;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: orangered;
+    background-color: #ffffff;
+}
+.card.card-float > .btn {
+    background-color: orange;
+    border-color: orange;
+    box-shadow: none !important;
+}
+.card.card-float > .btn:hover {
+    background-color: orangered;
+    border-color: orangered;
 }
