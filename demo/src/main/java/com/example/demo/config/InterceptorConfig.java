@@ -37,10 +37,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
 //        System.out.println("path:"+pathString.substring(0, pathString.length()-15));
 
         // windows
-        registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString.substring(0, pathString.length()-15) + "/src/main/resources/static/specialtyPic/");
+        //registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString.substring(0, pathString.length()-15) + "/src/main/resources/static/specialtyPic/");
 
         // macos
-//        registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString + "/src/main/resources/static/specialtyPic/");
+        registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString + "/src/main/resources/static/specialtyPic/");
 
     }
 }
