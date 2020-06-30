@@ -16,23 +16,9 @@ public class Specialty {
     private String sAddress;
     private List<SpecialtyPic> detailPics;
     private int salesVolume;
-
-    public int getSalesVolume() {
-        return salesVolume;
-    }
-
-    public void setSalesVolume(int salesVolume) {
-        this.salesVolume = salesVolume;
-    }
-
-    public List<SpecialtyPic> getDetailPics() {
-        return detailPics;
-    }
-
-    public void setDetailPics(List<SpecialtyPic> detailPics) {
-        this.detailPics = detailPics;
-    }
-
+    private float star;
+    private List<Comment> comments;
+    private int commentNum;
 
     public int getSpID() {
         return spID;
@@ -120,5 +106,45 @@ public class Specialty {
 
     public void setsAddress(String sAddress) {
         this.sAddress = sAddress;
+    }
+
+    public List<SpecialtyPic> getDetailPics() {
+        return detailPics;
+    }
+
+    public void setDetailPics(List<SpecialtyPic> detailPics) {
+        this.detailPics = detailPics;
+    }
+
+    public int getSalesVolume() {
+        return salesVolume;
+    }
+
+    public void setSalesVolume(int salesVolume) {
+        this.salesVolume = salesVolume;
+    }
+
+    public float getStar() {
+        return star;
+    }
+
+    public void setStar(float star) {
+        this.star = star;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public int getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
     }
 }

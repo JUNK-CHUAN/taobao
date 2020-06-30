@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.DAO.CommentMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.Entity.Comment">
+        <result column="oID" property="oID" jdbcType="INTEGER"/>
+        <result column="text" property="text" jdbcType="VARCHAR"/>
+        <result column="star" property="star" jdbcType="INTEGER"/>
+        <result column="submitTime" property="submitTime" jdbcType="TIMESTAMP"/>
+        <result column="cID" property="cID" jdbcType="VARCHAR"/>
+        <result column="cName" property="cName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="insertComment">
+        insert into comment(oID, text, star) values(#{oID}, #{text}, #{star})
+    </select>
+
+    <select id="selectCommentBySpID" resultMap="BaseResultMap">
+        select comment.oID as oID, text, star, comment.submitTime as submitTime,
+            customer.cID as cID, customer.name as cName
+        from comment, ordertable, customer
+        where comment.oID=ordertable.oID and ordertable.cID=customer.cID
+            and ordertable.spID=#{spID}
+        order by submitTime DESC
+    </select>
+
+    <select id="getStarBySpID" resultType="FLOAT">
+        select IFNULL(avg(star), 0)
+        from ordertable, comment
+        where ordertable.oID=comment.oID and spID=#{spID}
+    </select>
+</mapper>

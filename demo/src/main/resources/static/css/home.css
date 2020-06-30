@@ -55,7 +55,6 @@ div .card {
     border-radius: 3px;
     text-align: center;
     padding-top: 5px;
-    opacity: 0.8;
 }
 .rank h2 {
     color: #FFFFFF;
@@ -67,5 +66,32 @@ div .card {
     display: none;
 }
 .rank-active {
-    display: block;
+    display: block !important;
+}
+.list-group {
+    display: inline;
+    position: absolute;
+    bottom:0;
+    left:0;
+}
+.list-group-item {
+    width: 160px;
+    height: 110px;
+}
+.rank-content {
+    display: none;
+    position: absolute;
+    bottom:0;
+    left: 160px;
+    background-color: #FFFFFF;
+    max-width: 1400px;
+    width: 1400px;
+    border-radius: 4px;
+}
+.row {
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+div .rank-card {
+    width: 10rem;
 }

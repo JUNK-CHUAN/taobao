@@ -109,6 +109,61 @@
                                 }
                             }
                         }
+                    });
+                    // 获取商品销量排行
+                    // {
+                    //     "result": "true",
+                    //     "data": [
+                    //     {
+                    //         "spID": 935,
+                    //         "sID": "3",
+                    //         "name": "乌江榨菜",
+                    //         "picUrl": "img/testsp/西南/乌江榨菜.jpg",
+                    //         "stock": 310,
+                    //         "detail": "小面是作为南方人的重庆市民唯一普遍接受的面...",
+                    //         "category": "西南",
+                    //         "price": 16,
+                    //         "sName": "重大饭堂旗舰店",
+                    //         "sPhone": "13460986283",
+                    //         "sAddress": "重庆市沙坪坝区沙正街174号",
+                    //         "detailPics": null,
+                    //         "salesVolume": 14
+                    //     }
+                    // ]
+                    // }
+                    $.ajax({
+                        url: "http://127.0.0.1:8080/specialtySaleRank",
+                        type: 'GET',
+                        dataType: 'json',
+                        crossOrigin: true,
+                        success: function (data) {
+                            if (data.result === "false") {
+                                window.location.href = "./login.html";
+                            }
+                            else if (data.result === "true") {
+                                console.log(data);
+                                let saleRankList = data.data;
+                                let rankCount = saleRankList.length;
+                                if (rankCount > 8)
+                                    rankCount = 8;
+
+                                let listFrame = $("#count-content > .row");
+                                for (let i = 0; i < rankCount; i++) {
+                                    let rankItem = saleRankList[i];
+
+                                    let itemWritable = $(
+                                        '                <div class="card rank-card">\n' +
+                                        '                    <img src="' + rankItem["picUrl"] + '" class="card-img-top" alt="" id="' + 'rank-' + rankItem["spID"] + '" onclick="rankDetail(this)" style="cursor: pointer;">\n' +
+                                        '                    <div class="card-body" style="padding: 0.25rem">\n' +
+                                        '                        <h5 class="card-title" style="font-size: 16px">' + rankItem["name"] + '</h5>\n' +
+                                        '                        <p class="card-text" style="font-size: 12px">销量:' + rankItem["salesVolume"] + '</p>\n' +
+                                        '                    </div>\n' +
+                                        '                </div>'
+                                    );
+                                    listFrame.append(itemWritable);
+                                }
+                            }
+                        }
                     })
                 }
             }
@@ -144,6 +199,13 @@
 
     function showDetail(item) {
         let id = item.id;
+        let storage = window.localStorage;
+        storage.setItem("spID", id);
+        window.location.href = "commodity.html";
+    }
+
+    function rankDetail(item) {
+        let id = item.id.split('rank-').join('');
         let storage = window.localStorage;
         storage.setItem("spID", id);
         window.location.href = "commodity.html";
@@ -704,17 +766,85 @@
     function hideRank() {
         document.getElementById("rank-category").classList.remove("rank-active");
     }
+    function showCount() {
+        document.getElementById("count-content").classList.add("rank-active");
+        document.getElementById("good-content").classList.remove("rank-active");
+    }
+    function showGood() {
+        document.getElementById("good-content").classList.add("rank-active");
+        document.getElementById("count-content").classList.remove("rank-active");
+    }
 </script>
 <div class="rank sticky" onmousemove="showRank()" onmouseleave="hideRank()">
     <h2>近期畅销</h2>
     <div class="rank-category" id="rank-category">
         <div class="list-group">
-            <button type="button" class="list-group-item list-group-item-action active">
-                Cras justo odio
-            </button>
-            <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-            <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-            <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+            <button type="button" class="list-group-item list-group-item-action" id="count-commodity" onclick="showCount()">热销商品</button>
+            <button type="button" class="list-group-item list-group-item-action" id="good-commodity" onclick="showGood()">好评如潮</button>
+        </div>
+        <div class="container rank-content rank-active" id="count-content">
+            <div class="row">
+<!--                <div class="card rank-card">-->
+<!--                    <img src="img/spimg_4.jpg" class="card-img-top" alt="...">-->
+<!--                    <div class="card-body" style="padding: 0.25rem">-->
+<!--                        <h5 class="card-title" style="font-size: 16px">商品名称</h5>-->
+<!--                        <p class="card-text" style="font-size: 12px">销量：80</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card rank-card">-->
+<!--                    <img src="img/spimg_4.jpg" class="card-img-top" alt="...">-->
+<!--                    <div class="card-body" style="padding: 0.25rem">-->
+<!--                        <h5 class="card-title" style="font-size: 16px">商品名称</h5>-->
+<!--                        <p class="card-text" style="font-size: 12px">销量：80</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card rank-card">-->
+<!--                    <img src="img/spimg_4.jpg" class="card-img-top" alt="...">-->
+<!--                    <div class="card-body" style="padding: 0.25rem">-->
+<!--                        <h5 class="card-title" style="font-size: 16px">商品名称</h5>-->
+<!--                        <p class="card-text" style="font-size: 12px">销量：80</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card rank-card">-->
+<!--                    <img src="img/spimg_4.jpg" class="card-img-top" alt="...">-->
+<!--                    <div class="card-body" style="padding: 0.25rem">-->
+<!--                        <h5 class="card-title" style="font-size: 16px">商品名称</h5>-->
+<!--                        <p class="card-text" style="font-size: 12px">销量：80</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card rank-card">-->
+<!--                    <img src="img/spimg_4.jpg" class="card-img-top" alt="...">-->
+<!--                    <div class="card-body" style="padding: 0.25rem">-->
+<!--                        <h5 class="card-title" style="font-size: 16px">商品名称</h5>-->
+<!--                        <p class="card-text" style="font-size: 12px">销量：80</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card rank-card">-->
+<!--                    <img src="img/spimg_4.jpg" class="card-img-top" alt="...">-->
+<!--                    <div class="card-body" style="padding: 0.25rem">-->
+<!--                        <h5 class="card-title" style="font-size: 16px">商品名称</h5>-->
+<!--                        <p class="card-text" style="font-size: 12px">销量：80</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card rank-card">-->
+<!--                    <img src="img/spimg_4.jpg" class="card-img-top" alt="...">-->
+<!--                    <div class="card-body" style="padding: 0.25rem">-->
+<!--                        <h5 class="card-title" style="font-size: 16px">商品名称</h5>-->
+<!--                        <p class="card-text" style="font-size: 12px">销量：80</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card rank-card">-->
+<!--                    <img src="img/spimg_4.jpg" class="card-img-top" alt="...">-->
+<!--                    <div class="card-body" style="padding: 0.25rem">-->
+<!--                        <h5 class="card-title" style="font-size: 16px">商品名称</h5>-->
+<!--                        <p class="card-text" style="font-size: 12px">销量：80</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+        </div>
+
+        <div class="container rank-content" id="good-content">
+
         </div>
     </div>
 </div>

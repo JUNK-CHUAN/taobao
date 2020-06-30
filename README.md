@@ -28,6 +28,7 @@ Table of Contents
       * [22、POST -&gt; /updateSellerInfo](#22post---updatesellerinfo)
       * [23、GET -&gt; /specialtySaleRank](#23get---specialtysalerank)
       * [24、GET -&gt; /setOrderStateRecv/{oID}](#24get---setorderstaterecvoid)
+      * [25、POST -&gt; /insertComment](#25post---insertcomment)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -243,7 +244,13 @@ specialty_id: 商品id，嵌入url的字符串，如 /getSpecial/111
 
 ​				{"picUrl":"img/LOGO.png","spID":14,"updateTime":"2020-06-24T08:55:34.000+00:00"}
 
-​			]
+​			],
+​		"star":3,
+​		"comments":[
+​			{"oID":13,"text":"还行","star":4,"submitTime":"2020-06-29T09:56:49.000+00:00","cID":"jerry","cName":"jj"},
+​			{"oID":12,"text":"还行","star":4,"submitTime":"2020-06-29T09:48:15.000+00:00","cID":"jerry","cName":"jj"},
+​			{"oID":11,"text":"真的好好吃","star":1,"submitTime":"2020-06-29T09:45:28.000+00:00","cID":"jerry","cName":"jj"}],
+​		"commentNum":3
 
 ​	}
 
@@ -621,6 +628,26 @@ oID: (string or int) 订单id
 没登陆：{"result": "false"}
 
 成功: {"result": "true"}
+
+
+
+## 25、POST -> /insertComment
+
+修改商家信息
+
+#### RequestParam
+
+”oID": (int or string)  订单id
+
+"text": (string)  评论文本
+
+"star": (int or string) 星星数（范围1-5） 
+
+#### Return
+
+成功：{“result": "true"}
+
+失败: {"result": "false"} 
 
 
 
