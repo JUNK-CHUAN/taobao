@@ -45,7 +45,7 @@ public class ManageSpecialtyController {
     //图片文件存储
 
         //存放目录
-        File fileDir = new File("demo/src/main/resources/static/specialtyPic");
+        File fileDir = new File("src/main/resources/static/specialtyPic");
         String path = fileDir.getAbsolutePath();
         if(!fileDir.exists()){
             fileDir.mkdir();
