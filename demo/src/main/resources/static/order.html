@@ -59,9 +59,23 @@
                             else if (orderItem['state'] === "已收货，待评价") {
                                 confirm_btn = '';
                                 commit_btn =
-                                    '<a href="#" class="btn btn-primary" id="' +
-                                    orderItem['oID'].toString() +
-                                    '" onclick="javascript:void(0)">去评价</a>';
+                                    '                        <a class="btn btn-primary" data-toggle="collapse" href="#' + orderItem['oID'].toString() + '" role="button" aria-expanded="false" aria-controls="' + orderItem['oID'].toString() + '">去评价</a>\n' +
+                                    '                        <div class="collapse" id="' + orderItem['oID'].toString() + '">\n' +
+                                    '                            <div class="card card-body">\n' +
+                                    '                                <div class="btn-group" role="group" aria-label="Basic example">\n' +
+                                    '                                    <button type="button" class="btn btn-secondary" value="5" onclick="getStar(this.value)">好评</button>\n' +
+                                    '                                    <button type="button" class="btn btn-secondary" value="3" onclick="getStar(this.value)">中评</button>\n' +
+                                    '                                    <button type="button" class="btn btn-secondary" value="1" onclick="getStar(this.value)">差评</button>\n' +
+                                    '                                </div>\n' +
+                                    '                                <textarea cols="6"></textarea>\n' +
+                                    '                                <div class="modal-footer">\n' +
+                                    '                                    <button type="button" class="btn btn-primary" onclick="sendComment(this)">提交更改</button>\n' +
+                                    '                                </div>\n' +
+                                    '                            </div>\n' +
+                                    '                        </div>';
+                                    // '<a href="#" class="btn btn-primary" id="' +
+                                    // orderItem['oID'].toString() +
+                                    // '" onclick="javascript:void(0)">去评价</a>';
                             }
                             else {
                                 confirm_btn = '';
@@ -188,6 +202,44 @@
 </header>
 
 
+<script>
+    let star = 5;
+
+    function getStar(value) {
+        star = value;
+    }
+
+    function sendComment(item) {
+        let marks = star;
+        let node = item.parentElement.parentElement.parentElement;
+        let oID = node.id;
+        let textNode = node.firstElementChild.firstElementChild.nextElementSibling;
+        let comment = textNode.value;
+        let resData = {
+            "oID": oID,
+            "text": comment,
+            "star": marks
+        };
+        console.log(JSON.stringify(resData));
+        $.ajax({
+            url: "http://127.0.0.1:8080/insertComment",
+            type: 'POST',
+            dataType: 'json',
+            crossOrigin: true,
+            data: resData,
+            success: function (data) {
+                console.log(JSON.stringify(data));
+                if (data.result === 'false') {
+                    alert("failed");
+                }
+                location.reload();
+            },
+            error: function (data) {
+                alert("connection error");
+            }
+        })
+    }
+</script>
 <!--订单中心-->
 <div class="order-head">
     <h2>订单中心</h2>
@@ -207,25 +259,23 @@
 <!--                    <h5  class="mt-0 mb-1">金额sum</h5>-->
 <!--                    <span>x 数量count</span>-->
 <!--                    <div class="media-body-right-bottom">-->
-<!--                        <h5 class="mt-0 mb-1">状态state</h5>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </li>-->
-<!--        <li class="media my-1">-->
-<!--            <img src="img/spimg.jpg" class="mr-3 spimg" alt="">-->
-<!--            <div class="media-body">-->
-<!--                <div class="media-body-left">-->
-<!--                    <h5 class="mt-0 mb-1">商品名称spName</h5>-->
-<!--                    <span>商家sName</span><br>-->
-<!--                    <span>商家电话sPhone</span><br>-->
-<!--                    <span>下单时间submitTime</span><br>-->
-<!--                </div>-->
-<!--                <div class="media-body-right">-->
-<!--                    <h5  class="mt-0 mb-1">金额sum</h5>-->
-<!--                    <span>x 数量count</span>-->
-<!--                    <div class="media-body-right-bottom">-->
-<!--                        <h5 class="mt-0 mb-1">状态state</h5>-->
+<!--                        <span class="mt-0 mb-1">状态state</span>-->
+<!--                        &lt;!&ndash; 去评价功能&ndash;&gt;-->
+<!--                        <a class="btn btn-primary" data-toggle="collapse" href="#11" role="button" aria-expanded="false" aria-controls="11">去评价</a>-->
+<!--                        <div class="collapse" id="11">-->
+<!--                            <div class="card card-body">-->
+<!--                                <div class="btn-group" role="group" aria-label="Basic example">-->
+<!--                                    <button type="button" class="btn btn-secondary" value="5" onclick="getStar(this.value)">好评</button>-->
+<!--                                    <button type="button" class="btn btn-secondary" value="3" onclick="getStar(this.value)">中评</button>-->
+<!--                                    <button type="button" class="btn btn-secondary" value="1" onclick="getStar(this.value)">差评</button>-->
+<!--                                </div>-->
+<!--                                <textarea cols="6"></textarea>-->
+<!--                                <div class="modal-footer">-->
+<!--                                    <button type="button" class="btn btn-primary" onclick="sendComment(this)">提交更改</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; ./去评价功能&ndash;&gt;-->
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->

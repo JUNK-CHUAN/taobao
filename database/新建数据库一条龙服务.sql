@@ -121,7 +121,7 @@ create table specialtyPic
 alter table ordertable modify oID int auto_increment;
 alter table ordertable modify column submitTime datetime null default current_timestamp;
 alter table specialty modify spID int auto_increment;
-alter table specialty modify column insertTime datetime null default current_timestamp;.
+alter table specialty modify column insertTime datetime null default current_timestamp;
 alter table cart modify column submitTime datetime null default current_timestamp;
 alter table comment modify column submitTime datetime null default current_timestamp;
 
