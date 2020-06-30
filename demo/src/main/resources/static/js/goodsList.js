@@ -57,7 +57,12 @@ $(document).ready(function () {
             if (data.result === "false") {
                 window.location.href = "./login.html";
             }
-            get_goods_list();
+            else if (data.category === "seller"){
+                window.location.href = "./salerBackend.html";
+            }
+            else{
+                get_goods_list();
+            }
         }
     });
 

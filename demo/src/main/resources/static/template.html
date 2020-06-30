@@ -25,6 +25,9 @@
                 if (data.result === 'true') {
                     window.location.href = "./login.html";
                 }
+                else if (data.category === "seller"){
+                    window.location.href = "./salerBackend.html";
+                }
             },
             error: function (data) {
                 console.log(data)

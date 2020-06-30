@@ -31,6 +31,9 @@
                 if (data.result === "false") {
                     window.location.href = "./login.html";
                 }
+                else if (data.category === "seller"){
+                    window.location.href = "./salerBackend.html";
+                }
 
                 // 动态生成订单列表
                 $.ajax({
