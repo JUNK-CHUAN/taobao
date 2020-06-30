@@ -532,6 +532,7 @@ function generateStar(num)  {
         for(;i<5;i++)
             star = star+returnBadStar();
     }
+    return star;
 
 }
 function returnGoodStar(){
