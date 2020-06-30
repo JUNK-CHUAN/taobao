@@ -35,21 +35,11 @@ public class InterceptorConfig implements WebMvcConfigurer {
         String pathString = path.getAbsolutePath();
 //        System.out.println(pathString);
 //        System.out.println("path:"+pathString.substring(0, pathString.length()-15));
-<<<<<<< HEAD
-        registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString.substring(0, pathString.length()-15) + "/src/main/resources/static/specialtyPic/");
-//        registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString + "/src/main/resources/static/specialtyPic/");
-=======
-
         // windows
-        //registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString.substring(0, pathString.length()-15) + "/src/main/resources/static/specialtyPic/");
+        registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString.substring(0, pathString.length()-15) + "/src/main/resources/static/specialtyPic/");
 
         // macos
-<<<<<<< HEAD
         //        registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString + "/src/main/resources/static/specialtyPic/");
->>>>>>> 5af44d321b38bb5653db51c01cf2cb2cab382a69
-=======
-        registry.addResourceHandler("/specialtyPic/**").addResourceLocations("file:" + pathString + "/src/main/resources/static/specialtyPic/");
->>>>>>> 2e25645c4284a99981cf13fd178b33b0d66f6ffb
 
     }
 }

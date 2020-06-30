@@ -58,7 +58,7 @@ public class OrderController {
                 if(stock < count){
                     // 如果库存不够就中止
                     map.put("result", "false");
-                    map.put("reason", "someStockNotEnough");
+                    map.put("reason", "库存不足");
                     return map;
                 }
                 String state = "已下单";
@@ -106,7 +106,7 @@ public class OrderController {
                 if(stock < count){
                     // 如果库存不够就中止
                     map.put("result", "false");
-                    map.put("reason", "someStockNotEnough");
+                    map.put("reason", "库存不足");
                     return map;
                 }
                 String state = "已下单";
