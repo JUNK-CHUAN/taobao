@@ -45,7 +45,7 @@ public class ManageSpecialtyController {
     //图片文件存储
 
         //存放目录
-        File fileDir = new File("src/main/resources/static/specialtyPic");
+        File fileDir = new File("demo/src/main/resources/static/specialtyPic");
         String path = fileDir.getAbsolutePath();
         if(!fileDir.exists()){
             fileDir.mkdir();
@@ -118,6 +118,7 @@ public class ManageSpecialtyController {
                                @RequestParam(value = "category") String category,
                                @RequestParam(value = "price") float price,
                                HttpSession session)  throws Exception{
+        System.out.println("修改基础信息");
         Map<String, Object> map = new HashMap<>();
         // 处理未登录情况
         if(session.getAttribute("isLogIn") == null) {
@@ -140,7 +141,7 @@ public class ManageSpecialtyController {
                                @RequestParam(value ="picUrls") String picUrls_str,
                                @RequestParam(value = "detail") String detail,
                                HttpSession session)  throws Exception{
-
+        System.out.println("修改详情");
         List<String> picUrls = Arrays.asList(picUrls_str.split(","));
         Map<String, Object> map = new HashMap<>();
         // 处理未登录情况
@@ -157,6 +158,7 @@ public class ManageSpecialtyController {
         SPPM.deleteSpecialtyPicByspID(spID);
         for(int i=0;i<picUrls.size();i++){
             SPPM.createNewSpecialtyPic(spID,picUrls.get(i));
+            System.out.println("特产ID"+spID+"图片地址："+picUrls.get(i));
         }
         map.put("result", "true");
         return map;
