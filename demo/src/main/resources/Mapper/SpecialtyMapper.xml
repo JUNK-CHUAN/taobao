@@ -14,6 +14,7 @@
         <result column="sPhone" property="sPhone" jdbcType="VARCHAR"/>
         <result column="sAddress" property="sAddress" jdbcType="VARCHAR"/>
         <result column="sales" property="salesVolume" jdbcType="INTEGER"/>
+        <result column="star" property="star" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="selectSpecialty" resultMap="BaseResultMap">
@@ -93,7 +94,7 @@
     <select id="specialtyStarRank" resultMap="BaseResultMap">
 select sp.spID as spID, sp.sID as sID, sp.name as name,
         picUrl, stock, detail, sp.category as category, sp.price as price, seller.name as sName,
-        seller.phone as sPhone, seller.address as sAddress, avg(star)
+        seller.phone as sPhone, seller.address as sAddress, avg(star) as star
 				from specialty as sp,ordertable,comment,seller
 				where sp.isDeleted=0 and ordertable.oID = comment.oID and sp.spID=ordertable.spID and seller.sID=sp.sID
 				group by(ordertable.spID) order by avg(star) DESC
