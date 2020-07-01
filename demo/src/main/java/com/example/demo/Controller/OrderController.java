@@ -95,6 +95,7 @@ public class OrderController {
 
         List<Object> cartList= (List<Object>) jsonObj.get("data");
         String recvAddress = (String) jsonObj.get("recvAddress");
+        // 先检测是否有库存不足，有的话直接返回，不下单
         for(int i=0; i<cartList.size(); i++){
             Map<String, Object> cartItem = (Map<String, Object>) cartList.get(i);
             int spID = Integer.parseInt((String) cartItem.get("spID"));
@@ -106,9 +107,26 @@ public class OrderController {
                 if(stock < count){
                     // 如果库存不够就中止
                     map.put("result", "false");
-                    map.put("reason", "库存不足");
+                    map.put("reason", cartObjList.get(0).getSpName() + " 库存不足");
                     return map;
                 }
+            }
+        }
+        // 正式下单
+        for(int i=0; i<cartList.size(); i++){
+            Map<String, Object> cartItem = (Map<String, Object>) cartList.get(i);
+            int spID = Integer.parseInt((String) cartItem.get("spID"));
+            int count = Integer.parseInt((String) cartItem.get("count"));
+            List<Cart> cartObjList = CAM.selectCart(spID, cID);
+            if(cartObjList.size() > 0){
+//                int count = cartObjList.get(0).getCount();
+//                int stock = cartObjList.get(0).getStock();
+//                if(stock < count){
+//                    // 如果库存不够就中止
+//                    map.put("result", "false");
+//                    map.put("reason", "库存不足");
+//                    return map;
+//                }
                 String state = "已下单";
                 float sum = count * (cartObjList.get(0).getPrice());
                 OM.insertOrder(count, recvAddress, state, spID, cID, sum);
