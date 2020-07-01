@@ -518,19 +518,28 @@ function load_all_order() {
 function generateStar(num)  {
     let star = "";
     if(num>5){
-       for(let i=0;i<5;i++)
+       for(let i=0;i<5;i++){
            star = star + returnGoodStar();
+       }
+
     }else if(num<=0){
-        for(let i=0;i<num;i++)
+        for(let i=0;i<5;i++){
             star = star + returnBadStar();
+        }
+
     }
     else {
         let i;
-        for( i=0;i<num;i++)
+        for( i=0;i<num;i++){
             star = star+returnGoodStar();
-        for(;i<5;i++)
+        }
+
+        for(;i<5;i++){
             star = star+returnBadStar();
+        }
+
     }
+    return star;
 
 }
 function returnGoodStar(){
