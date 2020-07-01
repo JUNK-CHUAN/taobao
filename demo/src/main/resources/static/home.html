@@ -214,7 +214,7 @@
 
                                     let itemWritable = $(
                                         '                <div class="card rank-card">\n' +
-                                        '                    <img src="' + rankItem["picUrl"] + '" class="card-img-top" alt="" id="' + 'rank-' + rankItem["spID"] + '" onclick="rankDetail(this)" style="cursor: pointer;">\n' +
+                                        '                    <img src="' + rankItem["picUrl"] + '" class="card-img-top" alt="" id="' + 'good-' + rankItem["spID"] + '" onclick="goodDetail(this)" style="cursor: pointer;">\n' +
                                         '                    <div class="card-body" style="padding: 0.25rem">\n' +
                                         '                        <h5 class="card-title" style="font-size: 16px">' + rankItem["name"] + '</h5>\n' +
                                         '                        <p class="card-text" style="font-size: 12px"><svg t="1593582912685" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12486" width="20" height="20"><path d="M718.565517 863.126069c-7.344552 0-15.077517-2.189241-22.987034-6.285241L512 760.337655l-183.613793 96.503173c-18.785103 9.851586-37.499586 7.521103-48.16331-5.12-5.12-6.10869-10.557793-17.125517-7.485794-35.345656l35.063173-204.411586L159.249655 467.155862c-12.747034-12.393931-17.584552-27.153655-13.241379-40.430345 4.343172-13.312 16.913655-22.386759 34.568827-24.929103l205.223725-29.837242 91.806896-185.979586c7.874207-15.995586 20.409379-25.140966 34.392276-25.140965 13.947586 0 26.482759 9.145379 34.392276 25.140965l91.771586 185.979586 205.259035 29.837242c17.619862 2.577655 30.190345 11.652414 34.498206 24.964414 4.378483 13.27669-0.529655 28.001103-13.241379 40.430344l-148.51531 144.807725 35.063172 204.411586c3.10731 18.149517-2.365793 29.272276-7.485793 35.345655a32.273655 32.273655 0 0 1-25.176276 11.369931z" fill="#ea9518" p-id="12487"></path></svg>&nbsp;评分:' + rankItem["star"] + '</p>\n' +
@@ -267,6 +267,13 @@
 
     function rankDetail(item) {
         let id = item.id.split('rank-').join('');
+        let storage = window.localStorage;
+        storage.setItem("spID", id);
+        window.location.href = "commodity.html";
+    }
+
+    function goodDetail(item) {
+        let id = item.id.split('good-').join('');
         let storage = window.localStorage;
         storage.setItem("spID", id);
         window.location.href = "commodity.html";
@@ -324,13 +331,13 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100 adimg" src="img/adimg1.png" alt="First slide">
+            <img class="d-block w-100 adimg" src="img/adimg1.png" alt="" id="290" onclick="showDetail(this)">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100 adimg" src="img/adimg2.jpg" alt="Second slide">
+            <img class="d-block w-100 adimg" src="img/adimg2.jpg" alt="" id="291" onclick="showDetail(this)">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100 adimg" src="img/adimg3.png" alt="Third slide">
+            <img class="d-block w-100 adimg" src="img/adimg3.png" alt="" id="292" onclick="showDetail(this)">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
