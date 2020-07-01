@@ -26,4 +26,5 @@ public interface SpecialtyMapper {
     void deleteSpecialty(int spID);
 
     List<Specialty> specialtySaleRank();
+    List<Specialty> specialtyStarRank();
 }
